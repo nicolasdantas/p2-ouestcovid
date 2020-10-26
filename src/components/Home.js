@@ -1,7 +1,12 @@
 import React from 'react';
+import SearchSection from './SearchSection/SearchSection';
 
 const Home = () => {
-  return <h1>Coucou</h1>;
+  return (
+    <div>
+      <SearchSection />
+    </div>
+  );
 };
 
 export default Home;
