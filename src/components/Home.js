@@ -1,9 +1,9 @@
 import React from 'react';
-import Map from './Map'
+import DataByCounty from './DataByCounty'
 
 const Home = () => {
   return (
-    <Map />
+    <DataByCounty />
   );
 };
 
