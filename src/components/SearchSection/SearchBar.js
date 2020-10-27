@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
-import DataCard from '../DataCard';
+// import axios from 'axios';
+// import DataCard from '../DataCard';
 import countyList from '../countyList.json'; //data from https://geo.api.gouv.fr/departements
 
 class SearchBar extends React.Component {
@@ -11,24 +11,9 @@ class SearchBar extends React.Component {
     };
   }
 
-  getCovidData = (countyCode) => {
-    let countyName = countyList.find((element) => element.code === countyCode)
-      .nom;
-    //ici, gérer les cas d'erreur, si les données sont nulles notamment
-    let url = `https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=${countyName}`;
-    axios
-      .get(url)
-      .then((response) => response.data)
-      .then((data) =>
-        this.setState({
-          selectedDataToday: data.LiveDataByDepartement[0],
-        })
-      );
-  };
-
   handleCountySelection = (event) => {
     let countyCode = event.target.value;
-    this.getCovidData(countyCode);
+    this.props.onSelectCounty(countyCode);
   };
 
   render() {
@@ -52,8 +37,6 @@ class SearchBar extends React.Component {
           Sélectionnez un département pour voir le détail des derniers chiffres
           de l'épidémie
         </p>
-
-        <DataCard selectedDataToday={this.state.selectedDataToday} />
       </div>
     );
   }
