@@ -31,13 +31,13 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <div className='form-wrapper'>
+      <div className="form-wrapper">
         <form>
           <h2> Contact </h2>
           <div>
             <label>Nom</label>
             <input
-              type='text'
+              type="text"
               value={this.state.name}
               onChange={this.handleNameChange}
             />
@@ -45,7 +45,7 @@ class ContactForm extends Component {
           <div>
             <label> E-mail</label>
             <input
-              type='email'
+              type="email"
               value={this.state.email}
               onChange={this.handleEmailChange}
             />
@@ -58,7 +58,10 @@ class ContactForm extends Component {
               onChange={this.handleMessageChange}
             />
           </div>
-          <button type='submit'>Envoyer</button>
+
+          <div className="button">
+            <button type="submit">Envoyer</button>
+          </div>
         </form>
       </div>
     );

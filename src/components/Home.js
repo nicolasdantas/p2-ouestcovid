@@ -1,7 +1,9 @@
 import React from 'react';
+import './ContactForm';
 
 const Home = () => {
-  return <h1>Coucou</h1>;
+  return;
+  <ContactForm />;
 };
 
 export default Home;

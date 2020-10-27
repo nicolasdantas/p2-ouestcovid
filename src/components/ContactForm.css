@@ -15,7 +15,6 @@ textarea {
 }
 
 .form-wrapper {
-  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
@@ -44,4 +43,9 @@ button {
   padding: 15px;
   letter-spacing: 1px;
   border: none;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
 }
