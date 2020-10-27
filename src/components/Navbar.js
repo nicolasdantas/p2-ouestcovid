@@ -5,8 +5,8 @@ const Navbar = () => {
   return (
     <header>
       <h1>I'm the header</h1>
-      <Link to='/'>Accueil </Link>
-      <Link to='/ou-partir'>Où partir ?</Link>
+      <Link to="/">Accueil </Link>
+      <Link to="/ou-partir">Où partir ?</Link>
     </header>
   );
 };
