@@ -41,7 +41,7 @@ class Map extends React.Component {
     return (
       <div>
         <SVGMap map={France} onLocationClick={this.handleClick} />
-        {this.state.dataCountyLoaded ? (
+        {/* {this.state.dataCountyLoaded ? (
           <div>
             <p>
               Situation sanitaire dans le {dataCounty.nom} au {dataCounty.date}
@@ -52,7 +52,7 @@ class Map extends React.Component {
           </div>
         ) : (
           <p>false</p>
-        )}
+        )} */}
       </div>
     );
   }
