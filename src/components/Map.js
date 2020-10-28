@@ -1,7 +1,6 @@
 import React from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
-import axios from 'axios';
 import './Map.scss';
 
 class Map extends React.Component {
@@ -17,22 +16,9 @@ class Map extends React.Component {
 
   handleClick = (event) => {
     this.setState({
-      clickedLocationName: event.target.attributes.name.value,
+      clickedLocationId: event.target.id,
     });
-
-    axios
-      .get(
-        event.target.attributes.name.value === 'Ville de Paris'
-          ? `https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=Paris`
-          : `https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=${event.target.attributes.name.value}`
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        this.setState({
-          dataCounty: data.LiveDataByDepartement[0],
-          dataCountyLoaded: true,
-        });
-      });
+    this.props.onSelectCounty(event.target.id);
   };
 
   render() {
@@ -41,18 +27,6 @@ class Map extends React.Component {
     return (
       <div>
         <SVGMap map={France} onLocationClick={this.handleClick} />
-        {/* {this.state.dataCountyLoaded ? (
-          <div>
-            <p>
-              Situation sanitaire dans le {dataCounty.nom} au {dataCounty.date}
-            </p>
-            <p>Hospitalisés : {dataCounty.hospitalises}</p>
-            <p>Décès : {dataCounty.deces}</p>
-            <p>Guéris : {dataCounty.gueris}</p>
-          </div>
-        ) : (
-          <p>false</p>
-        )} */}
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 // import axios from 'axios';
 // import DataCard from '../DataCard';
-import countyList from '../countyList.json'; //data from https://geo.api.gouv.fr/departements
+import countyList from './countyList.json'; //data from https://geo.api.gouv.fr/departements
 
 class SearchBar extends React.Component {
   constructor(props) {
