@@ -13,7 +13,7 @@ class News extends React.Component {
   }
 
   componentDidMount = () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=fr&q=covid&apiKey=f545ace02057431081cf6684cc135a79`;
+    const url = `https://newsapi.org/v2/top-headlines?country=fr&q=covid&category=health&apiKey=f545ace02057431081cf6684cc135a79`;
     axios
       .get(url)
       .then((response) => response.data)
@@ -27,14 +27,19 @@ class News extends React.Component {
   render() {
     const { arrayOfNews } = this.state;
     return (
-      <Carousel className="carousel" autoPlay showThumbs={false}>
-        {arrayOfNews.map((article) => (
-          <div key={article.title}>
-            <img alt="" src={article.urlToImage} />
-            <p className="legend">{article.title}</p>
-          </div>
-        ))}
-      </Carousel>
+      <div>
+        <h1 className="carousel-title">Dernières actualités</h1>
+        <Carousel className="carousel" autoPlay showThumbs={false} showStatus={false} infiniteLoop={true}>
+          {arrayOfNews.filter(article => article.urlToImage !== null).map((article) => (
+            <a href={article.url} target="_blank">
+              <div key={article.title} className="container">
+                <img className = "picture" alt="" src={article.urlToImage} />
+                <p className="legend">{article.title}</p>
+              </div>
+            </a>
+          ))}
+        </Carousel>
+      </div>
     );
   }
 }
