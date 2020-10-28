@@ -9,20 +9,22 @@ const Navbar = () => {
       <nav className="menu" role="navigation">
         <div className="inner">  
           <div className = "navBarLeft">
-          <img src={require("../pictures/logo.png")} alt="logo"/>
+          <img className="logo" src={require("../pictures/logo.png")} alt="logo" width="70px" height="70px" />
           </div>
           
           <div className="navBarRight">
           <button id="hamburger_button">&#9776;</button>
-            <ul>
-            <li className="liste"><Link to='/'>Accueil </Link></li>
-            <li className="liste"><Link to='/ou-partir'>Où partir ?</Link></li>
+            <ul class="lien-navbar">
+            <li><Link className="liste" to='/'>Accueil </Link></li>
+            <li ><Link className="liste" to='/ou-partir'>Où partir ?</Link></li>
             </ul>
-          </div> 
+          </div>  
         </div>     
       </nav>
     </header>
-  );
+  ); 
 };
+
+
 
 export default Navbar;

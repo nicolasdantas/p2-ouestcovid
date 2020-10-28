@@ -4,45 +4,59 @@
   width: 100%;
   height: 80px;
   background-color: var(--marron);
+
 }
 .inner{
   width:90%;
   margin:auto;
+  display:flex;
+  justify-content:space-between; 
+}
+
+.logo{
+margin-top:10%;
 }
 .navBarRight{
-  float: right;
-  display:flex;
-  align-items: center;
-  font-family: roboto;
-}
-.navBarLeft{
-  float: left;
-}
-
-ul {
-  margin:0;
-  padding:0;
-  list-style-type: none;
+    display:flex;
+    align-items: center;
+    font-family: roboto;
   }
+  #hamburger_button{
+    cursor:pointer;
+    background: none;
+    border:none;
+    font-size: 30px;
+    padding:0;
+    vertical-align: top;
+    line-height: 47px;
+    margin-right: 32px;
+  }
+  .lien-navbar {
+    margin:0;
+    padding:0;
+    list-style-type: none;
+    text-decoration: none;
+    display:flex;
+    }
 
 .liste{
-  display:inline flex;
-  align-items: center;
-  justify-content: row;
+  display:none;
   padding: 10px;
+  color:black;
 }
 
-#hamburger_button{
-  cursor:pointer;
-  background: none;
-  border:none;
-  font-size: 30px;
-  padding:0;
-  vertical-align: top;
-  line-height: 47px;
-  /* float: right; */
-  margin-right: 32px;
+@media screen and (min-width: 734px) {
+  .liste{
+    display: flex;
+  }
+  #hamburger_button{
+    display:none;
+  }
 }
+
+
+
+
 
 
 
