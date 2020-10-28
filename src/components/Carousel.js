@@ -29,15 +29,23 @@ class News extends React.Component {
     return (
       <div>
         <h1 className="carousel-title">Dernières actualités</h1>
-        <Carousel className="carousel" autoPlay showThumbs={false} showStatus={false} infiniteLoop={true}>
-          {arrayOfNews.filter(article => article.urlToImage !== null).map((article) => (
-            <a href={article.url} target="_blank">
-              <div key={article.title} className="container">
-                <img className = "picture" alt="" src={article.urlToImage} />
-                <p className="legend">{article.title}</p>
-              </div>
-            </a>
-          ))}
+        <Carousel
+          className="carousel"
+          autoPlay
+          showThumbs={false}
+          showStatus={false}
+          infiniteLoop
+        >
+          {arrayOfNews
+            .filter((article) => article.urlToImage !== null)
+            .map((article) => (
+              <a href={article.url} target="_blank" rel="noreferrer">
+                <div key={article.title} className="container">
+                  <img className="picture" alt="" src={article.urlToImage} />
+                  <p className="legend">{article.title}</p>
+                </div>
+              </a>
+            ))}
         </Carousel>
       </div>
     );
