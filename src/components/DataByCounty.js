@@ -4,8 +4,9 @@ import axios from 'axios';
 import DataCard from './DataCard';
 import countyList from './countyList.json'; //data from https://geo.api.gouv.fr/departements
 import Map from './Map';
+import moment from 'moment';
 
-class SearchSection extends React.Component {
+class DataByCounty extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,28 +17,36 @@ class SearchSection extends React.Component {
   }
 
   handleCounty = (countyValue) => {
-    //getting data from a child element and storing it in the state
+    //getting data from a child element and storing it in the state: get the selected county postal code (not the data)
     this.setState({ countyCode: countyValue });
   };
 
   getCovidData = (countyCode) => {
     let countyName = countyList.find((element) => element.code === countyCode)
-      .nom;
+      .nom; //getting the county name according to its code
     //ici, gérer les cas d'erreur, si les données sont nulles notamment
-    let url = `https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=${countyName}`;
+    let yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD');
+    console.log(yesterday);
+    let urlSpecificCounty = `https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=${countyName}`;
+    let urlSpecificDate = `https://coronavirusapi-france.now.sh/AllDataByDate?date=${yesterday}`; //this gets all the data on the specified date
+    console.log(urlSpecificDate);
     axios
-      .get(url)
+      .get(urlSpecificDate)
       .then((response) => response.data)
-      .then((data) =>
+      .then((data) => {
+        let dataArray = data.allFranceDataByDate;
+        let filteredArray = dataArray.filter((item) => item.nom === countyName);
         this.setState({
-          selectedDataToday: data.LiveDataByDepartement[0],
-        })
-      );
+          selectedDataToday: filteredArray[0],
+        });
+      });
   };
 
-  componentDidUpdate = () => {
-    this.getCovidData(this.state.countyCode);
-  };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.countyCode !== this.state.countyCode) {
+      this.getCovidData(this.state.countyCode);
+    }
+  }
 
   render() {
     return (
@@ -52,4 +61,4 @@ class SearchSection extends React.Component {
   }
 }
 
-export default SearchSection;
+export default DataByCounty;

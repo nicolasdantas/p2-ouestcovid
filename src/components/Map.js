@@ -23,7 +23,6 @@ class Map extends React.Component {
 
   render() {
     const { dataCounty } = this.state;
-    console.log(dataCounty);
     return (
       <div>
         <SVGMap map={France} onLocationClick={this.handleClick} />
