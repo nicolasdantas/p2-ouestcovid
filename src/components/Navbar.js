@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-
+import CustomizedMenus from './Burger';
 
 const Navbar = () => {
   return (
@@ -13,18 +13,16 @@ const Navbar = () => {
           </div>
           
           <div className="navBarRight">
-          <button id="hamburger_button">&#9776;</button>
+          <div><CustomizedMenus/></div>
             <ul class="lien-navbar">
             <li><Link className="liste" to='/'>Accueil </Link></li>
             <li ><Link className="liste" to='/ou-partir'>Où partir ?</Link></li>
             </ul>
-          </div>  
+          </div>   
         </div>     
       </nav>
     </header>
   ); 
 };
-
-
 
 export default Navbar;
