@@ -9,8 +9,8 @@ class SearchSection extends React.Component {
     super(props);
     this.state = {
       //initializing the state at null
-      countyCode: null,
-      selectedDataToday: null,
+      countyCode: null, //code postal département sélectionné
+      selectedDataToday: null, //données du dep sélectionné
     };
   }
 
