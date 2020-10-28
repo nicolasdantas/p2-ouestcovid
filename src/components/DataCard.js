@@ -24,8 +24,8 @@ class DataCard extends React.Component {
                 Nouvelles Reanimations :{' '}
                 {selectedDataToday.nouvellesReanimations}
               </li>
-              <li>Décès (cumul depuis -) : {selectedDataToday.deces}</li>
-              <li>Guéris (cumul depuis -) : {selectedDataToday.gueris}</li>
+              <li>Décès (cumulés) : {selectedDataToday.deces}</li>
+              <li>Guéris (cumulés) : {selectedDataToday.gueris}</li>
             </ul>
           </div>
         )}
