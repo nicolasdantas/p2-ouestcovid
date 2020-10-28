@@ -1,0 +1,49 @@
+@import '../App.css';
+
+.menu{
+  width: 100%;
+  height: 80px;
+  background-color: var(--marron);
+}
+.inner{
+  width:90%;
+  margin:auto;
+}
+.navBarRight{
+  float: right;
+  display:flex;
+  align-items: center;
+  font-family: roboto;
+}
+.navBarLeft{
+  float: left;
+}
+
+ul {
+  margin:0;
+  padding:0;
+  list-style-type: none;
+  }
+
+.liste{
+  display:inline flex;
+  align-items: center;
+  justify-content: row;
+  padding: 10px;
+}
+
+#hamburger_button{
+  cursor:pointer;
+  background: none;
+  border:none;
+  font-size: 30px;
+  padding:0;
+  vertical-align: top;
+  line-height: 47px;
+  /* float: right; */
+  margin-right: 32px;
+}
+
+
+
+
