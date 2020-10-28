@@ -5,7 +5,5 @@ html,body{
 
 :root {
   --bleu : #0CA4C4;
-  --marron: #A68C70;
-  --linkfont: sans-serif;
-  font-family: Roboto;
+  --marron: #A68C70; 
 }
