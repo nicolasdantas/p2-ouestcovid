@@ -3,7 +3,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer>
-      <div className="footerDivLinkMedia">
+      <div>
         <ul>
           <li>
             <a href="https://www.facebook.com">
@@ -29,7 +29,7 @@ const Footer = () => {
         </ul>
       </div>
       <div>
-        <ul className="footerUlLinkGouv">
+        <ul>
           <li>
             <a href="https://www.gouvernement.fr/info-coronavirus">
               <img
@@ -41,7 +41,7 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className="divTag">
+      <div>
         <p>
           Made with madness by Matt Damon, Candide Guiness , Moufette Anonyme,
           Lou Lou, Moi Même
