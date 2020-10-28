@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './Footer.css';
 const Footer = () => {
   return (
     <footer>
-      <div className="divLinkFooter">
+      <div className="footerDivLinkMedia">
         <ul>
           <li>
             <a href="https://www.facebook.com">
@@ -26,6 +26,10 @@ const Footer = () => {
               <img src={require('../img/github-logo.png')} alt="logo Github" />
             </a>
           </li>
+        </ul>
+      </div>
+      <div>
+        <ul className="footerUlLinkGouv">
           <li>
             <a href="https://www.gouvernement.fr/info-coronavirus">
               <img
@@ -36,6 +40,7 @@ const Footer = () => {
           </li>
         </ul>
       </div>
+
       <div className="divTag">
         <p>
           Made with madness by Matt Damon, Candide Guiness , Moufette Anonyme,
