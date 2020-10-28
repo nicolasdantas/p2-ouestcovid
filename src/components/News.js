@@ -3,13 +3,12 @@ import React from 'react';
 class News extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {};
   }
-  render() { 
-    return ( 
-      "blabla"
-     );
+
+  render() {
+    return 'blabla';
   }
 }
- 
+
 export default News;
