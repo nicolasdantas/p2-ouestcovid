@@ -5,6 +5,7 @@ import DataCard from './DataCard';
 import countyList from './countyList.json'; //data from https://geo.api.gouv.fr/departements
 import Map from './Map';
 import moment from 'moment';
+import './DataByCounty.scss';
 
 class DataByCounty extends React.Component {
   constructor(props) {
@@ -73,12 +74,14 @@ class DataByCounty extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='dataByCounty'>
         <SearchBar onSelectCounty={this.handleCounty} />
-        {this.state.selectedDataToday && (
-          <DataCard selectedDataToday={this.state.selectedDataToday} />
-        )}
-        <Map onSelectCounty={this.handleCounty} />
+        <div className='dataRow'>
+          {this.state.selectedDataToday && (
+            <DataCard selectedDataToday={this.state.selectedDataToday} />
+          )}
+          <Map onSelectCounty={this.handleCounty} />
+        </div>
       </div>
     );
   }

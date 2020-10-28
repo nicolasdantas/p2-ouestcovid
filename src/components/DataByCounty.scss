@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, arial, sans-serif;
+}
+
+.none {
+  display: none;
+}
+
+.dataByCounty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+}
+
+.dataRow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.dataCard {
+  border: 1px black solid;
+  padding: 20px;
+  margin: 20px;
+  min-width: 215px;
+
+  .dataNumbers {
+    h2,
+    p {
+      text-align: center;
+      padding: 5px 0;
+    }
+    ul {
+      margin-top: 5px;
+    }
+    li {
+      list-style: none;
+      line-height: 1.5em;
+    }
+    em {
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .map {
+    display: block;
+    width: 50vw;
+    min-width: 400px;
+  }
+}

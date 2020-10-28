@@ -24,7 +24,7 @@ class Map extends React.Component {
   render() {
     const { dataCounty } = this.state;
     return (
-      <div>
+      <div className='map none'>
         <SVGMap map={France} onLocationClick={this.handleClick} />
       </div>
     );
