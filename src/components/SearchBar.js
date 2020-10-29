@@ -6,8 +6,11 @@ import countyList from './countyList.json'; // data from https://geo.api.gouv.fr
 class SearchBar extends React.Component {
   handleCountySelection = (event) => {
     const countyCode = event.target.value;
-    const { onSelectCounty } = this.props;
-    onSelectCounty(countyCode);
+    if (countyCode !== '') {
+      const { onSelectCounty } = this.props;
+      onSelectCounty(countyCode);
+      document.querySelector('select').selectedIndex = 0;
+    }
   };
 
   render() {

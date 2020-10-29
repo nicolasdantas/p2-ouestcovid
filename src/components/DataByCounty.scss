@@ -2,124 +2,124 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  // border: 1px solid black;
-}
-
-body {
-  font-family: 'Roboto', arial, sans-serif;
-}
-
-.none {
-  display: none;
 }
 
 .dataByCounty {
+  font-family: 'Roboto', arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
-}
 
-.searchBar {
-  display: flex;
-  align-items: center;
-  line-height: 2em;
+  margin-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
 
-  .description {
-    font-size: 12px;
-    line-height: 1.2em;
-    margin-top: 8px;
+  .none {
+    display: none;
   }
 
-  select {
-    // A reset of styles, including removing the default dropdown arrow
-    appearance: none;
-    // Additional resets for further consistency
-    background-color: transparent;
-    border: none;
-    padding: 0 1em 0 0;
-    margin: 0;
-    width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: inherit;
-    line-height: inherit;
-    outline: none;
+  .searchBar {
+    display: flex;
+    align-items: center;
+    line-height: 2em;
+
+    .description {
+      font-size: 12px;
+      line-height: 1.2em;
+      margin-top: 8px;
+    }
+
+    select {
+      // A reset of styles, including removing the default dropdown arrow
+      appearance: none;
+      // Additional resets for further consistency
+      background-color: transparent;
+      border: none;
+      padding: 0 1em 0 0;
+      margin: 0;
+      width: 100%;
+      font-family: inherit;
+      font-size: inherit;
+      cursor: inherit;
+      line-height: inherit;
+      outline: none;
+    }
+
+    .custom-select {
+      width: 100%;
+      min-width: 15ch;
+      max-width: 30ch;
+      border: 1px solid black;
+      border-radius: 0.25em;
+      padding: 0.25em 0.5em;
+      cursor: pointer;
+      line-height: 1.1;
+      background-color: #fff;
+      background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+      display: grid;
+      grid-template-areas: 'select';
+      align-items: center;
+    }
+
+    // .custom-select::after {
+    //   content: '';
+    //   width: 0.8em;
+    //   height: 0.5em;
+    //   background-color: grey;
+    //   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    //   grid-area: select;
+    //   justify-self: end;
+    // }
   }
 
-  .custom-select {
-    width: 100%;
-    min-width: 15ch;
-    max-width: 30ch;
-    border: 1px solid black;
-    border-radius: 0.25em;
-    padding: 0.25em 0.5em;
-    cursor: pointer;
-    line-height: 1.1;
-    background-color: #fff;
-    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-    display: grid;
-    grid-template-areas: 'select';
+  .select-wrapper {
+    width: 250px;
+  }
+
+  .dataRow {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
     align-items: center;
   }
 
-  // .custom-select::after {
-  //   content: '';
-  //   width: 0.8em;
-  //   height: 0.5em;
-  //   background-color: grey;
-  //   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-  //   grid-area: select;
-  //   justify-self: end;
-  // }
-}
+  .dataCard {
+    border: 1px black solid;
+    padding: 20px;
+    margin: 20px;
+    min-width: 215px;
 
-.select-wrapper {
-  width: 250px;
-}
-
-.dataRow {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-}
-
-.dataCard {
-  border: 1px black solid;
-  padding: 20px;
-  margin: 20px;
-  min-width: 215px;
-
-  .dataNumbers {
-    h2,
-    p {
-      text-align: center;
-      padding: 5px 0;
-    }
-    ul {
-      margin-top: 5px;
-    }
-    li {
-      list-style: none;
-      line-height: 1.5em;
-    }
-    em {
-      font-style: normal;
-      font-weight: 700;
+    .dataNumbers {
+      h2,
+      p {
+        text-align: center;
+        padding: 5px 0;
+      }
+      ul {
+        margin-top: 5px;
+      }
+      li {
+        list-style: none;
+        line-height: 1.5em;
+      }
+      em {
+        font-style: normal;
+        font-weight: 700;
+      }
     }
   }
-}
 
-.dom {
-  font-size: 12px;
-  text-align: center;
-}
+  .dom {
+    font-size: 12px;
+    text-align: center;
+  }
 
-@media only screen and (min-width: 768px) {
-  .map {
-    display: block;
-    width: 50vw;
-    min-width: 400px;
+  @media only screen and (min-width: 768px) {
+    .map {
+      display: block;
+      width: 50vw;
+      min-width: 400px;
+    }
   }
 }

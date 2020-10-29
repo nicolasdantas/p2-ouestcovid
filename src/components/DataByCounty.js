@@ -12,8 +12,8 @@ class DataByCounty extends React.Component {
     super(props);
     this.state = {
       // initializing the state at null
-      countyCode: null, // code postal département sélectionné
-      selectedDataToday: null, // données du dep sélectionné
+      countyCode: '', // code postal département sélectionné
+      selectedDataToday: '', // données du dep sélectionné
     };
   }
 

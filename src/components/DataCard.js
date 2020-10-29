@@ -1,23 +1,21 @@
 import React from 'react';
+import moment from 'moment';
 
 const DataCard = ({ selectedDataToday }) => {
   return (
     <div className="dataCard">
-      {selectedDataToday !== null && (
+      {selectedDataToday !== '' && (
         <div className="dataNumbers">
           <h2>{selectedDataToday.nom}</h2>
           <p>
-            Situation le
-            {selectedDataToday.date}
+            Situation le {moment(selectedDataToday.date).format('DD/MM/YYYY')}
           </p>
           <ul>
             <li>
-              <em>Hospitalisés :</em>
-              {selectedDataToday.hospitalises}{' '}
+              <em>Hospitalisés :</em> {selectedDataToday.hospitalises}
             </li>
             <li>
-              <em>En réanimation :</em>
-              {selectedDataToday.reanimation}
+              <em>En réanimation :</em> {selectedDataToday.reanimation}
             </li>
             <li>
               <em>Nouvelles hospitalisations :</em>{' '}
