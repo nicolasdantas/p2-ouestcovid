@@ -33,7 +33,7 @@ class ContactForm extends Component {
     return (
       <div className="form-wrapper">
         <form>
-          <h2> Contact </h2>
+          <h2> Faites-nous part de vos remarques, suggestions, ... </h2>
           <div>
             <label>Nom</label>
             <input
