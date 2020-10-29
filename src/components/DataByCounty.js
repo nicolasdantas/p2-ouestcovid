@@ -18,9 +18,8 @@ class DataByCounty extends React.Component {
   }
 
   componentDidUpdate(prevState) {
-    const { countyCode } = this.state.countyCode;
-    if (prevState.countyCode !== countyCode) {
-      this.getCovidData(countyCode);
+    if (prevState.countyCode !== this.state.countyCode) {
+      this.getCovidData(this.state.countyCode);
     }
   }
 
@@ -35,6 +34,7 @@ class DataByCounty extends React.Component {
     // ici, gérer les cas d'erreur, si les données sont nulles notamment
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
     const dayMinus2 = moment().subtract(2, 'days').format('YYYY-MM-DD');
+    console.log(dayMinus1);
     // const dayMinus3 = moment().subtract(3, 'days').format('YYYY-MM-DD');
 
     // let urlSpecificCounty = `https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=${countyName}`;

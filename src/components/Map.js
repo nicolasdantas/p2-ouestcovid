@@ -5,8 +5,7 @@ import './Map.scss';
 
 class Map extends React.Component {
   handleClick = (event) => {
-    const { onSelectCounty } = this.props.onSelectCounty;
-    onSelectCounty(event.target.id);
+    this.props.onSelectCounty(event.target.id);
   };
 
   render() {
