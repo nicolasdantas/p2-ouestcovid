@@ -1,10 +1,8 @@
 import React from 'react';
-import DataByCounty from './DataByCounty'
+import DataByCounty from './DataByCounty';
 
 const Home = () => {
-  return (
-    <DataByCounty />
-  );
+  return <DataByCounty />;
 };
 
 export default Home;
