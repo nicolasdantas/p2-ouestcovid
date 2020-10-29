@@ -17,7 +17,7 @@ class DataByCounty extends React.Component {
     };
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.countyCode !== this.state.countyCode) {
       this.getCovidData(this.state.countyCode);
     }

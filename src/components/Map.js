@@ -12,7 +12,7 @@ class Map extends React.Component {
     return (
       <div className="map none">
         <SVGMap map={France} onLocationClick={this.handleClick} />
-        <p>
+        <p class="dom">
           Pour les DOM-TOM, les données sont accessibles via le champ de
           recherche
         </p>

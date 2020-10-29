@@ -14,14 +14,14 @@ class SearchBar extends React.Component {
     return (
       <div className="searchBar">
         <div className="select-wrapper">
-          <p>Sélectionnez un département</p>
+          {/* <p>Sélectionnez un département</p> */}
           <div className="custom-select">
             <select
               name="counties"
               id="county-select"
               onChange={this.handleCountySelection}
             >
-              <option value="">--Merci de choisir une option--</option>
+              <option value="">- Merci de choisir une option &#8595;-</option>
               {countyList.map((county) => (
                 <option key={county.code} value={county.code}>
                   {county.code}-{county.nom}
