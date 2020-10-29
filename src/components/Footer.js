@@ -3,50 +3,42 @@ import './Footer.scss';
 const Footer = () => {
   return (
     <footer>
-      <div>
-        <ul>
-          <li>
-            <a href="https://www.facebook.com">
-              <img
-                src={require('../img/facebook-logo.png')}
-                alt="logo Facebook"
-              />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.twitter.com">
-              <img
-                src={require('../img/twitter-logo.png')}
-                alt="logo Twitter"
-              />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.gitub.com">
-              <img src={require('../img/github-logo.png')} alt="logo Github" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <a href="https://www.gouvernement.fr/info-coronavirus">
-              <img
-                src={require('../img/gouvernement-logo.png')}
-                alt="logo du gouvernement de la république Française"
-              />
-            </a>
-          </li>
-        </ul>
-      </div>
+      <ul className="footerUlMedia">
+        <li>
+          <a href="https://www.facebook.com">
+            <img
+              src={require('../img/facebook-logo.png')}
+              alt="logo Facebook"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.twitter.com">
+            <img src={require('../img/twitter-logo.png')} alt="logo Twitter" />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.gitub.com">
+            <img src={require('../img/github-logo.png')} alt="logo Github" />
+          </a>
+        </li>
+      </ul>
 
-      <div>
-        <p>
-          Made with madness by Matt Damon, Candide Guiness , Moufette Anonyme,
-          Lou Lou, Moi Même
-        </p>
-      </div>
+      <ul className="footerUlGouv">
+        <li>
+          <a href="https://www.gouvernement.fr/info-coronavirus">
+            <img
+              src={require('../img/gouvernement-logo.png')}
+              alt="logo du gouvernement de la république Française"
+            />
+          </a>
+        </li>
+      </ul>
+
+      <p className="footerP">
+        Made with madness by Matt Damon, Candide Guiness , Moufette Anonyme, Lou
+        Lou, Moi Même
+      </p>
     </footer>
   );
 };
