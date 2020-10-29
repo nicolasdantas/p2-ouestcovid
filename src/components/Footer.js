@@ -1,25 +1,27 @@
 import React from 'react';
 import './Footer.scss';
+import LogoFacebook from '../img/facebook-logo.png';
+import LogoTwitter from '../img/twitter-logo.png';
+import LogoGitub from '../img/github-logo.png';
+import LogoGouv from '../img/gouvernement-logo.png';
+
 const Footer = () => {
   return (
     <footer>
       <ul className="footerUlMedia">
         <li>
           <a href="https://www.facebook.com">
-            <img
-              src={require('../img/facebook-logo.png')}
-              alt="logo Facebook"
-            />
+            <img src={LogoFacebook} alt="logo Facebook" />
           </a>
         </li>
         <li>
           <a href="https://www.twitter.com">
-            <img src={require('../img/twitter-logo.png')} alt="logo Twitter" />
+            <img src={LogoTwitter} alt="logo Twitter" />
           </a>
         </li>
         <li>
           <a href="https://www.gitub.com">
-            <img src={require('../img/github-logo.png')} alt="logo Github" />
+            <img src={LogoGitub} alt="logo Github" />
           </a>
         </li>
       </ul>
@@ -28,7 +30,7 @@ const Footer = () => {
         <li>
           <a href="https://www.gouvernement.fr/info-coronavirus">
             <img
-              src={require('../img/gouvernement-logo.png')}
+              src={LogoGouv}
               alt="logo du gouvernement de la république Française"
             />
           </a>
