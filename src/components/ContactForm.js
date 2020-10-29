@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ContactForm.css';
+import './ContactForm.scss';
 
 class ContactForm extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class ContactForm extends Component {
             />
           </div>
 
-          <div className="button">
+          <div className="button-div">
             <button type="submit">Envoyer</button>
           </div>
         </form>
