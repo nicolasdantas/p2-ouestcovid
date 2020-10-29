@@ -39,7 +39,7 @@ class News extends React.Component {
           {arrayOfNews
             .filter((article) => article.urlToImage !== null)
             .map((article) => (
-              <a href={article.url} target="_blank" rel="noreferrer">
+              <a href={article.url} target="_blank" rel="noreferrer noopener ">
                 <div key={article.title} className="container">
                   <img className="picture" alt="" src={article.urlToImage} />
                   <p className="legend">{article.title}</p>
