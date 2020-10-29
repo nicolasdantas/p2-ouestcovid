@@ -8,22 +8,21 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import './Burger.css';
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
   burger: {
-    fontSize:"20px",
-    boxShadow:"none",
+    fontSize: '20px',
+    boxShadow: 'none',
     backgroundColor: '#A68C70',
-    '&:hover, &:active, &:focus':{
+    '&:hover, &:active, &:focus': {
       backgroundColor: '#A68C70',
-      boxShadow:"none",
+      boxShadow: 'none',
     },
-    
-    [theme.breakpoints.up('sm')]:{
-      display:'none',
-    }
+
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
 }));
-
 
 const StyledMenu = withStyles({
   paper: {
@@ -87,18 +86,26 @@ function CustomizedMenus() {
         onClose={handleClose}
       >
         <StyledMenuItem>
-          <Link className="burger-lien" to={{ pathname: `/` }}>
-            <ListItemText primary='Accueil'>Accueil</ListItemText>
+          <Link className='burger-lien' to={{ pathname: `/` }}>
+            <ListItemText primary='Statistiques'>Statistiques</ListItemText>
           </Link>
         </StyledMenuItem>
 
         <StyledMenuItem>
-          <Link className="burger-lien" to={'/ou-partir'}>
+          <Link className='burger-lien' to={'/ou-partir'}>
             <ListItemText primary='Où partir?'>Où partir?</ListItemText>
           </Link>
         </StyledMenuItem>
+
         <StyledMenuItem>
-          <ListItemText primary='Statistiques' />
+          <Link className='burger-lien' to={{ pathname: `/` }}>
+            <ListItemText primary='News'>News</ListItemText>
+          </Link>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <Link className='burger-lien' to={{ pathname: `/` }}>
+            <ListItemText primary='Contact'>Contact</ListItemText>
+          </Link>
         </StyledMenuItem>
       </StyledMenu>
     </div>

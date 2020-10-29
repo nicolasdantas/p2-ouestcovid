@@ -15,8 +15,10 @@ const Navbar = () => {
           <div className="navBarRight">
           <div><CustomizedMenus/></div>
             <ul class="lien-navbar">
-            <li><Link className="liste" to='/'>Accueil </Link></li>
-            <li ><Link className="liste" to='/ou-partir'>Où partir ?</Link></li>
+            <li><Link className="liste" to='/'>Statistiques </Link></li>
+            <li><Link className="liste" to='/ou-partir'>Où partir ?</Link></li>
+            <li><a className="liste" href='#news'>News</a></li>
+            <li><a className="liste" href='#contact'>Contact</a></li>
             </ul>
           </div>   
         </div>     

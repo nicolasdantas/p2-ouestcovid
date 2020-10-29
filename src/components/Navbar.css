@@ -1,4 +1,5 @@
 @import '../App.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 .menu{
   width: 100%;
@@ -19,7 +20,8 @@ margin-top:10%;
 .navBarRight{
     display:flex;
     align-items: center;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
   }
 
   .lien-navbar {
@@ -28,14 +30,16 @@ margin-top:10%;
     list-style-type: none;
     text-decoration: none;
     display:flex;
-    font-family: Helvetica,Roboto, Aria;
+    font-family: 'Roboto', sans-serif;
     }
 
 .liste{
   display:none;
   padding: 10px;
-  color:black;
+  color:white;
   text-decoration: none;
+  font-weight: 800;
+  margin: 10px;
 }
 
 @media screen and (min-width: 600px) {
