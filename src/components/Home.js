@@ -5,7 +5,7 @@ import DataByCounty from './DataByCounty';
 const Home = () => {
   return (
     <div>
-      return <DataByCounty />;
+      <DataByCounty />;
       <Carousel />
     </div>
   );
