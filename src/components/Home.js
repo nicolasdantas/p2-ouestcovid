@@ -1,7 +1,8 @@
 import React from 'react';
+import DataByCounty from './DataByCounty';
 
 const Home = () => {
-  return <h1>Coucou</h1>;
+  return <DataByCounty />;
 };
 
 export default Home;

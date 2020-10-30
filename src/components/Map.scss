@@ -1,0 +1,27 @@
+.svg-map {
+  margin-top: 50px;
+  width: 100%;
+  height: auto;
+  stroke: #a68c70;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.svg-map__location {
+  fill: #0ca4c4;
+  cursor: pointer;
+}
+.svg-map__location:focus,
+.svg-map__location:hover {
+  fill: #a68c70;
+  outline: 0;
+}
+.svg-map__location[aria-checked='true'] {
+  fill: #a68c70;
+}
+
+// @media screen and (min-width: 640px) {
+//   .svg-map {
+//     width: 50%;
+//   }
+// }
