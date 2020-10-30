@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background: #a68c70;
+  height: auto;
+  width: 100%;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px;
+    margin-bottom: 0;
+    display: flex;
+  }
+
+  p {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    margin: 3px;
+    padding: 2px;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  @media (min-width: 700px) {
+    flex-wrap: nowrap;
+
+    .footerUlMedia {
+      display: flex;
+      order: 1;
+      justify-content: flex-start;
+    }
+    .footerUlGouv {
+      display: flex;
+      order: 3;
+      justify-content: flex-end;
+    }
+    .footerP {
+      display: flex;
+      order: 2;
+      justify-content: center;
+    }
+  }
+}

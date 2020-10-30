@@ -1,16 +1,18 @@
+/* eslint-disable */
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+
 import './Burger.css';
 
 const useStyles = makeStyles((theme) => ({
   burger: {
-    fontSize: '20px',
+    color: 'white',
+    fontSize: '30px',
     boxShadow: 'none',
     backgroundColor: '#A68C70',
     '&:hover, &:active, &:focus': {
@@ -71,40 +73,40 @@ function CustomizedMenus() {
     <div>
       <Button
         className={classes.burger}
-        aria-controls='customized-menu'
-        aria-haspopup='true'
-        variant='contained'
+        aria-controls="customized-menu"
+        aria-haspopup="true"
+        variant="contained"
         onClick={handleClick}
       >
         &#9776;
       </Button>
       <StyledMenu
-        id='customized-menu'
+        id="customized-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
         <StyledMenuItem>
-          <Link className='burger-lien' to={{ pathname: `/` }}>
-            <ListItemText primary='Statistiques'>Statistiques</ListItemText>
+          <Link className="burger-lien" to={{ pathname: `/` }}>
+            <ListItemText primary="Statistiques">Statistiques</ListItemText>
           </Link>
         </StyledMenuItem>
 
         <StyledMenuItem>
-          <Link className='burger-lien' to={'/ou-partir'}>
-            <ListItemText primary='Où partir?'>Où partir?</ListItemText>
+          <Link className="burger-lien" to="/ou-partir">
+            <ListItemText primary="Où partir?">Où partir?</ListItemText>
           </Link>
         </StyledMenuItem>
 
         <StyledMenuItem>
-          <Link className='burger-lien' to={{ pathname: `/` }}>
-            <ListItemText primary='News'>News</ListItemText>
+          <Link className="burger-lien" to={{ pathname: `/` }}>
+            <ListItemText primary="News">News</ListItemText>
           </Link>
         </StyledMenuItem>
         <StyledMenuItem>
-          <Link className='burger-lien' to={{ pathname: `/` }}>
-            <ListItemText primary='Contact'>Contact</ListItemText>
+          <Link className="burger-lien" to={{ pathname: `/` }}>
+            <ListItemText primary="Contact">Contact</ListItemText>
           </Link>
         </StyledMenuItem>
       </StyledMenu>
