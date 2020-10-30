@@ -27,7 +27,7 @@ class News extends React.Component {
   render() {
     const { arrayOfNews } = this.state;
     return (
-      <div>
+      <div className="carousel-container">
         <h1 className="carousel-title">Dernières actualités</h1>
         <Carousel
           className="carousel"
