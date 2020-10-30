@@ -8,7 +8,7 @@ const Navbar = () => {
     <header className='header'>
       <nav className='menu' role='navigation'>
         <div className='inner'>
-          <div className='navBarLeft'>
+          <div className='navbar-left'>
             <Link to='/'>
               <img
                 className='logo'
@@ -20,7 +20,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className='navBarRight'>
+          <div className='navbar-right'>
             <div>
               <CustomizedMenus />
             </div>
