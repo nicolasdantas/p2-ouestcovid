@@ -13,7 +13,7 @@ class News extends React.Component {
   }
 
   componentDidMount = () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=fr&q=covid&category=health&apiKey=f545ace02057431081cf6684cc135a79`;
+    const url = `https://newsapi.org/v2/everything?sources=le-monde&pageSize=7&qInTitle=covid&sortBy=publishedAt&apiKey=f545ace02057431081cf6684cc135a79`;
     axios
       .get(url)
       .then((response) => response.data)
