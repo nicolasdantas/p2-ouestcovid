@@ -1,0 +1,12 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bleu: #0ca4c4;
+  --marron: #a68c70;
+  --component-title-desktop: 40px;
+  --component-title-mobile: 20px;
+}
