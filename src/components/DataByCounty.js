@@ -31,13 +31,10 @@ class DataByCounty extends React.Component {
   getCovidData = (countyCode) => {
     const countyName = countyList.find((element) => element.code === countyCode)
       .nom; // getting the county name according to its code
-    // ici, gérer les cas d'erreur, si les données sont nulles notamment
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
     const dayMinus2 = moment().subtract(2, 'days').format('YYYY-MM-DD');
-    console.log(dayMinus1);
     // const dayMinus3 = moment().subtract(3, 'days').format('YYYY-MM-DD');
 
-    // let urlSpecificCounty = `https://coronavirusapi-france.now.sh/LiveDataByDepartement?Departement=${countyName}`;
     axios
       .get(
         `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`
@@ -49,7 +46,6 @@ class DataByCounty extends React.Component {
           (item) => item.nom === countyName
         );
         if (!Object.values(filteredArray[0]).includes(null)) {
-          console.log(`got data from ${dayMinus1}`);
           this.setState({
             selectedDataToday: filteredArray[0],
           });
@@ -65,7 +61,6 @@ class DataByCounty extends React.Component {
                 (item) => item.nom === countyName
               );
               if (!Object.values(filteredArray2[0]).includes(null)) {
-                console.log(`got data from ${dayMinus2}`);
                 this.setState({
                   selectedDataToday: filteredArray2[0],
                 });
