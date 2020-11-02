@@ -1,7 +1,13 @@
 import React from 'react';
+import TopFive from './TopFive';
 
 const WhereToGo = () => {
-  return <h1>Où partir ?</h1>;
+  return (
+    <div>
+      <h1>Où partir ?</h1>
+      <TopFive />
+    </div>
+  );
 };
 
 export default WhereToGo;
