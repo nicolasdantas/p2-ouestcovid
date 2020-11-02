@@ -6,9 +6,9 @@ import DataByCounty from './DataByCounty';
 const Home = () => {
   return (
     <div>
-      <ContactForm />;
       <DataByCounty />;
       <Carousel />
+      <ContactForm />;
     </div>
   );
 };

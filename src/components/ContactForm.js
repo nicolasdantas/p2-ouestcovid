@@ -47,7 +47,6 @@ class ContactForm extends Component {
           </div>
           <div>
             <label htmlFor="inputEmail">
-              {' '}
               E-mail
               <input
                 type="email"
