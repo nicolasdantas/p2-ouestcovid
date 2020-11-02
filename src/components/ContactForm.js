@@ -35,28 +35,37 @@ class ContactForm extends Component {
         <form id="contact">
           <h2> Faites-nous part de vos remarques, suggestions, ... </h2>
           <div>
-            <label>Nom</label>
-            <input
-              type="text"
-              value={this.state.name}
-              onChange={this.handleNameChange}
-            />
+            <label htmlFor="inputName">
+              Nom
+              <input
+                type="text"
+                value={this.state.name}
+                onChange={this.handleNameChange}
+                id="inputName"
+              />{' '}
+            </label>
           </div>
           <div>
-            <label> E-mail</label>
-            <input
-              type="email"
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-            />
+            <label htmlFor="inputEmail">
+              {' '}
+              E-mail
+              <input
+                type="email"
+                value={this.state.email}
+                onChange={this.handleEmailChange}
+                id="inputEmail"
+              />
+            </label>
           </div>
           <div>
-            <label>Message</label>
-
-            <textarea
-              value={this.state.message}
-              onChange={this.handleMessageChange}
-            />
+            <label htmlFor="inputMessage">
+              Message
+              <textarea
+                value={this.state.message}
+                onChange={this.handleMessageChange}
+                id="inputMessage"
+              />
+            </label>
           </div>
 
           <div className="button-div">
