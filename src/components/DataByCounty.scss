@@ -111,11 +111,17 @@
     text-align: center;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 600px) {
     .map {
       display: block;
       width: 50vw;
       min-width: 400px;
+    }
+    .dataRow {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
