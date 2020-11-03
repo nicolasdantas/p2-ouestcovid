@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     const countyName = newValue;
     if (countyName) {
       const countyCode = countyList.find((county) => county.nom === countyName);
-      const { onSelectCounty } = this.props;
+      const { onSelectCounty } = this.propqs;
       onSelectCounty(countyCode.code);
     }
   };
