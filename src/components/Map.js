@@ -1,43 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
 import './Map.scss';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
-class Map extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { windowWidth: window.innerWidth };
-  }
+const Map = (props) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  handleClick = (event) => {
-    this.props.onSelectCounty(event.target.id);
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
   };
 
-  handleResize = () => {
-    this.setState({ windowWidth: window.innerWidth });
-    console.log(this.state.windowWidth);
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
+
+  const handleClick = (event) => {
+    props.onSelectCounty(event.target.id);
   };
 
-  render() {
-    return (
-      <div className="map none">
-        {this.state.windowWidth < 600 ? (
-          <TransformWrapper>
-            <TransformComponent>
-              <SVGMap map={France} onLocationClick={this.handleClick} />
-            </TransformComponent>
-          </TransformWrapper>
-        ) : (
-          <SVGMap map={France} onLocationClick={this.handleClick} />
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="map none">
+      {windowWidth < 600 ? (
+        <TransformWrapper>
+          <TransformComponent>
+            <SVGMap map={France} onLocationClick={handleClick} />
+          </TransformComponent>
+        </TransformWrapper>
+      ) : (
+        <SVGMap map={France} onLocationClick={handleClick} />
+      )}
+    </div>
+  );
+};
 
 export default Map;
