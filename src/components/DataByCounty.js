@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import SearchBar from './SearchBar';
+// import SearchBar from './SearchBar';
 import DataCard from './DataCard';
 import countyList from './countyList.json'; // data from https://geo.api.gouv.fr/departements
 import Map from './Map';
 import './DataByCounty.scss';
+import SearchBar from './SearchBar';
 
 class DataByCounty extends React.Component {
   constructor(props) {
