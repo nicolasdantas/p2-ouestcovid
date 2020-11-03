@@ -35,10 +35,6 @@ class Map extends React.Component {
         ) : (
           <SVGMap map={France} onLocationClick={this.handleClick} />
         )}
-        <p className="dom">
-          Pour les DOM-TOM, les données sont accessibles via le champ de
-          recherche
-        </p>
       </div>
     );
   }
