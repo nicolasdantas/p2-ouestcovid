@@ -22,13 +22,11 @@ function TopFiveCard({ county }) {
   const [imageUrl, setImageUrl] = React.useState('');
 
   const countyCodeAPI = county.code.split('-')[1];
-  let countyPrefecture = '';
-  countyPrefecture = prefectures.filter((item) => {
+  const countyPrefecture = prefectures.filter((item) => {
     const countyCodePrefecture =
       item.code.toString().length === 1 ? '0' : `${item.code.toString()}`;
     return countyCodeAPI === countyCodePrefecture;
   })[0].prefecture;
-  console.log(countyPrefecture);
 
   const handleFetchError = (error) => {
     console.error(
@@ -45,17 +43,19 @@ function TopFiveCard({ county }) {
       )
       .then((response) => response.data)
       .then((data) => {
-        console.log(
-          `https://pixabay.com/api/?key=17897584-e09f7abfae1318c47f87ae891&q=${q}&image_type=photo`
-        );
         setImageUrl(data.hits[0].webformatURL);
       })
-      .catch(handleFetchError);
+      .catch((err) => {
+        setImageUrl(
+          'https://cdn.pixabay.com/photo/2013/12/22/17/34/french-countryside-232571_1280.jpg'
+        );
+        handleFetchError(err);
+      });
   };
 
   React.useEffect(() => {
     fetchCityImages(countyPrefecture);
-  });
+  }, []);
 
   //   import { createClient } from 'pexels';
 
@@ -65,30 +65,39 @@ function TopFiveCard({ county }) {
   // client.photos.search({ query, per_page: 1 })
 
   return (
-    <div className="top-five-card">
-      <h3>{county.nom}</h3>
-      <img src={imageUrl} alt="paysage de la préfecture du département" />
-      <ul>
-        <li>
-          <em>Hospitalisés :</em> {county.hospitalises}
-        </li>
-        <li>
-          <em>En réanimation :</em> {county.reanimation}
-        </li>
-        <li>
-          <em>Nouvelles hospitalisations :</em>{' '}
-          {county.nouvellesHospitalisations}
-        </li>
-        <li>
-          <em>Nouvelles Réanimations :</em> {county.nouvellesReanimations}
-        </li>
-        {/* <li>
+    <div
+      className="top-five-card"
+      style={{
+        backgroundImage: `url(${imageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="overlay">
+        <h3>{county.nom}</h3>
+        {/* <img src={imageUrl} alt="paysage de la préfecture du département" /> */}
+        <ul>
+          <li>
+            <em>Hospitalisés :</em> {county.hospitalises}
+          </li>
+          <li>
+            <em>En réanimation :</em> {county.reanimation}
+          </li>
+          <li>
+            <em>Nouvelles hospitalisations :</em>{' '}
+            {county.nouvellesHospitalisations}
+          </li>
+          <li>
+            <em>Nouvelles Réanimations :</em> {county.nouvellesReanimations}
+          </li>
+          {/* <li>
           <em>Décès (cumulés) :</em> {county.deces}
         </li>
         <li>
           <em>Guéris (cumulés) :</em> {county.gueris}
         </li> */}
-      </ul>
+        </ul>
+      </div>
     </div>
   );
 }
