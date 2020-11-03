@@ -1,29 +1,14 @@
 import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
+import { Default } from 'react-spinners-css';
 import TopFiveCard from './TopFiveCard';
+import './TopFive.scss';
 
 function TopFive() {
   const [dataTopFive, setDataTopFive] = React.useState([]);
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
 
-  //   {
-  //     "code": "DEP-02",
-  //     "nom": "Aisne",
-  //     "date": "2020-10-25",
-  //     "hospitalises": 117,
-  //     "reanimation": 12,
-  //     "nouvellesHospitalisations": 8,
-  //     "nouvellesReanimations": 2,
-  //     "deces": 306,
-  //     "gueris": 1259,
-  //     "source": {
-  //       "nom": "Santé publique France Data"
-  //     },
-  //     "sourceType": "sante-publique-france-data"
-  //   },
-
-  // THIS needs to be put inside a componentDidMount equivalent ASAP
   React.useEffect(() => {
     axios
       .get(
@@ -49,7 +34,9 @@ function TopFive() {
           <TopFiveCard key={county.code} county={county} />
         ))
       ) : (
-        <p>Loading...</p>
+        <div className="spinner">
+          <Default color=" #0ca4c4" />
+        </div>
       )}
     </div>
   );

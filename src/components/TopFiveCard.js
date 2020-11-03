@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import prefectures from './prefectures.json';
-import './TopFiveCard.scss';
+
 //   [{
 //     "code": "DEP-02",
 //     "nom": "Aisne",
@@ -88,7 +88,7 @@ function TopFiveCard({ county }) {
             {county.nouvellesHospitalisations}
           </li>
           <li>
-            <em>Nouvelles Réanimations :</em> {county.nouvellesReanimations}
+            <em>Nouvelles réanimations :</em> {county.nouvellesReanimations}
           </li>
           {/* <li>
           <em>Décès (cumulés) :</em> {county.deces}
