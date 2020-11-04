@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
-// import { Default } from 'react-spinners-css';
 import TopFiveCard from './TopFiveCard';
 import countyList from './countyList.json';
 import './TopFive.scss';
