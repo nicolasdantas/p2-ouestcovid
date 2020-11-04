@@ -22,7 +22,7 @@ const DataCard = ({ selectedDataToday }) => {
               {selectedDataToday.nouvellesHospitalisations}
             </li>
             <li>
-              <em>Nouvelles Réanimations :</em>{' '}
+              <em>Nouvelles réanimations :</em>{' '}
               {selectedDataToday.nouvellesReanimations}
             </li>
             <li>
