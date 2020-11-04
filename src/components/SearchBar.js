@@ -5,19 +5,17 @@ import countyList from './countyList.json'; // data from https://geo.api.gouv.fr
 const SearchBar = (props) => {
   const [selectedCounty, setSelectedCounty] = useState('');
 
-  useEffect(
+  useEffect(() => {
     // eslint-disable-next-line no-shadow
-    (props) => {
-      if (selectedCounty) {
-        const countyCode = countyList.find(
-          (county) => county.nom === selectedCounty
-        );
-        const { onSelectCounty } = props;
-        onSelectCounty(countyCode.code);
-      }
-    },
-    [selectedCounty]
-  );
+
+    if (selectedCounty) {
+      const countyCode = countyList.find(
+        (county) => county.nom === selectedCounty
+      );
+      const { onSelectCounty } = props;
+      onSelectCounty(countyCode.code);
+    }
+  }, [selectedCounty]);
 
   const customStyles = {
     control: (provided) => ({
