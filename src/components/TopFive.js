@@ -27,17 +27,17 @@ function TopFive() {
               ...item,
               lits: countyList.find((county) => county.code === item.code).lits,
             }))
+            .map((item) => ({
+              ...item,
+              ratio: Math.round((item.reanimation / +item.lits) * 100),
+            }))
         );
       }); // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     setDataTopFive(() =>
-      dataAPI
-        .sort((a, b) =>
-          a.reanimation / +a.lits >= b.reanimation / +b.lits ? 1 : -1
-        )
-        .slice(0, 5)
+      dataAPI.sort((a, b) => (a.ratio >= b.ratio ? 1 : -1)).slice(0, 5)
     );
   }, [dataAPI]);
 

@@ -100,6 +100,9 @@ function TopFiveCard({ county }) {
           <em>Guéris (cumulés) :</em> {county.gueris}
         </li> */}
         </ul>
+        <p className="ratio">
+          Taux d'occupation des lits en réa : {county.ratio}%
+        </p>
       </div>
     </div>
   );
