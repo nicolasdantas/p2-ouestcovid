@@ -18,7 +18,7 @@ import prefectures from './prefectures.json';
 //     "sourceType": "sante-publique-france-data"
 //   }]
 
-function TopFiveCard({ county }) {
+function TopFiveCard({ county, index }) {
   const [imageUrl, setImageUrl] = React.useState('');
 
   const countyCodeAPI = county.code;
@@ -37,12 +37,9 @@ function TopFiveCard({ county }) {
 
   const fetchCityImages = (cityName) => {
     const q = encodeURIComponent(`${cityName} city France`);
-    console.log(
-      `https://pixabay.com/api/?key=17897584-e09f7abfae1318c47f87ae891&q=${q}&image_type=photo`
-    );
     return axios
       .get(
-        `https://pixabay.com/api/?key=17897584-e09f7abfae1318c47f87ae891&q=${q}&image_type=photo`
+        `https://pixabay.com/api/?key=18980832-52c1bd61891f49f979ceb1b7b&q=${q}&image_type=photo`
       )
       .then((response) => response.data)
       .then((data) => {
@@ -60,13 +57,6 @@ function TopFiveCard({ county }) {
     fetchCityImages(countyPrefecture); // eslint-disable-next-line
   }, []);
 
-  //   import { createClient } from 'pexels';
-
-  // const client = createClient('YOUR_API_KEY');
-  // const query = 'Nature';
-
-  // client.photos.search({ query, per_page: 1 })
-
   return (
     <div
       className="top-five-card"
@@ -77,8 +67,8 @@ function TopFiveCard({ county }) {
       }}
     >
       <div className="overlay">
+        <div className="rank">{index}</div>
         <h3>{county.nom}</h3>
-        {/* <img src={imageUrl} alt="paysage de la préfecture du département" /> */}
         <ul>
           <li>
             <em>Hospitalisés :</em> {county.hospitalises}

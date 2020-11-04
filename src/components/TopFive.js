@@ -44,14 +44,33 @@ function TopFive() {
   return (
     <div className="top-five">
       <h2>Top 5 des départements les plus sûrs</h2>
-      <p>Situation le {moment(dayMinus1).format('DD/MM/YYYY')}</p>
+      <p className="situation">
+        Situation le {moment(dayMinus1).format('DD/MM/YYYY')}
+      </p>
       {dataTopFive.length > 0 ? (
-        dataTopFive.map((county) => (
-          <TopFiveCard key={county.code} county={county} />
+        dataTopFive.map((county, index) => (
+          <TopFiveCard key={county.code} county={county} index={index + 1} />
         ))
       ) : (
         <div className="spinner">Loading...</div>
       )}
+      <p className="sources">
+        Sources :{' '}
+        <a
+          href="https://github.com/florianzemma/CoronavirusAPI-France/blob/master/README.md"
+          target="_blank"
+        >
+          CoronavirusAPI
+        </a>{' '}
+        (chiffres COVID) et{' '}
+        <a
+          href="https://drees.solidarites-sante.gouv.fr/etudes-et-statistiques/publications/article/nombre-de-lits-de-reanimation-de-soins-intensifs-et-de-soins-continus-en-france"
+          target="_blank"
+        >
+          DREES 2019
+        </a>{' '}
+        (lits en réanimation){' '}
+      </p>
     </div>
   );
 }
