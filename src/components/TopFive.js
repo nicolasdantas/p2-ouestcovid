@@ -1,13 +1,31 @@
 import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
-import { Default } from 'react-spinners-css';
+// import { Default } from 'react-spinners-css';
 import TopFiveCard from './TopFiveCard';
+import countyList from './countyList.json';
 import './TopFive.scss';
 
 function TopFive() {
+  const [dataAPI, setDataAPI] = React.useState([]);
   const [dataTopFive, setDataTopFive] = React.useState([]);
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
+
+  // {
+  //   "code": "DEP-01",
+  //   "nom": "Ain",
+  //   "date": "2020-10-24",
+  //   "hospitalises": 171,
+  //   "reanimation": 14,
+  //   "nouvellesHospitalisations": 16,
+  //   "nouvellesReanimations": 1,
+  //   "deces": 126,
+  //   "gueris": 593,
+  //   "source": {
+  //     "nom": "Santé publique France Data"
+  //   },
+  //   "sourceType": "sante-publique-france-data"
+  // },
 
   React.useEffect(() => {
     axios
@@ -16,14 +34,28 @@ function TopFive() {
       )
       .then((response) => response.data)
       .then((data) => {
-        setDataTopFive(
+        setDataAPI(() =>
+          //getting the data from API, comparing it to countyList.json based on county code and adding for each county the number of beds in reanimation
           data.allFranceDataByDate
             .filter((item) => item.code.includes('DEP'))
-            .sort((a, b) => (a.reanimation >= b.reanimation ? 1 : -1))
-            .slice(0, 5)
+            .map((item) => ({ ...item, code: item.code.split('-')[1] }))
+            .map((item) => ({
+              ...item,
+              lits: countyList.find((county) => county.code === item.code).lits,
+            }))
         );
-      });
+      }); // eslint-disable-next-line
   }, []);
+
+  React.useEffect(() => {
+    setDataTopFive(() =>
+      dataAPI
+        .sort((a, b) =>
+          a.reanimation / +a.lits >= b.reanimation / +b.lits ? 1 : -1
+        )
+        .slice(0, 5)
+    );
+  }, [dataAPI]);
 
   return (
     <div className="top-five">
@@ -34,9 +66,7 @@ function TopFive() {
           <TopFiveCard key={county.code} county={county} />
         ))
       ) : (
-        <div className="spinner">
-          <Default color=" #0ca4c4" />
-        </div>
+        <div className="spinner">Loading...</div>
       )}
     </div>
   );

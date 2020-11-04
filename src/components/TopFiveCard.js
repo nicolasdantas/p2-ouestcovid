@@ -21,7 +21,7 @@ import prefectures from './prefectures.json';
 function TopFiveCard({ county }) {
   const [imageUrl, setImageUrl] = React.useState('');
 
-  const countyCodeAPI = county.code.split('-')[1];
+  const countyCodeAPI = county.code;
   const countyPrefecture = prefectures.filter((item) => {
     const countyCodePrefecture =
       item.code.toString().length === 1 ? '0' : `${item.code.toString()}`;
@@ -36,7 +36,10 @@ function TopFiveCard({ county }) {
   };
 
   const fetchCityImages = (cityName) => {
-    const q = encodeURIComponent(`${cityName} France`);
+    const q = encodeURIComponent(`${cityName} city France`);
+    console.log(
+      `https://pixabay.com/api/?key=17897584-e09f7abfae1318c47f87ae891&q=${q}&image_type=photo`
+    );
     return axios
       .get(
         `https://pixabay.com/api/?key=17897584-e09f7abfae1318c47f87ae891&q=${q}&image_type=photo`
@@ -54,7 +57,7 @@ function TopFiveCard({ county }) {
   };
 
   React.useEffect(() => {
-    fetchCityImages(countyPrefecture);
+    fetchCityImages(countyPrefecture); // eslint-disable-next-line
   }, []);
 
   //   import { createClient } from 'pexels';
