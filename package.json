@@ -19,7 +19,8 @@
     "react-scripts": "3.4.4",
     "react-spinners-css": "^1.2.2",
     "react-svg-map": "^2.1.2",
-    "react-swipeable-views": "^0.13.9"
+    "react-swipeable-views": "^0.13.9",
+    "react-zoom-pan-pinch": "^1.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
