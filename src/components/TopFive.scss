@@ -52,7 +52,7 @@ body {
 .top-five-card {
   //   border: 1px solid black;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin: 0 10px 20px 10px;
   color: white;
   width: 90%;
   max-width: 500px;
@@ -111,8 +111,22 @@ body {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
+
 @media only screen and (min-width: 600px) {
-  .top-five {
-    width: 70%;
+  .column {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 }

@@ -47,18 +47,21 @@ function TopFive() {
       <p className="situation">
         Situation le {moment(dayMinus1).format('DD/MM/YYYY')}
       </p>
-      {dataTopFive.length > 0 ? (
-        dataTopFive.map((county, index) => (
-          <TopFiveCard key={county.code} county={county} index={index + 1} />
-        ))
-      ) : (
-        <div className="spinner">Loading...</div>
-      )}
+      <div className="column">
+        {dataTopFive.length > 0 ? (
+          dataTopFive.map((county, index) => (
+            <TopFiveCard key={county.code} county={county} index={index + 1} />
+          ))
+        ) : (
+          <div className="spinner">Loading...</div>
+        )}
+      </div>
       <p className="sources">
         Sources :{' '}
         <a
           href="https://github.com/florianzemma/CoronavirusAPI-France/blob/master/README.md"
           target="_blank"
+          rel="noopener noreferrer"
         >
           CoronavirusAPI
         </a>{' '}
@@ -66,6 +69,7 @@ function TopFive() {
         <a
           href="https://drees.solidarites-sante.gouv.fr/etudes-et-statistiques/publications/article/nombre-de-lits-de-reanimation-de-soins-intensifs-et-de-soins-continus-en-france"
           target="_blank"
+          rel="noopener noreferrer"
         >
           DREES 2019
         </a>{' '}

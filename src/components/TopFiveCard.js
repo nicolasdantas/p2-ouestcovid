@@ -2,22 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import prefectures from './prefectures.json';
 
-//   [{
-//     "code": "DEP-02",
-//     "nom": "Aisne",
-//     "date": "2020-10-25",
-//     "hospitalises": 117,
-//     "reanimation": 12,
-//     "nouvellesHospitalisations": 8,
-//     "nouvellesReanimations": 2,
-//     "deces": 306,
-//     "gueris": 1259,
-//     "source": {
-//       "nom": "Santé publique France Data"
-//     },
-//     "sourceType": "sante-publique-france-data"
-//   }]
-
 function TopFiveCard({ county, index }) {
   const [imageUrl, setImageUrl] = React.useState('');
 
@@ -83,7 +67,7 @@ function TopFiveCard({ county, index }) {
           <li>
             <em>Nouvelles réanimations :</em> {county.nouvellesReanimations}
           </li>
-          {/* <li>
+          {/* <li> //this was kept in case anyone else in the groups thought we should add these data
           <em>Décès (cumulés) :</em> {county.deces}
         </li>
         <li>
