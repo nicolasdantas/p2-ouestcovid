@@ -11,22 +11,6 @@ function TopFive() {
   const [dataTopFive, setDataTopFive] = React.useState([]);
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
 
-  // {
-  //   "code": "DEP-01",
-  //   "nom": "Ain",
-  //   "date": "2020-10-24",
-  //   "hospitalises": 171,
-  //   "reanimation": 14,
-  //   "nouvellesHospitalisations": 16,
-  //   "nouvellesReanimations": 1,
-  //   "deces": 126,
-  //   "gueris": 593,
-  //   "source": {
-  //     "nom": "Santé publique France Data"
-  //   },
-  //   "sourceType": "sante-publique-france-data"
-  // },
-
   React.useEffect(() => {
     axios
       .get(
@@ -35,7 +19,7 @@ function TopFive() {
       .then((response) => response.data)
       .then((data) => {
         setDataAPI(() =>
-          //getting the data from API, comparing it to countyList.json based on county code and adding for each county the number of beds in reanimation
+          /* getting the data from API, comparing it to countyList.json based on county code and adding for each county the number of beds in reanimation */
           data.allFranceDataByDate
             .filter((item) => item.code.includes('DEP'))
             .map((item) => ({ ...item, code: item.code.split('-')[1] }))
