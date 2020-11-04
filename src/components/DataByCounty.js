@@ -14,6 +14,7 @@ class DataByCounty extends React.Component {
       // initializing the state at null
       countyCode: '', // code postal département sélectionné
       selectedDataToday: '', // données du dep sélectionné
+      source: '',
     };
   }
 
@@ -23,9 +24,16 @@ class DataByCounty extends React.Component {
     }
   }
 
-  handleCounty = (countyValue) => {
+  handleCountyMap = (countyValue) => {
     // getting data from a child element and storing it in the state: get the selected county postal code (not the data)
     this.setState({ countyCode: countyValue });
+    this.setState({ source: 'map' });
+  };
+
+  handleCountySearchBar = (countyValue) => {
+    // getting data from a child element and storing it in the state: get the selected county postal code (not the data)
+    this.setState({ countyCode: countyValue });
+    this.setState({ source: 'searchbar' });
   };
 
   getCovidData = (countyCode) => {
@@ -73,12 +81,15 @@ class DataByCounty extends React.Component {
   render() {
     return (
       <div className="dataByCounty">
-        <SearchBar onSelectCounty={this.handleCounty} />
+        <SearchBar
+          onSelectCounty={this.handleCountySearchBar}
+          source={this.state.source}
+        />
         <div className="dataRow">
           {this.state.selectedDataToday && (
             <DataCard selectedDataToday={this.state.selectedDataToday} />
           )}
-          <Map onSelectCounty={this.handleCounty} />
+          <Map onSelectCounty={this.handleCountyMap} />
         </div>
       </div>
     );
