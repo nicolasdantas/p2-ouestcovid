@@ -45,7 +45,10 @@ function TopFive() {
     <div className="top-five">
       <h2>Top 5 des départements les plus sûrs</h2>
       <p className="situation">
-        Situation le {moment(dayMinus1).format('DD/MM/YYYY')}
+        Situation le {moment(dayMinus1).format('DD/MM/YYYY')} <br />
+        <span className="small">
+          Le classement se base sur le taux d'occupation des lits en réanimation
+        </span>
       </p>
       <div className="column">
         {dataTopFive.length > 0 ? (
