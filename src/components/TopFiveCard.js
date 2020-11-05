@@ -11,26 +11,41 @@ function TopFiveCard({ county, index }) {
       item.code.toString().length === 1 ? '0' : `${item.code.toString()}`;
     return countyCodeAPI === countyCodePrefecture;
   })[0].prefecture;
+  
 
+  // eslint-disable-next-line prefer-destructuring
+  const CancelToken = axios.CancelToken;
+  const source = CancelToken.source();
   const fetchCityImages = (cityName) => {
     const q = encodeURIComponent(`${cityName} city France`);
     return axios
       .get(
-        `https://pixabay.com/api/?key=18980832-52c1bd61891f49f979ceb1b7b&q=${q}&image_type=photo`
+        `https://pixabay.com/api/?key=18980832-52c1bd61891f49f979ceb1b7b&q=${q}&image_type=photo`,
+        {
+          cancelToken: source.token,
+        }
       )
       .then((response) => response.data)
       .then((data) => {
         setImageUrl(data.hits[0].webformatURL);
       })
-      .catch(() => {
-        setImageUrl(
-          'https://cdn.pixabay.com/photo/2013/12/22/17/34/french-countryside-232571_1280.jpg'
-        );
+      .catch(function (thrown) {
+        if (axios.isCancel(thrown)) {
+          console.log('Request canceled', thrown.message);
+        } else {
+          // handle error
+          setImageUrl(
+            'https://cdn.pixabay.com/photo/2013/12/22/17/34/french-countryside-232571_1280.jpg'
+          );
+        }
       });
   };
-
   React.useEffect(() => {
     fetchCityImages(countyPrefecture); // eslint-disable-next-line
+    return function cleanup() {
+      // cancels the previous request on unmount or query update :
+      source.cancel('Operation canceled by the user.');
+    };
   }, []);
 
   return (

@@ -89,9 +89,8 @@ class DataByCounty extends React.Component {
           source={this.state.source}
         />
         <div className="dataRow">
-          {this.state.selectedDataToday && (
-            <DataCard selectedDataToday={this.state.selectedDataToday} />
-          )}
+          <DataCard selectedDataToday={this.state.selectedDataToday} />
+
           <Map onSelectCounty={this.handleCountyMap} />
         </div>
       </div>

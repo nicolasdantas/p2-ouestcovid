@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import './style/Navbar.scss';
 import CustomizedMenus from './Burger';
 import logo from './img/logo.png';
@@ -30,14 +31,14 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a className="liste" href="#news">
+              <HashLink className="liste" smooth to="/#news">
                 News
-              </a>
+              </HashLink>
             </li>
             <li>
-              <a className="liste" href="#contact">
+              <HashLink className="liste" smooth to="/#contact">
                 Contact
-              </a>
+              </HashLink>
             </li>
           </ul>
         </div>
