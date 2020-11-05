@@ -16,9 +16,10 @@ const Graphic = () => {
       {
         label: 'Covid Cases',
         fill: false,
-        lineTension: 0.5,
+        lineTension: 0,
         backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,1)',
+        fillColor: 'rgba(252,147,65,0.5)',
+        borderColor: 'rgba(0,0,255,0.3)',
         borderWidth: 2,
         data: confirmedCase,
       },
@@ -40,7 +41,7 @@ const Graphic = () => {
         setDate(
           data
             .filter((item) => item.Province === '')
-            .map((item) => moment(item.Date.slice(5, 10)).format('DD-MM'))
+            .map((item) => moment(item.Date.slice(5, 10)).format('D MMM'))
         );
       });
   }, []);
@@ -52,14 +53,28 @@ const Graphic = () => {
       <Line
         data={state}
         options={{
+          layout: {
+            padding: {
+              top: 0,
+              left: 50,
+              right: 50,
+              bottom: 0,
+            },
+          },
           title: {
             display: true,
-            fontSize: 20,
+            fontSize: 35,
             text: 'Cas confirmés durant les 7 derniers jours',
           },
           legend: {
             display: true,
-            position: 'right',
+            position: 'top',
+            onClick: false,
+            labels: {
+              boxWidth: 1,
+              fontSize: 20,
+              fontColor: 'black',
+            },
           },
         }}
       />
