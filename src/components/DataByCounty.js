@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import SearchBar from './SearchBar';
 import DataCard from './DataCard';
 import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
 import Map from './Map';
 import './style/DataByCounty.scss';
+import SearchBar from './SearchBar';
 
 class DataByCounty extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class DataByCounty extends React.Component {
       // initializing the state at null
       countyCode: '', // code postal département sélectionné
       selectedDataToday: '', // données du dep sélectionné
+      source: '',
     };
   }
 
@@ -23,9 +24,16 @@ class DataByCounty extends React.Component {
     }
   }
 
-  handleCounty = (countyValue) => {
+  handleCountyMap = (countyValue) => {
     // getting data from a child element and storing it in the state: get the selected county postal code (not the data)
     this.setState({ countyCode: countyValue });
+    this.setState({ source: 'map' });
+  };
+
+  handleCountySearchBar = (countyValue) => {
+    // getting data from a child element and storing it in the state: get the selected county postal code (not the data)
+    this.setState({ countyCode: countyValue });
+    this.setState({ source: 'searchbar' });
   };
 
   getCovidData = (countyCode) => {
@@ -76,12 +84,15 @@ class DataByCounty extends React.Component {
         <h1 className="title">
           Choisissez un département pour connaître son état actuel
         </h1>
-        <SearchBar onSelectCounty={this.handleCounty} />
+        <SearchBar
+          onSelectCounty={this.handleCountySearchBar}
+          source={this.state.source}
+        />
         <div className="dataRow">
           {this.state.selectedDataToday && (
             <DataCard selectedDataToday={this.state.selectedDataToday} />
           )}
-          <Map onSelectCounty={this.handleCounty} />
+          <Map onSelectCounty={this.handleCountyMap} />
         </div>
       </div>
     );
