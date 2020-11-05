@@ -8,14 +8,15 @@ const Footer = () => {
     <footer>
       <img className="footer-logo" src={logo} alt="logo du site" />
 
-
-          <a className="footer-logo-gouv" href="https://www.gouvernement.fr/info-coronavirus">
-            <img
-              src={LogoGouv}
-              alt="logo du gouvernement de la république Française"
-            />
-          </a>
-
+      <a
+        className="footer-logo-gouv"
+        href="https://www.gouvernement.fr/info-coronavirus"
+      >
+        <img
+          src={LogoGouv}
+          alt="logo du gouvernement de la république Française"
+        />
+      </a>
 
       <p className="footerP">
         Made with madness by Matt Damon, Candide Guiness , Moufette Anonyme, Lou
