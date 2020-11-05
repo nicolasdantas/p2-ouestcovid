@@ -28,9 +28,9 @@ function TopFiveCard({ county, index }) {
       .then((data) => {
         setImageUrl(data.hits[0].webformatURL);
       })
-      .catch(function (thrown) {
-        if (axios.isCancel(thrown)) {
-          console.log('Request canceled', thrown.message);
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Request canceled', err.message);
         } else {
           // handle error
           setImageUrl(
@@ -44,7 +44,7 @@ function TopFiveCard({ county, index }) {
     return function cleanup() {
       // cancels the previous request on unmount or query update :
       source.cancel('Operation canceled by the user.');
-    };
+    }; // eslint-disable-next-line
   }, []);
 
   return (
