@@ -11,7 +11,6 @@ function TopFiveCard({ county, index }) {
       item.code.toString().length === 1 ? '0' : `${item.code.toString()}`;
     return countyCodeAPI === countyCodePrefecture;
   })[0].prefecture;
-  
 
   // eslint-disable-next-line prefer-destructuring
   const CancelToken = axios.CancelToken;
