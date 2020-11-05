@@ -28,7 +28,6 @@ function TopFiveCard({ county, index }) {
         );
       });
   };
-  
 
   React.useEffect(() => {
     fetchCityImages(countyPrefecture); // eslint-disable-next-line
