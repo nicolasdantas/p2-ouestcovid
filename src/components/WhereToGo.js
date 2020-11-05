@@ -1,6 +1,6 @@
 import React from 'react';
 import TopFive from './TopFive';
-import './WhereToGo.scss';
+import './style/WhereToGo.scss';
 
 const WhereToGo = () => {
   return (

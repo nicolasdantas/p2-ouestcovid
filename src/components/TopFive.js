@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import TopFiveCard from './TopFiveCard';
-import countyList from './countyList.json';
-import './TopFive.scss';
+import countyList from './datas/countyList.json';
+import './style/TopFive.scss';
 
 function TopFive() {
   const [dataAPI, setDataAPI] = React.useState([]);

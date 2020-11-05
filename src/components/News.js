@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import './Carousel.scss';
+import './style/News.scss';
 import axios from 'axios';
 
 class News extends React.Component {

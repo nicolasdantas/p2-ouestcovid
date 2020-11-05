@@ -3,9 +3,9 @@ import axios from 'axios';
 import moment from 'moment';
 import SearchBar from './SearchBar';
 import DataCard from './DataCard';
-import countyList from './countyList.json'; // data from https://geo.api.gouv.fr/departements
+import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
 import Map from './Map';
-import './DataByCounty.scss';
+import './style/DataByCounty.scss';
 
 class DataByCounty extends React.Component {
   constructor(props) {

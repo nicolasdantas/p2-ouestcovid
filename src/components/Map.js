@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
-import './Map.scss';
+import './style/Map.scss';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 const Map = (props) => {

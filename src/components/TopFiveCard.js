@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import prefectures from './prefectures.json';
+import prefectures from './datas/prefectures.json';
 
 function TopFiveCard({ county, index }) {
   const [imageUrl, setImageUrl] = React.useState('');

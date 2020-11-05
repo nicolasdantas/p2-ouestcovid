@@ -6,8 +6,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-
-import './Burger.css';
+import './style/Burger.scss';
 
 const useStyles = makeStyles((theme) => ({
   burger: {

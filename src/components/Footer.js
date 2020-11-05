@@ -1,9 +1,9 @@
 import React from 'react';
-import './Footer.scss';
-import LogoFacebook from '../img/facebook-logo.png';
-import LogoTwitter from '../img/twitter-logo.png';
-import LogoGitub from '../img/github-logo.png';
-import LogoGouv from '../img/gouvernement-logo.png';
+import './style/Footer.scss';
+import LogoFacebook from './img/facebook-logo.png';
+import LogoTwitter from './img/twitter-logo.png';
+import LogoGitub from './img/github-logo.png';
+import LogoGouv from './img/gouvernement-logo.png';
 
 const Footer = () => {
   return (
