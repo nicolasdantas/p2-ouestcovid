@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import './Global.css';
 
 body {
   padding: 0;
@@ -6,18 +7,17 @@ body {
 }
 
 .form-wrapper {
-  display: flex;
-  flex-direction: column;
   padding: 20px 40px;
-  background-color: #a68c70;
-  justify-content: center;
+  background-color: var(--primary-color);
   margin: 0;
   font-family: 'Roboto', sans-serif;
 
+
   h2 {
     color: white;
-    font-size: 20px;
+    font-size: var(--component-title-mobile);
     text-align: center;
+    margin-bottom: 20px;
   }
 
   input {
@@ -25,7 +25,7 @@ body {
     border-radius: 5px;
     outline: none;
     border: 1px solid #cfcfcf;
-    width: 100%;
+    width: 80%;
   }
 
   textarea {
@@ -33,17 +33,21 @@ body {
     border-radius: 5px;
     outline: none;
     border: 1px solid #cfcfcf;
-    width: 100%;
+    width: 80%;
+    height: 100px;
   }
 
   label {
     color: white;
     padding: 10px;
-    display: block;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   button {
-    background-color: #4a3f35;
+    background-color: var(--button-color);
     border-radius: 10px;
     color: white;
     outline: none;
@@ -51,6 +55,7 @@ body {
     padding: 15px;
     letter-spacing: 1px;
     border: none;
+    cursor: pointer;
   }
 
   .button-div {
@@ -60,7 +65,13 @@ body {
 
   @media screen and (min-width: 600px) {
     h2 {
-      font-size: 40px;
+      font-size: var(--component-title-desktop);
+    }
+    textarea {
+      width: 60%;
+    }
+    input {
+      width: 60%;
     }
   }
 }

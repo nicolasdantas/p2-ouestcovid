@@ -6,17 +6,17 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-
-import './Burger.css';
+import './style/Burger.scss';
+import './style/Global.css';
 
 const useStyles = makeStyles((theme) => ({
   burger: {
     color: 'white',
     fontSize: '30px',
     boxShadow: 'none',
-    backgroundColor: '#A68C70',
+    backgroundColor: 'var(--primary-color)',
     '&:hover, &:active, &:focus': {
-      backgroundColor: '#A68C70',
+      backgroundColor: 'var(--primary-color)',
       boxShadow: 'none',
     },
 

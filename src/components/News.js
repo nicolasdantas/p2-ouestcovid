@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import './Carousel.scss';
+import './style/News.scss';
 import axios from 'axios';
 
 class News extends React.Component {
@@ -27,8 +27,8 @@ class News extends React.Component {
   render() {
     const { arrayOfNews } = this.state;
     return (
-      <div className="carousel-container">
-        <h1 className="carousel-title">Dernières actualités</h1>
+      <div className="carousel-container" id="news">
+        <h1 className="title">Dernières actualités</h1>
         <Carousel
           className="carousel"
           autoPlay

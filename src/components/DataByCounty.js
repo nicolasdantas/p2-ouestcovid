@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import DataCard from './DataCard';
-import countyList from './countyList.json'; // data from https://geo.api.gouv.fr/departements
+import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
 import Map from './Map';
-import './DataByCounty.scss';
+import './style/DataByCounty.scss';
 import SearchBar from './SearchBar';
 
 class DataByCounty extends React.Component {
@@ -81,6 +81,9 @@ class DataByCounty extends React.Component {
   render() {
     return (
       <div className="dataByCounty">
+        <h1 className="title">
+          Choisissez un département pour connaître son état actuel
+        </h1>
         <SearchBar
           onSelectCounty={this.handleCountySearchBar}
           source={this.state.source}

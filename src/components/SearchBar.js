@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Select from 'react-select';
-import countyList from './countyList.json'; // data from https://geo.api.gouv.fr/departements
+import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
 
 const SearchBar = (props) => {
   const [selectedCounty, setSelectedCounty] = useState('');
