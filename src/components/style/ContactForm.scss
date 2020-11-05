@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import './Global.css';
 
 body {
   padding: 0;
@@ -9,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
-  background-color: #a68c70;
+  background-color: var(--primary-color);
   justify-content: center;
   margin: 0;
   font-family: 'Roboto', sans-serif;
