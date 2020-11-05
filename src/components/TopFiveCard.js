@@ -12,13 +12,6 @@ function TopFiveCard({ county, index }) {
     return countyCodeAPI === countyCodePrefecture;
   })[0].prefecture;
 
-  const handleFetchError = (error) => {
-    console.error(
-      'Une erreur est survenue lors de la communication avec le service de données'
-    );
-    console.error(error);
-  };
-
   const fetchCityImages = (cityName) => {
     const q = encodeURIComponent(`${cityName} city France`);
     return axios
@@ -29,13 +22,13 @@ function TopFiveCard({ county, index }) {
       .then((data) => {
         setImageUrl(data.hits[0].webformatURL);
       })
-      .catch((err) => {
+      .catch(() => {
         setImageUrl(
           'https://cdn.pixabay.com/photo/2013/12/22/17/34/french-countryside-232571_1280.jpg'
         );
-        handleFetchError(err);
       });
   };
+  
 
   React.useEffect(() => {
     fetchCityImages(countyPrefecture); // eslint-disable-next-line

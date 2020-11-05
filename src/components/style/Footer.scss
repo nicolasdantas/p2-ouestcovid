@@ -37,6 +37,9 @@ footer {
 
   .footer-logo-gouv{
     width: 30%;
+    padding-top: 10px;
+    opacity: 0.8;
+    border-radius: 20%;
   }
 
   @media (min-width: 600px) {
@@ -51,6 +54,7 @@ footer {
       display: flex;
       order: 3;
       justify-content: flex-end;
+      width: 10%;
     }
     .footerP {
       display: flex;
@@ -58,10 +62,6 @@ footer {
       justify-content: center;
     }
     .footer-logo{
-      width: 10%;
-    }
-  
-    .footer-logo-gouv{
       width: 10%;
     }
   }
