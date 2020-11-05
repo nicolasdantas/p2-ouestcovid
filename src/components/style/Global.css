@@ -5,8 +5,8 @@ body {
 }
 
 :root {
-  --primary-color: #2D414D;
-  --second-color: #C3EBE2;
+  --primary-color: #2d414d;
+  --second-color: #c3ebe2;
   --component-title-desktop: 40px;
   --component-title-mobile: 20px;
 }
