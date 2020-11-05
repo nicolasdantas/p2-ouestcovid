@@ -17,7 +17,7 @@ body {
 
   h2 {
     color: white;
-    font-size: 20px;
+    font-size: var(--component-title-mobile);
     text-align: center;
   }
 
@@ -61,7 +61,7 @@ body {
 
   @media screen and (min-width: 600px) {
     h2 {
-      font-size: 40px;
+      font-size: var(--component-title-desktop);
     }
   }
 }
