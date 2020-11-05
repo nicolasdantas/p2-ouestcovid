@@ -17,6 +17,12 @@
   margin-right: auto;
   margin-left: auto;
 
+  .title{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: var(--component-title-mobile);
+  }
+
   .searchBar {
     display: flex;
     align-items: center;
@@ -27,6 +33,8 @@
       line-height: 1.2em;
       margin-top: 8px;
     }
+
+    
 
     select {
       // A reset of styles, including removing the default dropdown arrow
@@ -107,6 +115,10 @@
   }
 
   @media only screen and (min-width: 600px) {
+    .title{
+      font-size: var(--component-title-desktop);
+    }
+
     .map {
       display: block;
       width: 50vw;

@@ -73,6 +73,9 @@ class DataByCounty extends React.Component {
   render() {
     return (
       <div className="dataByCounty">
+        <h1 className="title">
+          Choisissez un département pour connaître son état actuel
+        </h1>
         <SearchBar onSelectCounty={this.handleCounty} />
         <div className="dataRow">
           {this.state.selectedDataToday && (

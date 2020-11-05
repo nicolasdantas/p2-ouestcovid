@@ -27,8 +27,8 @@ class News extends React.Component {
   render() {
     const { arrayOfNews } = this.state;
     return (
-      <div className="carousel-container">
-        <h1 className="carousel-title">Dernières actualités</h1>
+      <div className="carousel-container" id="news">
+        <h1 className="title">Dernières actualités</h1>
         <Carousel
           className="carousel"
           autoPlay
