@@ -10,6 +10,7 @@ import SearchBar from './SearchBar';
 class DataByCounty extends React.Component {
   constructor(props) {
     super(props);
+    this.signal = axios.CancelToken.source();
     this.state = {
       // initializing the state at null
       countyCode: '', // code postal département sélectionné
@@ -22,6 +23,10 @@ class DataByCounty extends React.Component {
     if (prevState.countyCode !== this.state.countyCode) {
       this.getCovidData(this.state.countyCode);
     }
+  }
+
+  componentWillUnmount() {
+    this.signal.cancel('Api is being canceled');
   }
 
   handleCountyMap = (countyValue) => {
@@ -45,7 +50,10 @@ class DataByCounty extends React.Component {
 
     axios
       .get(
-        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`
+        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
+        {
+          cancelToken: this.signal.token,
+        }
       )
       .then((response) => response.data)
       .then((data) => {
@@ -60,7 +68,10 @@ class DataByCounty extends React.Component {
         } else {
           axios
             .get(
-              `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus2}`
+              `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus2}`,
+              {
+                cancelToken: this.signal.token,
+              }
             )
             .then((response) => response.data)
             .then((data2) => {
@@ -74,6 +85,11 @@ class DataByCounty extends React.Component {
                 });
               }
             });
+        }
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Error: ', err.message); // => prints: Api is being canceled
         }
       });
   };

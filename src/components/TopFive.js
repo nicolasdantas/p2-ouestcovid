@@ -9,10 +9,10 @@ function TopFive() {
   const [dataAPI, setDataAPI] = React.useState([]);
   const [dataTopFive, setDataTopFive] = React.useState([]);
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
-  const CancelToken = axios.CancelToken; // eslint-disable-line
-  const source = CancelToken.source();
 
   React.useEffect(() => {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
     axios
       .get(
         `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
@@ -42,16 +42,16 @@ function TopFive() {
           console.log('Request canceled', err.message);
         }
       }); // eslint-disable-next-line
+    return function cleanup() {
+      // cancels the previous request on unmount or query update :
+      source.cancel('Operation canceled by the user.');
+    }; // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
     setDataTopFive(() =>
       dataAPI.sort((a, b) => (a.ratio >= b.ratio ? 1 : -1)).slice(0, 5)
     );
-    return function cleanup() {
-      // cancels the previous request on unmount or query update :
-      source.cancel('Operation canceled by the user.');
-    }; // eslint-disable-next-line
   }, [dataAPI]);
 
   return (
