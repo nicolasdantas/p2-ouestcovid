@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import './Global.css';
+
+.carousel-container {
+  margin-bottom: 40px;
+
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .title {
+    text-align: center;
+    font-size: var(--component-title-mobile);
+    margin-bottom: 20px;
+    color: var(--primary-color)
+  }
+
+  .carousel {
+    width: 90%;
+    margin: auto;
+  }
+
+  .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .carousel .slide .legend {
+    font-size: 15px;
+    background-color: var(--primary-color);
+    opacity: 0.8;
+  }
+
+  @media screen and (min-width: 600px) {
+    .carousel {
+      width: 60%;
+    }
+    .carousel .slide .legend {
+      font-size: 20px;
+    }
+    .title {
+      font-size: var(--component-title-desktop);
+    }
+  }
+}

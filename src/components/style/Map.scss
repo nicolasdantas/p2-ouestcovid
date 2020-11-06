@@ -1,0 +1,21 @@
+.svg-map {
+  margin-top: 50px;
+  width: 100%;
+  height: auto;
+  stroke: #a68c70;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.svg-map__location {
+  fill: var(--primary-color);
+  cursor: pointer;
+}
+.svg-map__location:focus,
+.svg-map__location:hover {
+  fill: var(--second-color);
+  outline: 0;
+}
+.svg-map__location[aria-checked='true'] {
+  fill: var(--second-color);
+}

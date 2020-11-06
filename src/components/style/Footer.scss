@@ -1,0 +1,67 @@
+@import './Global.css';
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background: var(--primary-color);
+  width: 100%;
+  padding-bottom: 10px;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px;
+    margin-bottom: 0;
+    display: flex;
+  }
+
+  p {
+    color: white;
+    margin: 3px;
+    padding: 2px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    width: 30%;
+  }
+
+  .footer-logo-gouv {
+    width: 30%;
+    padding-top: 10px;
+    opacity: 0.8;
+    border-radius: 20%;
+  }
+
+  @media (min-width: 600px) {
+    flex-wrap: nowrap;
+
+    .footer-logo {
+      display: flex;
+      order: 1;
+      justify-content: flex-start;
+    }
+    .footer-logo-gouv {
+      display: flex;
+      order: 3;
+      justify-content: flex-end;
+      width: 10%;
+    }
+    .footerP {
+      display: flex;
+      order: 2;
+      justify-content: center;
+    }
+    .footer-logo {
+      width: 10%;
+    }
+  }
+}

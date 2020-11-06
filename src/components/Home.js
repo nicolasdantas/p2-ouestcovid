@@ -1,7 +1,16 @@
 import React from 'react';
+import ContactForm from './ContactForm';
+import News from './News';
+import DataByCounty from './DataByCounty';
 
 const Home = () => {
-  return <h1>Coucou</h1>;
+  return (
+    <div>
+      <DataByCounty />
+      <News />
+      <ContactForm />
+    </div>
+  );
 };
 
 export default Home;
