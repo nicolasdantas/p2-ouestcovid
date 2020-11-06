@@ -20,7 +20,7 @@ const Footer = () => {
 
       <p className="footerP">
         Made with madness by Matt Damon, Candide Guiness , Moufette Anonyme, Lou
-        Lou, Moi Même
+        Lou, Someone
       </p>
     </footer>
   );

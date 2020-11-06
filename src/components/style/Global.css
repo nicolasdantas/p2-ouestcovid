@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 html,
 body {
   margin: 0;
@@ -10,4 +12,5 @@ body {
   --component-title-desktop: 30px;
   --component-title-mobile: 20px;
   --button-color: #a64a56;
+  --roboto: 'Roboto', sans-serif;
 }

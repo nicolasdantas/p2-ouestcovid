@@ -11,9 +11,14 @@ function TopFive() {
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
 
   React.useEffect(() => {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
     axios
       .get(
-        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`
+        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
+        {
+          cancelToken: source.token,
+        }
       )
       .then((response) => response.data)
       .then((data) => {
@@ -31,7 +36,16 @@ function TopFive() {
               ratio: Math.round((item.reanimation / +item.lits) * 100),
             }))
         );
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Request canceled', err.message);
+        }
       }); // eslint-disable-next-line
+    return function cleanup() {
+      // cancels the previous request on unmount or query update :
+      source.cancel('Operation canceled by the user.');
+    }; // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {

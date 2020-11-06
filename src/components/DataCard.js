@@ -4,9 +4,9 @@ import moment from 'moment';
 const DataCard = ({ selectedDataToday }) => {
   return (
     <div className="dataCard">
-      {selectedDataToday !== '' && (
+      {selectedDataToday !== '' ? (
         <div className="dataNumbers">
-          <h2>{selectedDataToday.nom}</h2>
+          <h2 className="data-card-title">{selectedDataToday.nom}</h2>
           <p>
             Situation le {moment(selectedDataToday.date).format('DD/MM/YYYY')}
           </p>
@@ -32,6 +32,10 @@ const DataCard = ({ selectedDataToday }) => {
               <em>Guéris (cumulés) :</em> {selectedDataToday.gueris}
             </li>
           </ul>
+        </div>
+      ) : (
+        <div className="empty-card">
+          <h2>Sélectionnez un département</h2>
         </div>
       )}
     </div>

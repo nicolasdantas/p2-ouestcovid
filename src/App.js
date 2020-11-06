@@ -5,15 +5,18 @@ import WhereToGo from './components/WhereToGo';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import './App.scss';
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/ou-partir" component={WhereToGo} />
-      </Switch>
+      <div className="content">
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/ou-partir" component={WhereToGo} />
+        </Switch>
+      </div>
       <Footer />
     </Router>
   );
