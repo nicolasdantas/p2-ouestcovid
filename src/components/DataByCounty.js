@@ -4,6 +4,7 @@ import moment from 'moment';
 import DataCard from './DataCard';
 import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
 import Map from './Map';
+import APIContext from './APIContext';
 import './style/DataByCounty.scss';
 import SearchBar from './SearchBar';
 
@@ -105,8 +106,11 @@ class DataByCounty extends React.Component {
           source={this.state.source}
         />
         <div className="dataRow">
-          <DataCard selectedDataToday={this.state.selectedDataToday} />
-
+          <APIContext.Provider
+            value={{ selectedDataToday: this.state.selectedDataToday }}
+          >
+            <DataCard />
+          </APIContext.Provider>
           <Map onSelectCounty={this.handleCountyMap} />
         </div>
       </div>

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
+import APIContext from './APIContext';
 
-const DataCard = ({ selectedDataToday }) => {
+const DataCard = () => {
+  const { selectedDataToday } = useContext(APIContext);
   return (
     <div className="dataCard">
       {selectedDataToday !== '' ? (
