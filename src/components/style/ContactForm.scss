@@ -66,6 +66,14 @@ body {
     justify-content: center;
   }
 
+  .error {
+    font-size: 15;
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+
   @media screen and (min-width: 600px) {
     h2 {
       font-size: var(--component-title-desktop);

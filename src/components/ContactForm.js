@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import './style/ContactForm.scss';
 
+const startState = {
+  name: '',
+  message: '',
+  email: '',
+  nameError: '',
+  emailError: '',
+  messageError: '',
+};
+
 class ContactForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: '',
-      message: '',
-      email: '',
-    };
+    this.state = startState;
   }
 
   handleNameChange = (event) => {
@@ -29,10 +34,40 @@ class ContactForm extends Component {
     });
   };
 
+  validation = () => {
+    let nameError = '';
+    let emailError = '';
+    let messageError = '';
+
+    if (!this.state.name) {
+      nameError = '*Name cannot be blank';
+    }
+    if (!this.state.email) {
+      emailError = '*E-mail required';
+    }
+    if (!this.state.message) {
+      messageError = '*Please enter your message';
+    }
+    if (emailError || nameError || messageError) {
+      this.setState({ emailError, nameError, messageError });
+      return false;
+    }
+    return true;
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const isValid = this.validation();
+    if (isValid) {
+      // clear form
+      this.setState(startState);
+    }
+  };
+
   render() {
     return (
       <div className="form-wrapper">
-        <form id="contact">
+        <form id="contact" onSubmit={this.handleSubmit}>
           <h2> Faites-nous part de vos remarques, suggestions, ... </h2>
           <div>
             <label htmlFor="inputName">
@@ -42,8 +77,9 @@ class ContactForm extends Component {
                 value={this.state.name}
                 onChange={this.handleNameChange}
                 id="inputName"
-              />{' '}
+              />
             </label>
+            <div className="error">{this.state.nameError}</div>
           </div>
           <div>
             <label htmlFor="inputEmail">
@@ -55,6 +91,7 @@ class ContactForm extends Component {
                 id="inputEmail"
               />
             </label>
+            <div className="error">{this.state.emailError}</div>
           </div>
           <div>
             <label htmlFor="inputMessage">
@@ -65,6 +102,7 @@ class ContactForm extends Component {
                 id="inputMessage"
               />
             </label>
+            <div className="error">{this.state.messageError}</div>
           </div>
 
           <div className="button-div">
