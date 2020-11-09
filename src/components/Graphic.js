@@ -36,7 +36,7 @@ const Graphic = () => {
         setConfirmedCase(
           data
             .filter((item) => item.Province === '')
-            .map((item) => item.Confirmed)
+            .map((item) => item.Confirmed.toString().slice(0, 3))
         );
         setDate(
           data
@@ -54,6 +54,7 @@ const Graphic = () => {
         data={state}
         options={{
           layout: {
+            mainAspectRatio: true,
             padding: {
               top: 0,
               left: 50,
