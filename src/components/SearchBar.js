@@ -1,45 +1,50 @@
-import React from 'react';
-// import axios from 'axios';
-// import DataCard from '../DataCard';
-import countyList from './countyList.json'; // data from https://geo.api.gouv.fr/departements
+import React, { useState, useEffect, useCallback } from 'react';
+import Select from 'react-select';
+import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
 
-class SearchBar extends React.Component {
-  handleCountySelection = (event) => {
-    const countyCode = event.target.value;
-    if (countyCode !== '') {
-      const { onSelectCounty } = this.props;
-      onSelectCounty(countyCode);
-      document.querySelector('select').selectedIndex = 0;
+const SearchBar = (props) => {
+  const [selectedCounty, setSelectedCounty] = useState('');
+
+  const onSelectCounty = useCallback(props.onSelectCounty);
+
+  useEffect(() => {
+    if (selectedCounty) {
+      const countyCode = countyList.find(
+        (county) => county.nom === selectedCounty
+      );
+      onSelectCounty(countyCode.code);
     }
+  }, [selectedCounty, onSelectCounty]);
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      width: '300px',
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      padding: 0,
+    }),
+    option: (provided) => ({
+      ...provided,
+      backgroundColor: 'white',
+      color: 'black',
+    }),
   };
 
-  render() {
-    return (
-      <div className="searchBar">
-        <div className="select-wrapper">
-          {/* <p>Sélectionnez un département</p> */}
-          <div className="custom-select">
-            <select
-              name="counties"
-              id="county-select"
-              onChange={this.handleCountySelection}
-            >
-              <option value="">- Merci de choisir une option &#8595;-</option>
-              {countyList.map((county) => (
-                <option key={county.code} value={county.code}>
-                  {county.code}-{county.nom}
-                </option>
-              ))}
-            </select>
-          </div>
-          <p className="description">
-            Sélectionnez un département pour voir le détail des derniers
-            chiffres de l'épidémie
-          </p>
-        </div>
-      </div>
-    );
-  }
-}
+  return (
+    <Select
+      options={countyList.map((county) => county.nom)}
+      getOptionLabel={(option) => `${option}`}
+      onChange={(newValue) => {
+        setSelectedCounty(newValue);
+      }}
+      styles={customStyles}
+      placeholder="Recherchez un département"
+      noOptionsMessage={() => 'Aucun département trouvé'}
+      value={props.source === 'map' ? '' : selectedCounty.split()}
+    />
+  );
+};
 
 export default SearchBar;

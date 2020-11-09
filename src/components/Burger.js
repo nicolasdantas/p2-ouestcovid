@@ -6,17 +6,18 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-
-import './Burger.css';
+import { HashLink } from 'react-router-hash-link';
+import './style/Burger.scss';
+import './style/Global.css';
 
 const useStyles = makeStyles((theme) => ({
   burger: {
     color: 'white',
     fontSize: '30px',
     boxShadow: 'none',
-    backgroundColor: '#A68C70',
+    backgroundColor: 'var(--primary-color)',
     '&:hover, &:active, &:focus': {
-      backgroundColor: '#A68C70',
+      backgroundColor: 'var(--primary-color)',
       boxShadow: 'none',
     },
 
@@ -88,26 +89,50 @@ function CustomizedMenus() {
         onClose={handleClose}
       >
         <StyledMenuItem>
-          <Link className="burger-lien" to={{ pathname: `/` }}>
-            <ListItemText primary="Statistiques">Statistiques</ListItemText>
+          <Link className="burger-lien" to="/">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="Statistiques"
+            >
+              Statistiques
+            </ListItemText>
           </Link>
         </StyledMenuItem>
 
         <StyledMenuItem>
           <Link className="burger-lien" to="/ou-partir">
-            <ListItemText primary="Où partir?">Où partir?</ListItemText>
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="Où partir?"
+            >
+              Où partir?
+            </ListItemText>
           </Link>
         </StyledMenuItem>
 
         <StyledMenuItem>
-          <Link className="burger-lien" to={{ pathname: `/` }}>
-            <ListItemText primary="News">News</ListItemText>
-          </Link>
+          <HashLink className="burger-lien" smooth to="/#news">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="News"
+            >
+              News
+            </ListItemText>
+          </HashLink>
         </StyledMenuItem>
         <StyledMenuItem>
-          <Link className="burger-lien" to={{ pathname: `/` }}>
-            <ListItemText primary="Contact">Contact</ListItemText>
-          </Link>
+          <HashLink className="burger-lien" smooth to="/#contact">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="Contact"
+            >
+              Contact
+            </ListItemText>
+          </HashLink>
         </StyledMenuItem>
       </StyledMenu>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ContactForm from './ContactForm';
-import Carousel from './Carousel';
+import News from './News';
 import DataByCounty from './DataByCounty';
 import Graphic from './Graphic';
 
@@ -9,8 +9,8 @@ const Home = () => {
     <div>
       <DataByCounty />;
       <Graphic />
-      <Carousel />
-      <ContactForm />;
+      <News />
+      <ContactForm />
     </div>
   );
 };

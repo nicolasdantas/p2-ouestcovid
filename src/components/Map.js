@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
-import './Map.scss';
+import './style/Map.scss';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
-class Map extends React.Component {
-  handleClick = (event) => {
-    this.props.onSelectCounty(event.target.id);
+const Map = (props) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
   };
 
-  render() {
-    return (
-      <div className="map none">
-        <SVGMap map={France} onLocationClick={this.handleClick} />
-        <p className="dom">
-          Pour les DOM-TOM, les données sont accessibles via le champ de
-          recherche
-        </p>
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
+
+  const handleClick = (event) => {
+    props.onSelectCounty(event.target.id);
+  };
+
+  return (
+    <div className="map none">
+      {windowWidth < 600 ? (
+        <TransformWrapper>
+          <TransformComponent>
+            <SVGMap map={France} onLocationClick={handleClick} />
+          </TransformComponent>
+        </TransformWrapper>
+      ) : (
+        <SVGMap map={France} onLocationClick={handleClick} />
+      )}
+    </div>
+  );
+};
 
 export default Map;

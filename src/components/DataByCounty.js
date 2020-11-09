@@ -1,19 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import SearchBar from './SearchBar';
 import DataCard from './DataCard';
-import countyList from './countyList.json'; // data from https://geo.api.gouv.fr/departements
+import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
 import Map from './Map';
-import './DataByCounty.scss';
+import './style/DataByCounty.scss';
+import SearchBar from './SearchBar';
 
 class DataByCounty extends React.Component {
   constructor(props) {
     super(props);
+    this.signal = axios.CancelToken.source();
     this.state = {
       // initializing the state at null
       countyCode: '', // code postal département sélectionné
       selectedDataToday: '', // données du dep sélectionné
+      source: '',
     };
   }
 
@@ -23,9 +25,20 @@ class DataByCounty extends React.Component {
     }
   }
 
-  handleCounty = (countyValue) => {
+  componentWillUnmount() {
+    this.signal.cancel('Api is being canceled');
+  }
+
+  handleCountyMap = (countyValue) => {
     // getting data from a child element and storing it in the state: get the selected county postal code (not the data)
     this.setState({ countyCode: countyValue });
+    this.setState({ source: 'map' });
+  };
+
+  handleCountySearchBar = (countyValue) => {
+    // getting data from a child element and storing it in the state: get the selected county postal code (not the data)
+    this.setState({ countyCode: countyValue });
+    this.setState({ source: 'searchbar' });
   };
 
   getCovidData = (countyCode) => {
@@ -37,7 +50,10 @@ class DataByCounty extends React.Component {
 
     axios
       .get(
-        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`
+        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
+        {
+          cancelToken: this.signal.token,
+        }
       )
       .then((response) => response.data)
       .then((data) => {
@@ -52,7 +68,10 @@ class DataByCounty extends React.Component {
         } else {
           axios
             .get(
-              `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus2}`
+              `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus2}`,
+              {
+                cancelToken: this.signal.token,
+              }
             )
             .then((response) => response.data)
             .then((data2) => {
@@ -67,18 +86,28 @@ class DataByCounty extends React.Component {
               }
             });
         }
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Error: ', err.message); // => prints: Api is being canceled
+        }
       });
   };
 
   render() {
     return (
       <div className="dataByCounty">
-        <SearchBar onSelectCounty={this.handleCounty} />
+        <h1 className="title">
+          Choisissez un département pour connaître son état actuel
+        </h1>
+        <SearchBar
+          onSelectCounty={this.handleCountySearchBar}
+          source={this.state.source}
+        />
         <div className="dataRow">
-          {this.state.selectedDataToday && (
-            <DataCard selectedDataToday={this.state.selectedDataToday} />
-          )}
-          <Map onSelectCounty={this.handleCounty} />
+          <DataCard selectedDataToday={this.state.selectedDataToday} />
+
+          <Map onSelectCounty={this.handleCountyMap} />
         </div>
       </div>
     );

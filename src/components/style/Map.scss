@@ -8,20 +8,14 @@
   stroke-linejoin: round;
 }
 .svg-map__location {
-  fill: #0ca4c4;
+  fill: var(--primary-color);
   cursor: pointer;
 }
 .svg-map__location:focus,
 .svg-map__location:hover {
-  fill: #a68c70;
+  fill: var(--second-color);
   outline: 0;
 }
 .svg-map__location[aria-checked='true'] {
-  fill: #a68c70;
+  fill: var(--second-color);
 }
-
-// @media screen and (min-width: 640px) {
-//   .svg-map {
-//     width: 50%;
-//   }
-// }
