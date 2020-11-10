@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import moment from 'moment';
+import './style/Graphic.scss';
 
 const Graphic = () => {
   const [confirmedCase, setConfirmedCase] = useState([]);
@@ -14,12 +15,11 @@ const Graphic = () => {
     labels: date,
     datasets: [
       {
-        label: 'Covid Cases',
+        label: '',
         fill: false,
         lineTension: 0,
-        backgroundColor: 'rgba(75,192,192,1)',
-        fillColor: 'rgba(252,147,65,0.5)',
-        borderColor: 'rgba(0,0,255,0.3)',
+        backgroundColor: 'white',
+        borderColor: ' #2d414d',
         borderWidth: 2,
         data: confirmedCase,
       },
@@ -36,7 +36,7 @@ const Graphic = () => {
         setConfirmedCase(
           data
             .filter((item) => item.Province === '')
-            .map((item) => item.Confirmed.toString().slice(0, 3))
+            .map((item) => item.Confirmed)
         );
         setDate(
           data
@@ -49,26 +49,56 @@ const Graphic = () => {
   console.log(date);
 
   return (
-    <div>
+    <div className="graph-container">
       <Line
         data={state}
         options={{
+          responsive: true,
           layout: {
-            mainAspectRatio: true,
             padding: {
               top: 0,
               left: 50,
-              right: 50,
+              right: 60,
               bottom: 0,
             },
           },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  stepSize: 100000,
+                  callback: function changeM(value) {
+                    const ranges = [
+                      { divider: 1e6, suffix: 'M' },
+                      { divider: 1e3, suffix: 'k' },
+                    ];
+                    function formatNumber(n) {
+                      for (let i = 0; i < ranges.length; i += 1) {
+                        if (n >= ranges[i].divider) {
+                          return (
+                            (n / ranges[i].divider).toString() +
+                            ranges[i].suffix
+                          );
+                        }
+                      }
+                      return n;
+                    }
+                    return formatNumber(value);
+                  },
+                },
+              },
+            ],
+          },
           title: {
             display: true,
-            fontSize: 35,
+            fontColor: '#2d414d',
+            fontSize: 30,
             text: 'Cas confirmés durant les 7 derniers jours',
+            padding: 30,
+            fontFamily: "'Roboto', 'sans-serif'",
           },
           legend: {
-            display: true,
+            display: false,
             position: 'top',
             onClick: false,
             labels: {
