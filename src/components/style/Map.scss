@@ -19,3 +19,16 @@
 .svg-map__location[aria-checked='true'] {
   fill: var(--second-color);
 }
+
+.svg-map__location[name$='-red'] {
+  fill: red;
+}
+.svg-map__location[name$='-orange'] {
+  fill: orangered;
+}
+.svg-map__location[name$='-yellow'] {
+  fill: yellow;
+}
+.svg-map__location[name$='-white'] {
+  fill: white;
+}
