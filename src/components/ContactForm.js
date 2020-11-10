@@ -104,7 +104,7 @@ class ContactForm extends Component {
                 onChange={this.handleMessageChange}
                 id="inputMessage"
                 placeholder={this.state.messageError}
-              ></textarea>
+              />
             </label>
           </div>
 
