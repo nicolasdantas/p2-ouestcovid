@@ -1,0 +1,51 @@
+@import './Global.css';
+
+.banner {
+  background-color: var(--second-color);
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  img {
+    display: none;
+  }
+  .text {
+    text-align: center;
+    margin-top: 10px;
+    padding: 0 60px;
+    h1 {
+      color: var(--primary-color);
+      font-size: var(--component-title-mobile);
+      margin-bottom: 30px;
+    }
+    p {
+      color: var(--primary-color);
+      line-height: 200%;
+      font-size: 15px;
+    }
+    h2 {
+      margin-top: 30px;
+      color: var(--primary-color);
+      padding-bottom: 10px;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .banner {
+    justify-content: space-between;
+    align-items: flex-end;
+    img {
+      display: block;
+    }
+    .text {
+      align-self: center;
+      margin-right: 100px;
+      h1 {
+        font-size: 60px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+}

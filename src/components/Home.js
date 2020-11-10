@@ -3,11 +3,13 @@ import ContactForm from './ContactForm';
 import News from './News';
 import DataByCounty from './DataByCounty';
 import Graphic from './Graphic';
+import Banner from './Banner';
 
 const Home = () => {
   return (
     <div>
-      <DataByCounty />;
+      <Banner />
+      <DataByCounty />
       <Graphic />
       <News />
       <ContactForm />

@@ -103,6 +103,7 @@ class DataByCounty extends React.Component {
         <SearchBar
           onSelectCounty={this.handleCountySearchBar}
           source={this.state.source}
+          countyCode={this.state.countyCode}
         />
         <div className="dataRow">
           <DataCard selectedDataToday={this.state.selectedDataToday} />
