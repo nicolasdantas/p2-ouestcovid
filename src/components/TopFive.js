@@ -3,11 +3,13 @@ import moment from 'moment';
 import axios from 'axios';
 import TopFiveCard from './TopFiveCard';
 import countyList from './datas/countyList.json';
+import TopFiveCountyModal from './TopFiveCountyModal';
 import './style/TopFive.scss';
 
 function TopFive() {
   const [dataAPI, setDataAPI] = React.useState([]);
   const [dataTopFive, setDataTopFive] = React.useState([]);
+  const [modalShow, setModalShow] = React.useState(false);
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
 
   React.useEffect(() => {
@@ -55,43 +57,51 @@ function TopFive() {
   }, [dataAPI]);
 
   return (
-    <div className="top-five">
-      <h2>Top 5 des départements les plus sûrs</h2>
-      <p className="situation">
-        Situation le {moment(dayMinus1).format('DD/MM/YYYY')} <br />
-        <span className="small">
-          Le classement se base sur le taux d'occupation des lits en réanimation
-        </span>
-      </p>
-      <div className="column">
-        {dataTopFive.length > 0 ? (
-          dataTopFive.map((county, index) => (
-            <TopFiveCard key={county.code} county={county} index={index + 1} />
-          ))
-        ) : (
-          <div className="spinner">Loading...</div>
-        )}
+    <>
+      <TopFiveCountyModal show={modalShow} onHide={() => setModalShow(false)} />
+      <div className="top-five">
+        <h2>Top 5 des départements les plus sûrs</h2>
+        <p className="situation">
+          Situation le {moment(dayMinus1).format('DD/MM/YYYY')} <br />
+          <span className="small">
+            Le classement se base sur le taux d'occupation des lits en
+            réanimation
+          </span>
+        </p>
+        <div className="column">
+          {dataTopFive.length > 0 ? (
+            dataTopFive.map((county, index) => (
+              <TopFiveCard
+                key={county.code}
+                county={county}
+                index={index + 1}
+              />
+            ))
+          ) : (
+            <div className="spinner">Loading...</div>
+          )}
+        </div>
+        <p className="sources">
+          Sources :{' '}
+          <a
+            href="https://github.com/florianzemma/CoronavirusAPI-France/blob/master/README.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CoronavirusAPI
+          </a>{' '}
+          (chiffres COVID) et{' '}
+          <a
+            href="https://drees.solidarites-sante.gouv.fr/etudes-et-statistiques/publications/article/nombre-de-lits-de-reanimation-de-soins-intensifs-et-de-soins-continus-en-france"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            DREES 2019
+          </a>{' '}
+          (lits en réanimation){' '}
+        </p>
       </div>
-      <p className="sources">
-        Sources :{' '}
-        <a
-          href="https://github.com/florianzemma/CoronavirusAPI-France/blob/master/README.md"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          CoronavirusAPI
-        </a>{' '}
-        (chiffres COVID) et{' '}
-        <a
-          href="https://drees.solidarites-sante.gouv.fr/etudes-et-statistiques/publications/article/nombre-de-lits-de-reanimation-de-soins-intensifs-et-de-soins-continus-en-france"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          DREES 2019
-        </a>{' '}
-        (lits en réanimation){' '}
-      </p>
-    </div>
+    </>
   );
 }
 
