@@ -40,13 +40,13 @@ class ContactForm extends Component {
     let messageError = '';
 
     if (!this.state.name) {
-      nameError = '*Name cannot be blank';
+      nameError = 'Name cannot be blank';
     }
     if (!this.state.email) {
-      emailError = '*E-mail required';
+      emailError = 'E-mail required';
     }
     if (!this.state.message) {
-      messageError = '*Please enter your message';
+      messageError = 'Please enter your message';
     }
     if (emailError || nameError || messageError) {
       this.setState({ emailError, nameError, messageError });
@@ -73,36 +73,39 @@ class ContactForm extends Component {
             <label htmlFor="inputName">
               Nom
               <input
+                className={`${this.state.nameError !== '' ? 'red' : ''}`}
                 type="text"
                 value={this.state.name}
                 onChange={this.handleNameChange}
                 id="inputName"
+                placeholder={this.state.nameError}
               />
             </label>
-            <div className="error">{this.state.nameError}</div>
           </div>
           <div>
             <label htmlFor="inputEmail">
               E-mail
               <input
+                className={`${this.state.emailError !== '' ? 'red' : ''}`}
                 type="email"
                 value={this.state.email}
                 onChange={this.handleEmailChange}
                 id="inputEmail"
+                placeholder={this.state.emailError}
               />
             </label>
-            <div className="error">{this.state.emailError}</div>
           </div>
           <div>
             <label htmlFor="inputMessage">
               Message
               <textarea
+                className={`${this.state.messageError !== '' ? 'red' : ''}`}
                 value={this.state.message}
                 onChange={this.handleMessageChange}
                 id="inputMessage"
-              />
+                placeholder={this.state.messageError}
+              ></textarea>
             </label>
-            <div className="error">{this.state.messageError}</div>
           </div>
 
           <div className="button-div">
