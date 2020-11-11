@@ -2,7 +2,6 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './style/AboutUs.scss';
-import './style/Global.css';
 import avatar1 from './img/avatar1.jpeg';
 import avatar2 from './img/avatar2.jpeg';
 import avatar3 from './img/avatar3.jpeg';
