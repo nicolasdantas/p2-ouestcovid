@@ -54,7 +54,8 @@ function TopFive() {
     return function cleanup() {
       // cancels the previous request on unmount or query update :
       source.cancel('Operation canceled by the user.');
-    }; // eslint-disable-next-line
+    };
+    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
@@ -85,13 +86,12 @@ function TopFive() {
         <div className="column">
           {dataTopFive.length > 0 ? (
             dataTopFive.map((county, index) => (
-              <div key={county.code}>
-                <TopFiveCard
-                  county={county}
-                  index={index + 1}
-                  openModal={(event) => handleClick(event)}
-                />
-              </div>
+              <TopFiveCard
+                key={county.code}
+                county={county}
+                index={index + 1}
+                openModal={(event) => handleClick(event)}
+              />
             ))
           ) : (
             <div className="spinner">Loading...</div>

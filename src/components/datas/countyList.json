@@ -3,49 +3,57 @@
     "nom": "Ain",
     "code": "01",
     "codeRegion": "84",
-    "lits": "22"
+    "lits": "22",
+    "url": "https://www.ain-tourisme.com/" 
   },
   {
     "nom": "Aisne",
     "code": "02",
     "codeRegion": "32",
-    "lits": "34"
+    "lits": "34",
+    "url": "https://www.jaimelaisne.com/" 
   },
   {
     "nom": "Allier",
     "code": "03",
     "codeRegion": "84",
-    "lits": "24"
+    "lits": "24",
+    "url": "www.allier-auvergne-tourisme.com" 
   },
   {
     "nom": "Alpes-de-Haute-Provence",
     "code": "04",
     "codeRegion": "93",
-    "lits": "6"
+    "lits": "6",
+    "url": "https://www.tourisme-alpes-haute-provence.com/"
   },
   {
     "nom": "Hautes-Alpes",
     "code": "05",
     "codeRegion": "93",
-    "lits": "8"
+    "lits": "8",
+    "url": "https://www.allier-auvergne-tourisme.com/"
   },
   {
     "nom": "Alpes-Maritimes",
     "code": "06",
     "codeRegion": "93",
-    "lits": "94"
+    "lits": "94",
+    "url": "https://www.allier-auvergne-tourisme.com/"
   },
   {
     "nom": "Ardèche",
     "code": "07",
     "codeRegion": "84",
-    "lits": "8"
+    "lits": "8",
+    "url": "https://www.ardeche-guide.com/"
   },
   {
     "nom": "Ardennes",
     "code": "08",
     "codeRegion": "44",
     "lits": "12"
+
   },
   {
     "nom": "Ariège",
@@ -279,7 +287,8 @@
     "nom": "Lot",
     "code": "46",
     "codeRegion": "76",
-    "lits": "8"
+    "lits": "8",
+    "url":"https://www.tourisme-lot.com/"
   },
   {
     "nom": "Lot-et-Garonne",
@@ -519,7 +528,8 @@
     "nom": "Vienne",
     "code": "86",
     "codeRegion": "75",
-    "lits": "56"
+    "lits": "56",
+    "url":"https://www.tourisme-vienne.com/"
   },
   {
     "nom": "Haute-Vienne",
@@ -591,18 +601,21 @@
     "nom": "Guyane",
     "code": "973",
     "codeRegion": "03",
-    "lits": "13"
+    "lits": "13",
+    "url": "https://www.guyane-amazonie.fr/"
   },
   {
     "nom": "La Réunion",
     "code": "974",
     "codeRegion": "04",
-    "lits": "61"
+    "lits": "61",
+    "url":"https://www.reunion.fr/"
   },
   {
     "nom": "Mayotte",
     "code": "976",
     "codeRegion": "06",
-    "lits": "10"
+    "lits": "10",
+    "url":"https://www.mayotte-tourisme.com/decouvrir"
   }
 ]
