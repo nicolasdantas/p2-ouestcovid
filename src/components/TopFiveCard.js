@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import prefectures from './datas/prefectures.json';
 
-function TopFiveCard({ county, index }) {
+function TopFiveCard({ county, index, openModal }) {
   const [imageUrl, setImageUrl] = React.useState('');
 
   const countyCodeAPI = county.code;
@@ -49,12 +49,17 @@ function TopFiveCard({ county, index }) {
 
   return (
     <div
+      role="button"
       className="top-five-card"
       style={{
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
+      onClick={openModal}
+      onKeyDown={openModal}
+      tabIndex="0"
+      id={county.code}
     >
       <div className="overlay">
         <div className="rank">{index}</div>
@@ -73,12 +78,6 @@ function TopFiveCard({ county, index }) {
           <li>
             <em>Nouvelles réanimations :</em> {county.nouvellesReanimations}
           </li>
-          {/* <li> //this was kept in case anyone else in the groups thought we should add these data
-          <em>Décès (cumulés) :</em> {county.deces}
-        </li>
-        <li>
-          <em>Guéris (cumulés) :</em> {county.gueris}
-        </li> */}
         </ul>
         <p className="ratio">
           Taux d'occupation des lits en réa : {county.ratio}%

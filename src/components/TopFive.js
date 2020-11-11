@@ -10,7 +10,14 @@ function TopFive() {
   const [dataAPI, setDataAPI] = React.useState([]);
   const [dataTopFive, setDataTopFive] = React.useState([]);
   const [modalShow, setModalShow] = React.useState(false);
+  const [countyClicked, setCountyClicked] = React.useState('');
+
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
+
+  const handleClick = (event) => {
+    setModalShow(true);
+    setCountyClicked(event.currentTarget.id);
+  };
 
   React.useEffect(() => {
     const { CancelToken } = axios;
@@ -58,7 +65,14 @@ function TopFive() {
 
   return (
     <>
-      <TopFiveCountyModal show={modalShow} onHide={() => setModalShow(false)} />
+      <TopFiveCountyModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        county={countyClicked}
+        datacounty={dataTopFive.filter(
+          (county) => county.code === countyClicked
+        )}
+      />
       <div className="top-five">
         <h2>Top 5 des départements les plus sûrs</h2>
         <p className="situation">
@@ -71,11 +85,13 @@ function TopFive() {
         <div className="column">
           {dataTopFive.length > 0 ? (
             dataTopFive.map((county, index) => (
-              <TopFiveCard
-                key={county.code}
-                county={county}
-                index={index + 1}
-              />
+              <div key={county.code}>
+                <TopFiveCard
+                  county={county}
+                  index={index + 1}
+                  openModal={(event) => handleClick(event)}
+                />
+              </div>
             ))
           ) : (
             <div className="spinner">Loading...</div>
