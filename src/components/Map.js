@@ -5,7 +5,7 @@ import axios from 'axios';
 import moment from 'moment';
 import './style/Map.scss';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-//import { red } from '@material-ui/core/colors';
+// import { red } from '@material-ui/core/colors';
 
 const Map = (props) => {
   const [allData, setData] = React.useState([]);
@@ -41,37 +41,38 @@ const Map = (props) => {
   }, []);
 
   const customFrance =
-    allData.length > 0 && checkboxRea === true //on vérifie qu'on a reçu les données de l'API, et que la box est check (celle "afficher un gradient de couleur" etc)
+    allData.length > 0 && checkboxRea === true // on vérifie qu'on a reçu les données de l'API, et que la box est check (celle "afficher un gradient de couleur" etc)
       ? {
           ...France,
           label: 'Custom map label',
           locations: France.locations.map((location) => {
             // Modify each location
-            let nbRea = allData.find(
+            const nbRea = allData.find(
               (item) => item.code.split('-')[1] === location.id
             ).reanimation;
 
             if (nbRea > 250) {
               return {
                 ...location,
-                name: location.name + '-red',
-              };
-            } else if (nbRea > 100) {
-              return {
-                ...location,
-                name: location.name + '-orange',
-              };
-            } else if (nbRea > 50) {
-              return {
-                ...location,
-                name: location.name + '-yellow',
-              };
-            } else {
-              return {
-                ...location,
-                name: location.name + '-white',
+                name: `${location.name}-red`,
               };
             }
+            if (nbRea > 100) {
+              return {
+                ...location,
+                name: `${location.name}-orange`,
+              };
+            }
+            if (nbRea > 50) {
+              return {
+                ...location,
+                name: `${location.name}-yellow`,
+              };
+            }
+            return {
+              ...location,
+              name: `${location.name}-white`,
+            };
           }),
         }
       : France;
@@ -93,15 +94,15 @@ const Map = (props) => {
   return (
     <div className="map none">
       <div>
-        <input
-          type="checkbox"
-          id="sort-color"
-          name="sort-color"
-          onChange={() => setCheckboxRea((prevState) => !prevState)}
-          checked={checkboxRea}
-        />
         <label htmlFor="sort-color">
           Afficher un gradient de couleur selon le nombre de personnes en réa
+          <input
+            type="checkbox"
+            id="sort-color"
+            name="sort-color"
+            onChange={() => setCheckboxRea((prevState) => !prevState)}
+            checked={checkboxRea}
+          />
         </label>
       </div>
       {windowWidth < 600 ? (

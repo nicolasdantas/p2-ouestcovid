@@ -20,13 +20,7 @@ class DataByCounty extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.countyCode !== this.state.countyCode) {
-      this.getCovidData(this.state.countyCode);
-    }
-  }
-
-  //TEST
+  // TEST
   componentDidMount() {
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
     axios
@@ -51,6 +45,12 @@ class DataByCounty extends React.Component {
   }
   //
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.countyCode !== this.state.countyCode) {
+      this.getCovidData(this.state.countyCode);
+    }
+  }
+
   componentWillUnmount() {
     this.signal.cancel('Api is being canceled');
   }
@@ -68,7 +68,7 @@ class DataByCounty extends React.Component {
   };
 
   getCovidData = (countyCode) => {
-    //this is redundant and has to be refactored
+    // this is redundant and has to be refactored
     const countyName = countyList.find((element) => element.code === countyCode)
       .nom; // getting the county name according to its code
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
