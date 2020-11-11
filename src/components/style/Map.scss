@@ -22,13 +22,33 @@
 
 .svg-map__location[name$='-red'] {
   fill: red;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
 }
 .svg-map__location[name$='-orange'] {
   fill: orangered;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
 }
 .svg-map__location[name$='-yellow'] {
   fill: yellow;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
 }
 .svg-map__location[name$='-white'] {
   fill: lightyellow;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
 }

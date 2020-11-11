@@ -9,7 +9,7 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 const Map = (props) => {
   const [allData, setData] = React.useState([]);
-  const [checkboxRea, setCheckboxRea] = React.useState(false);
+  const [colorSelection, setColorSelection] = React.useState('');
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
 
   React.useEffect(() => {
@@ -41,8 +41,9 @@ const Map = (props) => {
   }, []);
 
   const customFrance =
-    allData.length > 0 && checkboxRea === true // on vérifie qu'on a reçu les données de l'API, et que la box est check (celle "afficher un gradient de couleur" etc)
-      ? {
+    allData.length > 0 && colorSelection === 'rea' // on vérifie qu'on a reçu les données de l'API, et qu'on a selectionné le choix rea
+      ? //proposition pour futur choix mutiple : remplacer le ===rea par !== "" et ensuite jouer sur le nb à considérer ? switch case, nb= ~.reanimation ou .hospitalisations etc selon la valeur de colorSelection ?
+        {
           ...France,
           label: 'Custom map label',
           locations: France.locations.map((location) => {
@@ -57,13 +58,13 @@ const Map = (props) => {
                 name: `${location.name}-red`,
               };
             }
-            if (nbRea > 100) {
+            if (nbRea > 80) {
               return {
                 ...location,
                 name: `${location.name}-orange`,
               };
             }
-            if (nbRea > 50) {
+            if (nbRea > 30) {
               return {
                 ...location,
                 name: `${location.name}-yellow`,
@@ -94,15 +95,16 @@ const Map = (props) => {
   return (
     <div className="map none">
       <div>
-        <label htmlFor="sort-color">
-          Afficher un gradient de couleur selon le nombre de personnes en réa
-          <input
-            type="checkbox"
-            id="sort-color"
-            name="sort-color"
-            onChange={() => setCheckboxRea((prevState) => !prevState)}
-            checked={checkboxRea}
-          />
+        <label htmlFor="color-option">
+          <select
+            id="color-option"
+            name="color-option"
+            onChange={(e) => setColorSelection(e.target.value)}
+            value={colorSelection}
+          >
+            <option value="">-Choix des données-</option>
+            <option value="rea">Personnes en réanimation</option>
+          </select>
         </label>
       </div>
       {windowWidth < 600 ? (
