@@ -8,11 +8,14 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 // import { red } from '@material-ui/core/colors';
 
 const Map = (props) => {
-  const [allData, setData] = React.useState([]);
-  const [colorSelection, setColorSelection] = React.useState('');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [allData, setData] = useState([]);
+  const [colorSelection, setColorSelection] = useState('');
+  const [customFrance, setCustomFrance] = useState(France);
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
 
-  React.useEffect(() => {
+  // this API request is redundant and should be moved in another component, probably in a context
+  useEffect(() => {
     const { CancelToken } = axios;
     const source = CancelToken.source();
     axios
@@ -33,52 +36,66 @@ const Map = (props) => {
         if (axios.isCancel(err)) {
           console.log('Request canceled', err.message);
         }
-      }); // eslint-disable-next-line
+      });
     return function cleanup() {
-      // cancels the previous request on unmount or query update :
+      // cancels the previous request on unmount or query update
       source.cancel('Operation canceled by the user.');
     }; // eslint-disable-next-line
   }, []);
 
-  const customFrance =
-    allData.length > 0 && colorSelection === 'rea' // on vérifie qu'on a reçu les données de l'API, et qu'on a selectionné le choix rea
-      ? //proposition pour futur choix mutiple : remplacer le ===rea par !== "" et ensuite jouer sur le nb à considérer ? switch case, nb= ~.reanimation ou .hospitalisations etc selon la valeur de colorSelection ?
-        {
-          ...France,
-          label: 'Custom map label',
-          locations: France.locations.map((location) => {
-            // Modify each location
-            const nbRea = allData.find(
-              (item) => item.code.split('-')[1] === location.id
-            ).reanimation;
+  // updating the value on customFrance, the data used to draw the map, depending on the choice made by the user in the select list
+  useEffect(() => {
+    if (allData.length > 0 && colorSelection !== '') {
+      let selection = '';
+      switch (colorSelection) {
+        case 'rea':
+          selection = 'reanimation';
+          break;
+        case 'hosp':
+          selection = 'hospitalises';
+          break;
+        case 'dead':
+          selection = 'deces';
+          break;
+        default:
+          console.log(
+            `Problem setting the selected data for the gradient (map)`
+          );
+      }
+      setCustomFrance({
+        ...France,
+        label: 'Custom map label',
+        locations: France.locations.map((location) => {
+          const nb = allData.find(
+            (item) => item.code.split('-')[1] === location.id
+          )[selection];
 
-            if (nbRea > 250) {
-              return {
-                ...location,
-                name: `${location.name}-red`,
-              };
-            }
-            if (nbRea > 80) {
-              return {
-                ...location,
-                name: `${location.name}-orange`,
-              };
-            }
-            if (nbRea > 30) {
-              return {
-                ...location,
-                name: `${location.name}-yellow`,
-              };
-            }
+          if (nb > 250) {
             return {
               ...location,
-              name: `${location.name}-white`,
+              name: `${location.name}-red`,
             };
-          }),
-        }
-      : France;
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+          }
+          if (nb > 80) {
+            return {
+              ...location,
+              name: `${location.name}-orange`,
+            };
+          }
+          if (nb > 30) {
+            return {
+              ...location,
+              name: `${location.name}-yellow`,
+            };
+          }
+          return {
+            ...location,
+            name: `${location.name}-white`,
+          };
+        }),
+      });
+    }
+  }, [allData, colorSelection]);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
