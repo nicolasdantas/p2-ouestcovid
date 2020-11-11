@@ -1,0 +1,49 @@
+@import './Global.css';
+
+.about-us {
+  background: var(--second-color);
+}
+
+.about-us-carousel-container {
+  padding-bottom: 40px;
+
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .about-us-title {
+    padding-top: 20px;
+    text-align: center;
+    font-size: var(--component-title-mobile);
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+
+  .about-us-carousel {
+    width: 90%;
+    margin: auto;
+  }
+
+  .about-us-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .about-us-carousel .slide .legend {
+    font-size: 15px;
+    background-color: var(--primary-color);
+    opacity: 0.8;
+  }
+  @media screen and (min-width: 600px) {
+    .about-us-carousel {
+      width: 60%;
+    }
+    .about-us-carousel .slide .legend {
+      font-size: 20px;
+    }
+    .about-us-title {
+      font-size: var(--component-title-desktop);
+    }
+  }
+}
