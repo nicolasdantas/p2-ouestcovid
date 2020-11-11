@@ -4,21 +4,21 @@
     "code": "01",
     "codeRegion": "84",
     "lits": "22",
-    "url": "https://www.ain-tourisme.com/" 
+    "url": "https://www.ain-tourisme.com/"
   },
   {
     "nom": "Aisne",
     "code": "02",
     "codeRegion": "32",
     "lits": "34",
-    "url": "https://www.jaimelaisne.com/" 
+    "url": "https://www.jaimelaisne.com/"
   },
   {
     "nom": "Allier",
     "code": "03",
     "codeRegion": "84",
     "lits": "24",
-    "url": "www.allier-auvergne-tourisme.com" 
+    "url": "www.allier-auvergne-tourisme.com"
   },
   {
     "nom": "Alpes-de-Haute-Provence",
@@ -53,7 +53,6 @@
     "code": "08",
     "codeRegion": "44",
     "lits": "12"
-
   },
   {
     "nom": "Ariège",
@@ -288,7 +287,7 @@
     "code": "46",
     "codeRegion": "76",
     "lits": "8",
-    "url":"https://www.tourisme-lot.com/"
+    "url": "https://www.tourisme-lot.com/"
   },
   {
     "nom": "Lot-et-Garonne",
@@ -529,7 +528,7 @@
     "code": "86",
     "codeRegion": "75",
     "lits": "56",
-    "url":"https://www.tourisme-vienne.com/"
+    "url": "https://www.tourisme-vienne.com/"
   },
   {
     "nom": "Haute-Vienne",
@@ -609,13 +608,13 @@
     "code": "974",
     "codeRegion": "04",
     "lits": "61",
-    "url":"https://www.reunion.fr/"
+    "url": "https://www.reunion.fr/"
   },
   {
     "nom": "Mayotte",
     "code": "976",
     "codeRegion": "06",
     "lits": "10",
-    "url":"https://www.mayotte-tourisme.com/decouvrir"
+    "url": "https://www.mayotte-tourisme.com/decouvrir"
   }
 ]

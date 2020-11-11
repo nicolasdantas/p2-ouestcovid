@@ -4,7 +4,7 @@ import prefectures from './datas/prefectures.json';
 
 function TopFiveCard({ county, index, openModal }) {
   const [imageUrl, setImageUrl] = React.useState('');
-  
+
   const countyCodeAPI = county.code;
   const countyPrefecture = prefectures.filter((item) => {
     const countyCodePrefecture =
