@@ -9,6 +9,28 @@ import avatar3 from './img/avatar3.jpeg';
 import avatar4 from './img/avatar4.jpeg';
 import avatar5 from './img/avatar5.jpeg';
 
+const avatarArray = [
+  {
+    src: avatar1,
+    legend: 'Matt Damon',
+  },
+  {
+    src: avatar2,
+    legend: 'Candide Guiness',
+  },
+  {
+    src: avatar3,
+    legend: 'Moufette Anonyme',
+  },
+  {
+    src: avatar4,
+    legend: 'Lou Lou',
+  },
+  {
+    src: avatar5,
+    legend: 'Someone',
+  },
+];
 const AboutUs = () => {
   return (
     <div className="about-us">
@@ -21,26 +43,12 @@ const AboutUs = () => {
           showStatus={false}
           infiniteLoop
         >
-          <div className="about-us-container">
-            <img alt="Matt Damon" src={avatar1} />
-            <p className="legend">Matt Damon</p>
-          </div>
-          <div className="about-us-container">
-            <img alt="Candide Guiness" src={avatar2} />
-            <p className="legend">Candide Guiness</p>
-          </div>
-          <div className="about-us-container">
-            <img alt="Moufette Anonyme" src={avatar3} />
-            <p className="legend">Moufette Anonyme</p>
-          </div>
-          <div className="about-us-container">
-            <img alt="Lou Lou" src={avatar4} />
-            <p className="legend">Lou Lou</p>
-          </div>
-          <div className="about-us-container">
-            <img alt="Someone" src={avatar5} />
-            <p className="legend">Someone</p>
-          </div>
+          {avatarArray.map((avatar) => (
+            <div className="about-us-container">
+              <img alt={avatar.legend} src={avatar.src} />
+              <p className="legend">{avatar.legend}</p>
+            </div>
+          ))}
         </Carousel>
       </div>
     </div>
