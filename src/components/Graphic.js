@@ -8,9 +8,6 @@ const Graphic = () => {
   const [confirmedCase, setConfirmedCase] = useState([]);
   const [date, setDate] = useState([]);
 
-  const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
-  const dayMinus7 = moment().subtract(7, 'days').format('YYYY-MM-DD');
-
   const state = {
     labels: date,
     datasets: [
@@ -27,6 +24,8 @@ const Graphic = () => {
   };
 
   useEffect(() => {
+    const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
+    const dayMinus7 = moment().subtract(7, 'days').format('YYYY-MM-DD');
     axios
       .get(
         `https://api.covid19api.com/country/france?from=${dayMinus7}T00:00:00Z&to=${dayMinus1}T00:00:00Z`
@@ -41,7 +40,7 @@ const Graphic = () => {
         setDate(
           data
             .filter((item) => item.Province === '')
-            .map((item) => moment(item.Date.slice(5, 10)).format('D MMM'))
+            .map((item) => moment(item.Date).format('D MMM'))
         );
       });
   }, []);
