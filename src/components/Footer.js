@@ -5,9 +5,8 @@ import LogoGouv from './img/gouvernement-logo.png';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="footer">
       <img className="footer-logo" src={logo} alt="logo du site" />
-
       <a
         className="footer-logo-gouv"
         href="https://www.gouvernement.fr/info-coronavirus"
