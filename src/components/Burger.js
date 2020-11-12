@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import './style/Burger.scss';
 import './style/Global.css';
@@ -114,26 +114,50 @@ function CustomizedMenus() {
         </StyledMenuItem>
 
         <StyledMenuItem>
-          <HashLink className="burger-lien" smooth to="/#news">
-            <ListItemText
-              onClick={handleClose}
-              className="boxBurger"
-              primary="News"
-            >
-              News
-            </ListItemText>
-          </HashLink>
+          {useLocation().pathname === '/ou-partir' ? (
+            <HashLink className="burger-lien" to="/#news">
+              <ListItemText
+                onClick={handleClose}
+                className="boxBurger"
+                primary="News"
+              >
+                News
+              </ListItemText>
+            </HashLink>
+          ) : (
+            <HashLink className="burger-lien" smooth to="/#news">
+              <ListItemText
+                onClick={handleClose}
+                className="boxBurger"
+                primary="News"
+              >
+                News
+              </ListItemText>
+            </HashLink>
+          )}
         </StyledMenuItem>
         <StyledMenuItem>
-          <HashLink className="burger-lien" smooth to="/#contact">
-            <ListItemText
-              onClick={handleClose}
-              className="boxBurger"
-              primary="Contact"
-            >
-              Contact
-            </ListItemText>
-          </HashLink>
+        {useLocation().pathname === '/ou-partir' ? (
+            <HashLink className="burger-lien" to="/#contact">
+              <ListItemText
+                onClick={handleClose}
+                className="boxBurger"
+                primary="Contact"
+              >
+                Contact
+              </ListItemText>
+            </HashLink>
+          ) : (
+            <HashLink className="burger-lien" smooth to="/#contact">
+              <ListItemText
+                onClick={handleClose}
+                className="boxBurger"
+                primary="Contact"
+              >
+                Contact
+              </ListItemText>
+            </HashLink>
+          )}
         </StyledMenuItem>
       </StyledMenu>
     </div>

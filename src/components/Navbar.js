@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import './style/Navbar.scss';
 import CustomizedMenus from './Burger';
@@ -31,14 +31,26 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <HashLink className="liste" smooth to="/#news">
-                News
-              </HashLink>
+              {useLocation().pathname === '/ou-partir' ? (
+                <HashLink className="liste" to="/#news">
+                  News
+                </HashLink>
+              ) : (
+                <HashLink className="liste" smooth to="/#news">
+                  News
+                </HashLink>
+              )}
             </li>
             <li>
-              <HashLink className="liste" smooth to="/#contact">
-                Contact
-              </HashLink>
+              {useLocation().pathname === '/ou-partir' ? (
+                <HashLink className="liste" to="/#contact">
+                  Contact
+                </HashLink>
+              ) : (
+                <HashLink className="liste" smooth to="/#contact">
+                  Contact
+                </HashLink>
+              )}
             </li>
           </ul>
         </div>
