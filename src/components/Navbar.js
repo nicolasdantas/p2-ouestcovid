@@ -52,6 +52,17 @@ const Navbar = () => {
                 </HashLink>
               )}
             </li>
+            <li>
+              {useLocation().pathname === '/ou-partir' ? (
+                <HashLink className="liste" to="/#about-us">
+                  A Propos
+                </HashLink>
+              ) : (
+                <HashLink className="liste" smooth to="/#about-us">
+                  A Propos
+                </HashLink>
+              )}
+            </li>
           </ul>
         </div>
       </nav>

@@ -32,7 +32,7 @@ const avatarArray = [
 ];
 const AboutUs = () => {
   return (
-    <div className="about-us">
+    <div className="about-us" id="about-us">
       <div className="about-us-carousel-container" id="AboutUs">
         <h1 className="about-us-title"> Les créateurs du site </h1>
         <Carousel

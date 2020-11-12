@@ -114,50 +114,37 @@ function CustomizedMenus() {
         </StyledMenuItem>
 
         <StyledMenuItem>
-          {useLocation().pathname === '/ou-partir' ? (
-            <HashLink className="burger-lien" to="/#news">
-              <ListItemText
-                onClick={handleClose}
-                className="boxBurger"
-                primary="News"
-              >
-                News
-              </ListItemText>
-            </HashLink>
-          ) : (
-            <HashLink className="burger-lien" smooth to="/#news">
-              <ListItemText
-                onClick={handleClose}
-                className="boxBurger"
-                primary="News"
-              >
-                News
-              </ListItemText>
-            </HashLink>
-          )}
+          <HashLink className="burger-lien" to="/#news">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="News"
+            >
+              News
+            </ListItemText>
+          </HashLink>
         </StyledMenuItem>
         <StyledMenuItem>
-        {useLocation().pathname === '/ou-partir' ? (
-            <HashLink className="burger-lien" to="/#contact">
-              <ListItemText
-                onClick={handleClose}
-                className="boxBurger"
-                primary="Contact"
-              >
-                Contact
-              </ListItemText>
-            </HashLink>
-          ) : (
-            <HashLink className="burger-lien" smooth to="/#contact">
-              <ListItemText
-                onClick={handleClose}
-                className="boxBurger"
-                primary="Contact"
-              >
-                Contact
-              </ListItemText>
-            </HashLink>
-          )}
+          <HashLink className="burger-lien" to="/#contact">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="Contact"
+            >
+              Contact
+            </ListItemText>
+          </HashLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <HashLink className="burger-lien" to="/#about-us">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="A Propos"
+            >
+              A Propos
+            </ListItemText>
+          </HashLink>
         </StyledMenuItem>
       </StyledMenu>
     </div>
