@@ -1,5 +1,4 @@
 @import './Global.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 .header {
 
@@ -19,7 +18,7 @@
   .navbar-right {
     display: flex;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--roboto);
     font-size: 20px;
   }
 
@@ -29,7 +28,7 @@
     list-style-type: none;
     text-decoration: none;
     display: flex;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--roboto);
   }
 
   .liste {

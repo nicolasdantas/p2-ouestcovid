@@ -24,11 +24,16 @@ const Graphic = () => {
   };
 
   useEffect(() => {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
     const dayMinus7 = moment().subtract(7, 'days').format('YYYY-MM-DD');
     axios
       .get(
-        `https://api.covid19api.com/country/france?from=${dayMinus7}T00:00:00Z&to=${dayMinus1}T00:00:00Z`
+        `https://api.covid19api.com/country/france?from=${dayMinus7}T00:00:00Z&to=${dayMinus1}T00:00:00Z`,
+        {
+          cancelToken: source.token,
+        }
       )
       .then((response) => response.data)
       .then((data) => {
@@ -42,7 +47,15 @@ const Graphic = () => {
             .filter((item) => item.Province === '')
             .map((item) => moment(item.Date).format('D MMM'))
         );
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Error: ', err.message); // => prints: Api is being canceled
+        }
       });
+    return function cleanup() {
+      source.cancel('Graphic datas request canceled');
+    };
   }, []);
 
   return (

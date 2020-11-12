@@ -1,8 +1,8 @@
 @import './Global.css';
 
 .about-us {
-  background:var(--second-color);
-  .carousel{
+  background: var(--second-color);
+  .carousel {
     border-radius: 50%;
   }
   .about-us-carousel-container {
@@ -13,6 +13,7 @@
       font-size: var(--component-title-mobile);
       margin-bottom: 20px;
       color: var(--primary-color);
+      font-weight: 700;
     }
     .about-us-carousel {
       border-radius: 50%;
@@ -33,12 +34,13 @@
 
 @media screen and (min-width: 600px) {
   .about-us {
-    .carousel{
+    .carousel {
       border-radius: 50%;
     }
     .about-us-carousel-container {
       .about-us-title {
         font-size: var(--component-title-desktop);
+        font-weight: 700;
       }
       .about-us-carousel {
         width: 30%;

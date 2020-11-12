@@ -12,17 +12,23 @@ class News extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
+    this.axiosCancelSource = axios.CancelToken.source();
     const url = `https://newsapi.org/v2/everything?sources=le-monde&pageSize=7&qInTitle=covid&sortBy=publishedAt&apiKey=f545ace02057431081cf6684cc135a79`;
     axios
-      .get(url)
+      .get(url, { cancelToken: this.axiosCancelSource.token })
       .then((response) => response.data)
       .then((data) =>
         this.setState({
           arrayOfNews: data.articles,
         })
-      );
-  };
+      )
+      .catch((err) => console.log(err));
+  }
+
+  componentWillUnmount() {
+    this.axiosCancelSource.cancel('News request canceled.');
+  }
 
   render() {
     const { arrayOfNews } = this.state;
