@@ -3,4 +3,9 @@
 .graph-container {
   margin-bottom: 40px;
   background-color: var(--second-color);
+  display:flex;
+  justify-content:center;
+  .graph{
+    width: 65%;
+  }
 }

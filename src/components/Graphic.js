@@ -49,65 +49,67 @@ const Graphic = () => {
 
   return (
     <div className="graph-container">
-      <Line
-        data={state}
-        options={{
-          responsive: true,
-          layout: {
-            padding: {
-              top: 0,
-              left: 50,
-              right: 60,
-              bottom: 0,
+      <div className="graph">
+        <Line
+          data={state}
+          options={{
+            responsive: true,
+            layout: {
+              padding: {
+                top: 0,
+                left: 50,
+                right: 60,
+                bottom: 0,
+              },
             },
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  stepSize: 100000,
-                  callback: function changeM(value) {
-                    const ranges = [
-                      { divider: 1e6, suffix: 'M' },
-                      { divider: 1e3, suffix: 'k' },
-                    ];
-                    function formatNumber(n) {
-                      for (let i = 0; i < ranges.length; i += 1) {
-                        if (n >= ranges[i].divider) {
-                          return (
-                            (n / ranges[i].divider).toString() +
-                            ranges[i].suffix
-                          );
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    stepSize: 100000,
+                    callback: function changeM(value) {
+                      const ranges = [
+                        { divider: 1e6, suffix: 'M' },
+                        { divider: 1e3, suffix: 'k' },
+                      ];
+                      function formatNumber(n) {
+                        for (let i = 0; i < ranges.length; i += 1) {
+                          if (n >= ranges[i].divider) {
+                            return (
+                              (n / ranges[i].divider).toString() +
+                              ranges[i].suffix
+                            );
+                          }
                         }
+                        return n;
                       }
-                      return n;
-                    }
-                    return formatNumber(value);
+                      return formatNumber(value);
+                    },
                   },
                 },
-              },
-            ],
-          },
-          title: {
-            display: true,
-            fontColor: '#2d414d',
-            fontSize: 30,
-            text: 'Cas confirmés durant les 7 derniers jours',
-            padding: 30,
-            fontFamily: "'Roboto', 'sans-serif'",
-          },
-          legend: {
-            display: false,
-            position: 'top',
-            onClick: false,
-            labels: {
-              boxWidth: 1,
-              fontSize: 20,
-              fontColor: 'black',
+              ],
             },
-          },
-        }}
-      />
+            title: {
+              display: true,
+              fontColor: '#2d414d',
+              fontSize: 30,
+              text: 'Cas confirmés durant les 7 derniers jours',
+              padding: 30,
+              fontFamily: "'Roboto', 'sans-serif'",
+            },
+            legend: {
+              display: false,
+              position: 'top',
+              onClick: false,
+              labels: {
+                boxWidth: 1,
+                fontSize: 20,
+                fontColor: 'black',
+              },
+            },
+          }}
+        />
+      </div>
     </div>
   );
 };
