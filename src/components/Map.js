@@ -3,19 +3,40 @@ import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
 import axios from 'axios';
 import moment from 'moment';
+import Select from 'react-select';
 import './style/Map.scss';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-// import { red } from '@material-ui/core/colors';
+
+const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    width: '300px',
+  }),
+  menuList: (provided) => ({
+    ...provided,
+    padding: 0,
+  }),
+  option: (provided) => ({
+    ...provided,
+    backgroundColor: 'white',
+    color: 'black',
+  }),
+};
 
 const Map = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [allData, setData] = useState([]);
   const [colorSelection, setColorSelection] = useState('');
   const [customFrance, setCustomFrance] = useState(France);
-  const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
+  const options = [
+    { value: 'rea', label: 'Personnes en réanimation' },
+    { value: 'dead', label: 'Décès (cumulés)' },
+    { value: 'hosp', label: 'Personnes hospitalisées' },
+  ];
 
   // this API request is redundant and should be moved in another component, probably in a context
   useEffect(() => {
+    const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
     const { CancelToken } = axios;
     const source = CancelToken.source();
     axios
@@ -28,7 +49,7 @@ const Map = (props) => {
       .then((response) => response.data)
       .then((data) => {
         setData(() =>
-          /* getting the data from API, comparing it to countyList.json based on county code and adding for each county the number of beds in reanimation */
+          // keeping only counties, not regions and not the whole country
           data.allFranceDataByDate.filter((item) => item.code.includes('DEP'))
         );
       })
@@ -40,10 +61,10 @@ const Map = (props) => {
     return function cleanup() {
       // cancels the previous request on unmount or query update
       source.cancel('Operation canceled by the user.');
-    }; // eslint-disable-next-line
+    };
   }, []);
 
-  // updating the value on customFrance, the data used to draw the map, depending on the choice made by the user in the select list
+  // updating the value of customFrance, the data used to draw the map, depending on the choice made by the user in the select list
   useEffect(() => {
     if (allData.length > 0 && colorSelection !== '') {
       let selection = '';
@@ -94,6 +115,8 @@ const Map = (props) => {
           };
         }),
       });
+    } else if (allData.length > 0 && colorSelection === '') {
+      setCustomFrance(France);
     }
   }, [allData, colorSelection]);
 
@@ -112,7 +135,16 @@ const Map = (props) => {
   return (
     <div className="map none">
       <div>
-        <label htmlFor="color-option">
+        <Select
+          options={['', 'rea']}
+          getOptionLabel={['Choix des données', 'Personnes en réanimation']}
+          onChange={(newValue) => setColorSelection(newValue)}
+          styles={customStyles} // à vérifier
+          placeholder="Choix des données"
+          noOptionsMessage={() => 'Aucun département trouvé'}
+          value={colorSelection}
+        />
+        {/* <label htmlFor="color-option">
           <select
             id="color-option"
             name="color-option"
@@ -122,7 +154,7 @@ const Map = (props) => {
             <option value="">-Choix des données-</option>
             <option value="rea">Personnes en réanimation</option>
           </select>
-        </label>
+        </label> */}
       </div>
       {windowWidth < 600 ? (
         <TransformWrapper>
