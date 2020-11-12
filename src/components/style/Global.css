@@ -9,7 +9,7 @@ body {
 :root {
   --primary-color: #2d414d;
   --second-color: #c3ebe2;
-  --component-title-desktop: 30px;
+  --component-title-desktop: 35px;
   --component-title-mobile: 30px;
   --button-color: #a64a56;
   --roboto: 'Roboto', sans-serif;
