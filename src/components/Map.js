@@ -140,27 +140,6 @@ const Map = (props) => {
 
   return (
     <div className="map none">
-      <div>
-        <Select
-          options={options}
-          getOptionLabel={(option) => option.label}
-          onChange={(newValue) => setColorSelection(newValue)}
-          styles={customStyles} // à vérifier
-          noOptionsMessage={() => 'Aucun département trouvé'}
-          value={colorSelection}
-        />
-        {/* <label htmlFor="color-option">
-          <select
-            id="color-option"
-            name="color-option"
-            onChange={(e) => setColorSelection(e.target.value)}
-            value={colorSelection}
-          >
-            <option value="">-Choix des données-</option>
-            <option value="rea">Personnes en réanimation</option>
-          </select>
-        </label> */}
-      </div>
       {windowWidth < 600 ? (
         <TransformWrapper>
           <TransformComponent>
@@ -170,6 +149,17 @@ const Map = (props) => {
       ) : (
         <SVGMap map={customFrance} onLocationClick={handleClick} />
       )}
+      <div>
+        <Select
+          options={options}
+          getOptionLabel={(option) => option.label}
+          onChange={(newValue) => setColorSelection(newValue)}
+          styles={customStyles}
+          noOptionsMessage={() => 'Aucun département trouvé'}
+          value={colorSelection}
+        />
+      </div>
+      <p>Sélectionner les données à afficher par code couleur</p>
     </div>
   );
 };
