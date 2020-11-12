@@ -40,13 +40,13 @@ class ContactForm extends Component {
     let messageError = '';
 
     if (!this.state.name) {
-      nameError = 'Name cannot be blank';
+      nameError = 'Veuillez entrer un nom';
     }
     if (!this.state.email) {
-      emailError = 'E-mail required';
+      emailError = 'Veuillez entrer un email';
     }
     if (!this.state.message) {
-      messageError = 'Please enter your message';
+      messageError = 'Veuillez rentrer un message';
     }
     if (emailError || nameError || messageError) {
       this.setState({ emailError, nameError, messageError });
