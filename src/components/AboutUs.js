@@ -43,7 +43,7 @@ const AboutUs = () => {
           infiniteLoop
         >
           {avatarArray.map((avatar) => (
-            <div className="about-us-container">
+            <div className="about-us-container" key={avatar.legend}>
               <img alt={avatar.legend} src={avatar.src} />
               <p className="legend">{avatar.legend}</p>
             </div>

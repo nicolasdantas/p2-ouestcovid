@@ -30,12 +30,15 @@
 
 @media screen and (min-width: 600px) {
   .about-us {
+    .carousel{
+      border-radius: 50%;
+    }
     .about-us-carousel-container {
       .about-us-title {
         font-size: var(--component-title-desktop);
       }
       .about-us-carousel {
-        width: 40%;
+        width: 30%;
         .about-us-container {
           border-radius: 50%;
         }
