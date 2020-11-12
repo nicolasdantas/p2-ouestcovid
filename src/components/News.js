@@ -23,7 +23,7 @@ class News extends React.Component {
           arrayOfNews: data.articles,
         })
       )
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }
 
   componentWillUnmount() {

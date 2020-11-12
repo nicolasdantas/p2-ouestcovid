@@ -74,7 +74,6 @@ class DataByCounty extends React.Component {
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
     const dayMinus2 = moment().subtract(2, 'days').format('YYYY-MM-DD');
     // const dayMinus3 = moment().subtract(3, 'days').format('YYYY-MM-DD');
-
     axios
       .get(
         `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
@@ -107,11 +106,9 @@ class DataByCounty extends React.Component {
               const filteredArray2 = dataArray2.filter(
                 (item) => item.nom === countyName
               );
-              if (!Object.values(filteredArray2[0]).includes(null)) {
-                this.setState({
-                  selectedDataToday: filteredArray2[0],
-                });
-              }
+              this.setState({
+                selectedDataToday: filteredArray2[0],
+              });
             });
         }
       })

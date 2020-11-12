@@ -12,24 +12,30 @@ const DataCard = ({ selectedDataToday }) => {
           </p>
           <ul>
             <li>
-              <em>Hospitalisés :</em> {selectedDataToday.hospitalises}
+              <em>Hospitalisés :</em>{' '}
+              {selectedDataToday.hospitalises || 'données non disponibles'}
             </li>
             <li>
-              <em>En réanimation :</em> {selectedDataToday.reanimation}
+              <em>En réanimation :</em>{' '}
+              {selectedDataToday.reanimation || 'données non disponibles'}
             </li>
             <li>
               <em>Nouvelles hospitalisations :</em>{' '}
-              {selectedDataToday.nouvellesHospitalisations}
+              {selectedDataToday.nouvellesHospitalisations ||
+                'données non disponibles'}
             </li>
             <li>
               <em>Nouvelles réanimations :</em>{' '}
-              {selectedDataToday.nouvellesReanimations}
+              {selectedDataToday.nouvellesReanimations ||
+                'données non disponibles'}
             </li>
             <li>
-              <em>Décès (cumulés) :</em> {selectedDataToday.deces}
+              <em>Décès (cumulés) :</em>{' '}
+              {selectedDataToday.deces || 'données non disponibles'}
             </li>
             <li>
-              <em>Guéris (cumulés) :</em> {selectedDataToday.gueris}
+              <em>Guéris (cumulés) :</em>{' '}
+              {selectedDataToday.gueris || 'données non disponibles'}
             </li>
           </ul>
         </div>

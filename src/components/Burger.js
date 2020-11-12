@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover, &:active, &:focus': {
       backgroundColor: 'var(--primary-color)',
       boxShadow: 'none',
+      outline:'none',
     },
 
     [theme.breakpoints.up('sm')]: {
