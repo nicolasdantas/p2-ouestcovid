@@ -10,7 +10,8 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 const customStyles = {
   control: (provided) => ({
     ...provided,
-    width: '300px',
+    width: '250px',
+    fontSize: '14px',
   }),
   menuList: (provided) => ({
     ...provided,
@@ -20,15 +21,20 @@ const customStyles = {
     ...provided,
     backgroundColor: 'white',
     color: 'black',
+    fontSize: '14px',
   }),
 };
 
 const Map = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [allData, setData] = useState([]);
-  const [colorSelection, setColorSelection] = useState('');
+  const [colorSelection, setColorSelection] = useState({
+    value: '',
+    label: '- Aucun code couleur -',
+  });
   const [customFrance, setCustomFrance] = useState(France);
   const options = [
+    { value: '', label: '- Aucun code couleur -' },
     { value: 'rea', label: 'Personnes en réanimation' },
     { value: 'dead', label: 'Décès (cumulés)' },
     { value: 'hosp', label: 'Personnes hospitalisées' },
@@ -66,9 +72,9 @@ const Map = (props) => {
 
   // updating the value of customFrance, the data used to draw the map, depending on the choice made by the user in the select list
   useEffect(() => {
-    if (allData.length > 0 && colorSelection !== '') {
+    if (allData.length > 0 && colorSelection.value !== '') {
       let selection = '';
-      switch (colorSelection) {
+      switch (colorSelection.value) {
         case 'rea':
           selection = 'reanimation';
           break;
@@ -115,7 +121,7 @@ const Map = (props) => {
           };
         }),
       });
-    } else if (allData.length > 0 && colorSelection === '') {
+    } else if (allData.length > 0 && colorSelection.value === '') {
       setCustomFrance(France);
     }
   }, [allData, colorSelection]);
@@ -136,11 +142,10 @@ const Map = (props) => {
     <div className="map none">
       <div>
         <Select
-          options={['', 'rea']}
-          getOptionLabel={['Choix des données', 'Personnes en réanimation']}
+          options={options}
+          getOptionLabel={(option) => option.label}
           onChange={(newValue) => setColorSelection(newValue)}
           styles={customStyles} // à vérifier
-          placeholder="Choix des données"
           noOptionsMessage={() => 'Aucun département trouvé'}
           value={colorSelection}
         />
