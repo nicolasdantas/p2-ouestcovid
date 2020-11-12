@@ -67,8 +67,8 @@ class ContactForm extends Component {
   render() {
     return (
       <div className="form-wrapper">
-        <form id="contact" onSubmit={this.handleSubmit}>
-          <h2> Faites-nous part de vos remarques, suggestions, ... </h2>
+        <form id="contact">
+          <h2> Faites-nous part de vos remarques</h2>
           <div>
             <label htmlFor="inputName">
               Nom
