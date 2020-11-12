@@ -1,7 +1,10 @@
 @import './Global.css';
 
 .about-us {
-  background: var(--second-color);
+  background:var(--second-color);
+  .carousel{
+    border-radius: 50%;
+  }
   .about-us-carousel-container {
     padding-bottom: 40px;
     .about-us-title {
