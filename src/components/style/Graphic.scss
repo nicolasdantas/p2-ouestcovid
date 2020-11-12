@@ -6,6 +6,14 @@
   display:flex;
   justify-content:center;
   .graph{
-    width: 65%;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .graph-container {
+    .graph{
+      width: 65%;
+    }
   }
 }

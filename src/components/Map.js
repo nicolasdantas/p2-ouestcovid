@@ -139,7 +139,7 @@ const Map = (props) => {
   };
 
   return (
-    <div className="map none">
+    <div className="map">
       {windowWidth < 600 ? (
         <TransformWrapper>
           <TransformComponent>

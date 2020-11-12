@@ -45,8 +45,6 @@ const Graphic = () => {
       });
   }, []);
 
-  console.log(date);
-
   return (
     <div className="graph-container">
       <div className="graph">
