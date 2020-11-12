@@ -15,15 +15,15 @@ function CountyModal(props) {
     axios
       .get(url)
       .then((response) => response.data)
-      .then((data) => setDataCounty(data.allDataByDepartement.slice(-7)))
-      .then(console.log(dataCounty));
-  }, [props.datacounty[0]]);
+      .then((data) => setDataCounty(data.allDataByDepartement.slice(-7)));
+  }, [props.datacounty]);
 
   const data = {
     labels: dataCounty.map((item) => moment(item.date).format('D MMM')),
     datasets: [
       {
-        label: 'Evolution des hôpitalisations',
+        label:
+          "Evolution des hospitalisations (en nombre d'hospitalisés par jour)",
         data: dataCounty.map((item) => item.hospitalises),
         fill: false,
         lineTension: 0,
@@ -35,11 +35,27 @@ function CountyModal(props) {
   };
 
   const options = {
+    legend: {
+      onClick: false,
+      labels: {
+        boxWidth: 1,
+        fontColor: 'white',
+      },
+    },
     scales: {
       yAxes: [
         {
           ticks: {
+            stepSize: 1,
             beginAtZero: false,
+            fontColor: 'white',
+          },
+        },
+      ],
+      xAxes: [
+        {
+          ticks: {
+            fontColor: 'white',
           },
         },
       ],
