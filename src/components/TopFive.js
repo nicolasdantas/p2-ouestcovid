@@ -66,14 +66,16 @@ function TopFive() {
 
   return (
     <>
-      <TopFiveCountyModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        county={countyClicked}
-        datacounty={dataTopFive.filter(
-          (county) => county.code === countyClicked
-        )}
-      />
+      {countyClicked && (
+        <TopFiveCountyModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          county={countyClicked}
+          datacounty={dataTopFive.filter(
+            (county) => county.code === countyClicked
+          )}
+        />
+      )}
       <div className="top-five">
         <h2>Top 5 des départements les plus sûrs</h2>
         <p className="situation">

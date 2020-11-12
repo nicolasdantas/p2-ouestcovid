@@ -1,14 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import moment from 'moment';
+import axios from 'axios';
+import { Line } from 'react-chartjs-2';
 import 'moment/locale/fr';
 import './style/TopFive.scss';
 import countyList from './datas/countyList.json';
 
 function CountyModal(props) {
+  const [dataCounty, setDataCounty] = useState([]);
+
+  useEffect(() => {
+    const url = `https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement=${props.datacounty[0].nom}`;
+    axios
+      .get(url)
+      .then((response) => response.data)
+      .then((data) => setDataCounty(data.allDataByDepartement.slice(-7)))
+      .then(console.log(dataCounty));
+  }, [props.datacounty[0]]);
+
+  const data = {
+    labels: dataCounty.map((item) => moment(item.date).format('D MMM')),
+    datasets: [
+      {
+        label: 'Evolution des hôpitalisations',
+        data: dataCounty.map((item) => item.hospitalises),
+        fill: false,
+        lineTension: 0,
+        backgroundColor: 'white',
+        borderColor: '#c3ebe2',
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: false,
+          },
+        },
+      ],
+    },
+  };
+
   return (
-    <div>
-      {props.datacounty.length !== 0 && (
+    dataCounty.length && (
+      <div>
         <div>
           <Modal
             {...props}
@@ -58,13 +98,14 @@ function CountyModal(props) {
                   Taux d'occupation des lits en réanimation :{' '}
                   {props.datacounty[0].ratio}%
                 </p>
+                <Line data={data} options={options} width={40} height={15} />
               </div>
             </Modal.Body>
             <Modal.Footer>
               <Button
                 href={countyList
                   .filter((county) => props.datacounty[0].code === county.code)
-                  .map((data) => data.url)
+                  .map((datas) => datas.url)
                   .toString()}
                 variant="light"
                 target="_blank"
@@ -75,8 +116,8 @@ function CountyModal(props) {
             </Modal.Footer>
           </Modal>
         </div>
-      )}
-    </div>
+      </div>
+    )
   );
 }
 
