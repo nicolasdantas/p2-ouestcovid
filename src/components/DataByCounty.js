@@ -13,11 +13,37 @@ class DataByCounty extends React.Component {
     this.signal = axios.CancelToken.source();
     this.state = {
       // initializing the state at null
+      allData: '',
       countyCode: '', // code postal département sélectionné
       selectedDataToday: '', // données du dep sélectionné
       source: '',
     };
   }
+
+  // TEST
+  componentDidMount() {
+    const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
+    axios
+      .get(
+        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
+        {
+          cancelToken: this.signal.token,
+        }
+      )
+      .then((response) => response.data)
+      .then((data) => {
+        const dataArray = data.allFranceDataByDate.filter((item) =>
+          item.code.includes('DEP')
+        );
+        this.setState({ allData: dataArray });
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Error: ', err.message); // => prints: Api is being canceled
+        }
+      });
+  }
+  //
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.countyCode !== this.state.countyCode) {
@@ -42,6 +68,7 @@ class DataByCounty extends React.Component {
   };
 
   getCovidData = (countyCode) => {
+    // this is redundant and has to be refactored
     const countyName = countyList.find((element) => element.code === countyCode)
       .nom; // getting the county name according to its code
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
@@ -58,6 +85,7 @@ class DataByCounty extends React.Component {
       .then((response) => response.data)
       .then((data) => {
         const dataArray = data.allFranceDataByDate;
+        this.setState({ allData: dataArray });
         const filteredArray = dataArray.filter(
           (item) => item.nom === countyName
         );
@@ -108,7 +136,10 @@ class DataByCounty extends React.Component {
         <div className="dataRow">
           <DataCard selectedDataToday={this.state.selectedDataToday} />
 
-          <Map onSelectCounty={this.handleCountyMap} />
+          <Map
+            onSelectCounty={this.handleCountyMap}
+            allData={this.state.allData}
+          />
         </div>
       </div>
     );

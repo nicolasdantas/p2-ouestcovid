@@ -18,7 +18,6 @@
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": "off",
     "no-console": "off",
-    "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",

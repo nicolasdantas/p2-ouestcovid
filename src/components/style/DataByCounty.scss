@@ -84,16 +84,17 @@
   .dataCard {
     background-color: var(--primary-color);
     color: white;
-    border-radius: 20px;
-    padding: 20px;
+    border: thick double white;
+    padding: 10px;
     margin: 20px;
-    width: 100%;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
 
     h2 {
       text-align: center;
+      font-weight: 600;
     }
 
     .dataNumbers {
@@ -118,6 +119,14 @@
   .dom {
     font-size: 12px;
     text-align: center;
+  }
+
+  .map {
+    p {
+      font-size: 14px;
+      color: gray;
+      margin-top: 5px;
+    }
   }
 
   @media only screen and (min-width: 600px) {
