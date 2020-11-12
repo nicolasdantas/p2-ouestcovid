@@ -2,6 +2,7 @@ import React from 'react';
 import ContactForm from './ContactForm';
 import News from './News';
 import DataByCounty from './DataByCounty';
+import Graphic from './Graphic';
 import Banner from './Banner';
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
     <div>
       <Banner />
       <DataByCounty />
+      <Graphic />
       <News />
       <ContactForm />
     </div>
