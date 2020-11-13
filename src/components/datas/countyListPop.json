@@ -1,0 +1,810 @@
+[
+  {
+    "nom": "Ain",
+    "code": "01",
+    "codeRegion": "84",
+    "lits": "22",
+    "url": "https://www.ain-tourisme.com/",
+    "pop": 656955
+  },
+  {
+    "nom": "Aisne",
+    "code": "02",
+    "codeRegion": "32",
+    "lits": "34",
+    "url": "https://www.jaimelaisne.com/",
+    "pop": 526050
+  },
+  {
+    "nom": "Allier",
+    "code": "03",
+    "codeRegion": "84",
+    "lits": "24",
+    "url": "www.allier-auvergne-tourisme.com",
+    "pop": 331315
+  },
+  {
+    "nom": "Alpes-de-Haute-Provence",
+    "code": "04",
+    "codeRegion": "93",
+    "lits": "6",
+    "url": "https://www.tourisme-alpes-haute-provence.com/",
+    "pop": 165197
+  },
+  {
+    "nom": "Hautes-Alpes",
+    "code": "05",
+    "codeRegion": "93",
+    "lits": "8",
+    "url": "https://www.allier-auvergne-tourisme.com/",
+    "pop": 141756
+  },
+  {
+    "nom": "Alpes-Maritimes",
+    "code": "06",
+    "codeRegion": "93",
+    "lits": "94",
+    "url": "https://www.allier-auvergne-tourisme.com/",
+    "pop": 1079396
+  },
+  {
+    "nom": "Ardèche",
+    "code": "07",
+    "codeRegion": "84",
+    "lits": "8",
+    "url": "https://www.ardeche-guide.com/",
+    "pop": 326875
+  },
+  {
+    "nom": "Ardennes",
+    "code": "08",
+    "codeRegion": "44",
+    "lits": "12",
+    "url": "https://www.ardennes.com/",
+    "pop": 265531
+  },
+  {
+    "nom": "Ariège",
+    "code": "09",
+    "codeRegion": "76",
+    "lits": "8",
+    "url": "https://www.pyrenees-ariegeoises.com/",
+    "pop": 152398
+  },
+  {
+    "nom": "Aube",
+    "code": "10",
+    "codeRegion": "44",
+    "lits": "12",
+    "url": "https://www.aube-champagne.com/fr/",
+    "pop": 309907
+  },
+  {
+    "nom": "Aude",
+    "code": "11",
+    "codeRegion": "76",
+    "lits": "16",
+    "url": "https://www.audetourisme.com/fr/",
+    "pop": 372705
+  },
+  {
+    "nom": "Aveyron",
+    "code": "12",
+    "codeRegion": "76",
+    "lits": "11",
+    "url": "https://www.tourisme-aveyron.com/fr",
+    "pop": 278360
+  },
+  {
+    "nom": "Bouches-du-Rhône",
+    "code": "13",
+    "codeRegion": "93",
+    "lits": "309",
+    "url": "https://www.myprovence.fr/",
+    "pop": 2034469
+  },
+  {
+    "nom": "Calvados",
+    "code": "14",
+    "codeRegion": "28",
+    "lits": "99",
+    "url": "https://www.calvados-tourisme.com/",
+    "pop": 691453
+  },
+  {
+    "nom": "Cantal",
+    "code": "15",
+    "codeRegion": "84",
+    "lits": "8",
+    "url": "https://www.salers-tourisme.fr/",
+    "pop": 142811
+  },
+  {
+    "nom": "Charente",
+    "code": "16",
+    "codeRegion": "75",
+    "lits": "12",
+    "url": "https://www.tourisme.fr/",
+    "pop": 348180
+  },
+  {
+    "nom": "Charente-Maritime",
+    "code": "17",
+    "codeRegion": "75",
+    "lits": "30",
+    "url": "https://www.tourisme.fr/",
+    "pop": 647080
+  },
+  {
+    "nom": "Cher",
+    "code": "18",
+    "codeRegion": "24",
+    "lits": "12",
+    "url": "https://www.tourisme.fr/",
+    "pop": 296404
+  },
+  {
+    "nom": "Corrèze",
+    "code": "19",
+    "codeRegion": "75",
+    "lits": "15",
+    "url": "https://www.tourisme.fr/",
+    "pop": 240336
+  },
+  {
+    "nom": "Côte-d'Or",
+    "code": "21",
+    "codeRegion": "27",
+    "lits": "63",
+    "url": "https://www.tourisme.fr/",
+    "pop": 532886
+  },
+  {
+    "nom": "Côtes-d'Armor",
+    "code": "22",
+    "codeRegion": "53",
+    "lits": "14",
+    "url": "https://www.tourisme.fr/",
+    "pop": 596186
+  },
+  {
+    "nom": "Creuse",
+    "code": "23",
+    "codeRegion": "75",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 116270
+  },
+  {
+    "nom": "Dordogne",
+    "code": "24",
+    "codeRegion": "75",
+    "lits": "19",
+    "url": "https://www.tourisme.fr/",
+    "pop": 408393
+  },
+  {
+    "nom": "Doubs",
+    "code": "25",
+    "codeRegion": "27",
+    "lits": "43",
+    "url": "https://www.tourisme.fr/",
+    "pop": 539449
+  },
+  {
+    "nom": "Drôme",
+    "code": "26",
+    "codeRegion": "84",
+    "lits": "24",
+    "url": "https://www.tourisme.fr/",
+    "pop": 520560
+  },
+  {
+    "nom": "Eure",
+    "code": "27",
+    "codeRegion": "28",
+    "lits": "12",
+    "url": "https://www.tourisme.fr/",
+    "pop": 600687
+  },
+  {
+    "nom": "Eure-et-Loir",
+    "code": "28",
+    "codeRegion": "24",
+    "lits": "20",
+    "url": "https://www.tourisme.fr/",
+    "pop": 429425
+  },
+  {
+    "nom": "Finistère",
+    "code": "29",
+    "codeRegion": "53",
+    "lits": "69",
+    "url": "https://www.tourisme.fr/",
+    "pop": 906554
+  },
+  {
+    "nom": "Corse-du-Sud",
+    "code": "2A",
+    "codeRegion": "94",
+    "lits": "10",
+    "url": "https://www.tourisme.fr/",
+    "pop": 162421
+  },
+  {
+    "nom": "Haute-Corse",
+    "code": "2B",
+    "codeRegion": "94",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 182258
+  },
+  {
+    "nom": "Gard",
+    "code": "30",
+    "codeRegion": "76",
+    "lits": "49",
+    "url": "https://www.tourisme.fr/",
+    "pop": 748468
+  },
+  {
+    "nom": "Haute-Garonne",
+    "code": "31",
+    "codeRegion": "76",
+    "lits": "165",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1400935
+  },
+  {
+    "nom": "Gers",
+    "code": "32",
+    "codeRegion": "76",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 190040
+  },
+  {
+    "nom": "Gironde",
+    "code": "33",
+    "codeRegion": "75",
+    "lits": "195",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1633440
+  },
+  {
+    "nom": "Hérault",
+    "code": "34",
+    "codeRegion": "76",
+    "lits": "128",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1176145
+  },
+  {
+    "nom": "Ille-et-Vilaine",
+    "code": "35",
+    "codeRegion": "53",
+    "lits": "66",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1082073
+  },
+  {
+    "nom": "Indre",
+    "code": "36",
+    "codeRegion": "24",
+    "lits": "10",
+    "url": "https://www.tourisme.fr/",
+    "pop": 217139
+  },
+  {
+    "nom": "Indre-et-Loire",
+    "code": "37",
+    "codeRegion": "24",
+    "lits": "86",
+    "url": "https://www.tourisme.fr/",
+    "pop": 605380
+  },
+  {
+    "nom": "Isère",
+    "code": "38",
+    "codeRegion": "84",
+    "lits": "82",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1264979
+  },
+  {
+    "nom": "Jura",
+    "code": "39",
+    "codeRegion": "27",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 257849
+  },
+  {
+    "nom": "Landes",
+    "code": "40",
+    "codeRegion": "75",
+    "lits": "14",
+    "url": "https://www.tourisme.fr/",
+    "pop": 411979
+  },
+  {
+    "nom": "Loir-et-Cher",
+    "code": "41",
+    "codeRegion": "24",
+    "lits": "12",
+    "url": "https://www.tourisme.fr/",
+    "pop": 327835
+  },
+  {
+    "nom": "Loire",
+    "code": "42",
+    "codeRegion": "84",
+    "lits": "78",
+    "url": "https://www.tourisme.fr/",
+    "pop": 764737
+  },
+  {
+    "nom": "Haute-Loire",
+    "code": "43",
+    "codeRegion": "84",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 226901
+  },
+  {
+    "nom": "Loire-Atlantique",
+    "code": "44",
+    "codeRegion": "52",
+    "lits": "87",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1437137
+  },
+  {
+    "nom": "Loiret",
+    "code": "45",
+    "codeRegion": "24",
+    "lits": "51",
+    "url": "https://www.tourisme.fr/",
+    "pop": 682890
+  },
+  {
+    "nom": "Lot",
+    "code": "46",
+    "codeRegion": "76",
+    "lits": "8",
+    "url": "https://www.tourisme-lot.com/",
+    "pop": 173166
+  },
+  {
+    "nom": "Lot-et-Garonne",
+    "code": "47",
+    "codeRegion": "75",
+    "lits": "11",
+    "url": "https://www.tourisme.fr/",
+    "pop": 330336
+  },
+  {
+    "nom": "Lozère",
+    "code": "48",
+    "codeRegion": "76",
+    "lits": "3",
+    "url": "https://www.tourisme.fr/",
+    "pop": 76286
+  },
+  {
+    "nom": "Maine-et-Loire",
+    "code": "49",
+    "codeRegion": "52",
+    "lits": "66",
+    "url": "https://www.tourisme.fr/",
+    "pop": 815881
+  },
+  {
+    "nom": "Manche",
+    "code": "50",
+    "codeRegion": "28",
+    "lits": "28",
+    "url": "https://www.tourisme.fr/",
+    "pop": 490669
+  },
+  {
+    "nom": "Marne",
+    "code": "51",
+    "codeRegion": "44",
+    "lits": "60",
+    "url": "https://www.tourisme.fr/",
+    "pop": 563823
+  },
+  {
+    "nom": "Haute-Marne",
+    "code": "52",
+    "codeRegion": "44",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 169250
+  },
+  {
+    "nom": "Mayenne",
+    "code": "53",
+    "codeRegion": "52",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 305365
+  },
+  {
+    "nom": "Meurthe-et-Moselle",
+    "code": "54",
+    "codeRegion": "44",
+    "lits": "95",
+    "url": "https://www.tourisme.fr/",
+    "pop": 730398
+  },
+  {
+    "nom": "Meuse",
+    "code": "55",
+    "codeRegion": "44",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 181641
+  },
+  {
+    "nom": "Morbihan",
+    "code": "56",
+    "codeRegion": "53",
+    "lits": "22",
+    "url": "https://www.tourisme.fr/",
+    "pop": 755566
+  },
+  {
+    "nom": "Moselle",
+    "code": "57",
+    "codeRegion": "44",
+    "lits": "88",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1035866
+  },
+  {
+    "nom": "Nièvre",
+    "code": "58",
+    "codeRegion": "27",
+    "lits": "12",
+    "url": "https://www.tourisme.fr/",
+    "pop": 199596
+  },
+  {
+    "nom": "Nord",
+    "code": "59",
+    "codeRegion": "32",
+    "lits": "239",
+    "url": "https://www.tourisme.fr/",
+    "pop": 2588988
+  },
+  {
+    "nom": "Oise",
+    "code": "60",
+    "codeRegion": "32",
+    "lits": "36",
+    "url": "https://www.tourisme.fr/",
+    "pop": 825077
+  },
+  {
+    "nom": "Orne",
+    "code": "61",
+    "codeRegion": "28",
+    "lits": "16",
+    "url": "https://www.tourisme.fr/",
+    "pop": 276903
+  },
+  {
+    "nom": "Pas-de-Calais",
+    "code": "62",
+    "codeRegion": "32",
+    "lits": "85",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1452778
+  },
+  {
+    "nom": "Puy-de-Dôme",
+    "code": "63",
+    "codeRegion": "84",
+    "lits": "81",
+    "url": "https://www.tourisme.fr/",
+    "pop": 660240
+  },
+  {
+    "nom": "Pyrénées-Atlantiques",
+    "code": "64",
+    "codeRegion": "75",
+    "lits": "37",
+    "url": "https://www.tourisme.fr/",
+    "pop": 683169
+  },
+  {
+    "nom": "Hautes-Pyrénées",
+    "code": "65",
+    "codeRegion": "76",
+    "lits": "12",
+    "url": "https://www.tourisme.fr/",
+    "pop": 226839
+  },
+  {
+    "nom": "Pyrénées-Orientales",
+    "code": "66",
+    "codeRegion": "76",
+    "lits": "32",
+    "url": "https://www.tourisme.fr/",
+    "pop": 479000
+  },
+  {
+    "nom": "Bas-Rhin",
+    "code": "67",
+    "codeRegion": "44",
+    "lits": "134",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1132607
+  },
+  {
+    "nom": "Haut-Rhin",
+    "code": "68",
+    "codeRegion": "44",
+    "lits": "70",
+    "url": "https://www.tourisme.fr/",
+    "pop": 763204
+  },
+  {
+    "nom": "Rhône",
+    "code": "69",
+    "codeRegion": "84",
+    "lits": "222",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1876051
+  },
+  {
+    "nom": "Haute-Saône",
+    "code": "70",
+    "codeRegion": "27",
+    "lits": "12",
+    "url": "https://www.tourisme.fr/",
+    "pop": 233194
+  },
+  {
+    "nom": "Saône-et-Loire",
+    "code": "71",
+    "codeRegion": "27",
+    "lits": "26",
+    "url": "https://www.tourisme.fr/",
+    "pop": 547824
+  },
+  {
+    "nom": "Sarthe",
+    "code": "72",
+    "codeRegion": "52",
+    "lits": "21",
+    "url": "https://www.tourisme.fr/",
+    "pop": 560227
+  },
+  {
+    "nom": "Savoie",
+    "code": "73",
+    "codeRegion": "84",
+    "lits": "18",
+    "url": "https://www.tourisme.fr/",
+    "pop": 432548
+  },
+  {
+    "nom": "Haute-Savoie",
+    "code": "74",
+    "codeRegion": "84",
+    "lits": "34",
+    "url": "https://www.tourisme.fr/",
+    "pop": 828405
+  },
+  {
+    "nom": "Paris",
+    "code": "75",
+    "codeRegion": "11",
+    "lits": "471",
+    "url": "https://www.tourisme.fr/",
+    "pop": 2148271
+  },
+  {
+    "nom": "Seine-Maritime",
+    "code": "76",
+    "codeRegion": "28",
+    "lits": "103",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1243788
+  },
+  {
+    "nom": "Seine-et-Marne",
+    "code": "77",
+    "codeRegion": "11",
+    "lits": "77",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1423607
+  },
+  {
+    "nom": "Yvelines",
+    "code": "78",
+    "codeRegion": "11",
+    "lits": "84",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1448625
+  },
+  {
+    "nom": "Deux-Sèvres",
+    "code": "79",
+    "codeRegion": "75",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 372627
+  },
+  {
+    "nom": "Somme",
+    "code": "80",
+    "codeRegion": "32",
+    "lits": "66",
+    "url": "https://www.tourisme.fr/",
+    "pop": 569769
+  },
+  {
+    "nom": "Tarn",
+    "code": "81",
+    "codeRegion": "76",
+    "lits": "24",
+    "url": "https://www.tourisme.fr/",
+    "pop": 387898
+  },
+  {
+    "nom": "Tarn-et-Garonne",
+    "code": "82",
+    "codeRegion": "76",
+    "lits": "18",
+    "url": "https://www.tourisme.fr/",
+    "pop": 262618
+  },
+  {
+    "nom": "Var",
+    "code": "83",
+    "codeRegion": "93",
+    "lits": "60",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1073836
+  },
+  {
+    "nom": "Vaucluse",
+    "code": "84",
+    "codeRegion": "93",
+    "lits": "16",
+    "url": "https://www.tourisme.fr/",
+    "pop": 560997
+  },
+  {
+    "nom": "Vendée",
+    "code": "85",
+    "codeRegion": "52",
+    "lits": "18",
+    "url": "https://www.tourisme.fr/",
+    "pop": 683187
+  },
+  {
+    "nom": "Vienne",
+    "code": "86",
+    "codeRegion": "75",
+    "lits": "56",
+    "url": "https://www.tourisme-vienne.com/",
+    "pop": 437398
+  },
+  {
+    "nom": "Haute-Vienne",
+    "code": "87",
+    "codeRegion": "75",
+    "lits": "26",
+    "url": "https://www.tourisme.fr/",
+    "pop": 370774
+  },
+  {
+    "nom": "Vosges",
+    "code": "88",
+    "codeRegion": "44",
+    "lits": "8",
+    "url": "https://www.tourisme.fr/",
+    "pop": 359520
+  },
+  {
+    "nom": "Yonne",
+    "code": "89",
+    "codeRegion": "27",
+    "lits": "18",
+    "url": "https://www.tourisme.fr/",
+    "pop": 332096
+  },
+  {
+    "nom": "Territoire de Belfort",
+    "code": "90",
+    "codeRegion": "27",
+    "lits": "25",
+    "url": "https://www.tourisme.fr/",
+    "pop": 140145
+  },
+  {
+    "nom": "Essonne",
+    "code": "91",
+    "codeRegion": "11",
+    "lits": "97",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1319401
+  },
+  {
+    "nom": "Hauts-de-Seine",
+    "code": "92",
+    "codeRegion": "11",
+    "lits": "210",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1613762
+  },
+  {
+    "nom": "Seine-Saint-Denis",
+    "code": "93",
+    "codeRegion": "11",
+    "lits": "100",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1670149
+  },
+  {
+    "nom": "Val-de-Marne",
+    "code": "94",
+    "codeRegion": "11",
+    "lits": "176",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1406041
+  },
+  {
+    "nom": "Val-d'Oise",
+    "code": "95",
+    "codeRegion": "11",
+    "lits": "60",
+    "url": "https://www.tourisme.fr/",
+    "pop": 1248354
+  },
+  {
+    "nom": "Guadeloupe",
+    "code": "971",
+    "codeRegion": "01",
+    "lits": "29",
+    "url": "https://www.tourisme.fr/",
+    "pop": 376879
+  },
+  {
+    "nom": "Martinique",
+    "code": "972",
+    "codeRegion": "02",
+    "lits": "29",
+    "url": "https://www.tourisme.fr/",
+    "pop": 358749
+  },
+  {
+    "nom": "Guyane",
+    "code": "973",
+    "codeRegion": "03",
+    "lits": "13",
+    "url": "https://www.guyane-amazonie.fr/",
+    "pop": 290691
+  },
+  {
+    "nom": "La Réunion",
+    "code": "974",
+    "codeRegion": "04",
+    "lits": "61",
+    "url": "https://www.reunion.fr/",
+    "pop": 859959
+  },
+  {
+    "nom": "Mayotte",
+    "code": "976",
+    "codeRegion": "06",
+    "lits": "10",
+    "url": "https://www.mayotte-tourisme.com/decouvrir",
+    "pop": 279471
+  }
+]
