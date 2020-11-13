@@ -11,11 +11,24 @@ function CountyModal(props) {
   const [dataCounty, setDataCounty] = useState([]);
 
   useEffect(() => {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
     const url = `https://coronavirusapi-france.now.sh/AllDataByDepartement?Departement=${props.datacounty[0].nom}`;
     axios
-      .get(url)
+      .get(url, {
+        cancelToken: source.token,
+      })
       .then((response) => response.data)
-      .then((data) => setDataCounty(data.allDataByDepartement.slice(-7)));
+      .then((data) => setDataCounty(data.allDataByDepartement.slice(-7)))
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Request canceled', err.message);
+        }
+      });
+    return function cleanup() {
+      // cancels the previous request on unmount or query update :
+      source.cancel('Modal request canceled');
+    };
   }, [props.datacounty]);
 
   const data = {

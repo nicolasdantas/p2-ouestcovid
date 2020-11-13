@@ -65,7 +65,6 @@ const Map = (props) => {
         }
       });
     return function cleanup() {
-      // cancels the previous request on unmount or query update
       source.cancel('Operation canceled by the user.');
     };
   }, []);

@@ -10,13 +10,14 @@ body {
   padding: 20px 40px;
   background-color: var(--primary-color);
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--roboto);
 
   h2 {
     color: white;
     font-size: var(--component-title-mobile);
     text-align: center;
     margin-bottom: 20px;
+    font-weight: 700;
   }
 
   .red {
