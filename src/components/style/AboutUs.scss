@@ -1,0 +1,56 @@
+@import './Global.css';
+
+.about-us {
+  background: var(--second-color);
+  .carousel {
+    border-radius: 50%;
+  }
+  .about-us-carousel-container {
+    padding-bottom: 40px;
+    .about-us-title {
+      padding-top: 20px;
+      text-align: center;
+      font-size: var(--component-title-mobile);
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    .about-us-carousel {
+      border-radius: 50%;
+      width: 50%;
+      margin: auto;
+      .about-us-container {
+        display: flex;
+        align-items: center;
+      }
+      .legend {
+        font-size: 15px;
+        background-color: var(--primary-color);
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .about-us {
+    .carousel {
+      border-radius: 50%;
+    }
+    .about-us-carousel-container {
+      .about-us-title {
+        font-size: var(--component-title-desktop);
+        font-weight: 700;
+      }
+      .about-us-carousel {
+        width: 30%;
+        .about-us-container {
+          border-radius: 50%;
+        }
+        .legend {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

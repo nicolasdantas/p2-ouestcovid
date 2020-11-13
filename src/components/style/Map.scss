@@ -1,6 +1,6 @@
 .svg-map {
   margin-top: 50px;
-  width: 100%;
+  width: 80%;
   height: auto;
   stroke: #a68c70;
   stroke-width: 1;
@@ -18,4 +18,37 @@
 }
 .svg-map__location[aria-checked='true'] {
   fill: var(--second-color);
+}
+
+.svg-map__location[name$='-red'] {
+  fill: red;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
+}
+.svg-map__location[name$='-orange'] {
+  fill: orangered;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
+}
+.svg-map__location[name$='-yellow'] {
+  fill: yellow;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
+}
+.svg-map__location[name$='-white'] {
+  fill: lightyellow;
+  &:focus,
+  &:hover {
+    fill: lightgray;
+    outline: 0;
+  }
 }

@@ -1,0 +1,63 @@
+@import './Global.css';
+
+.banner {
+  font-family: var(--roboto);
+  width:100%;
+  background-color: var(--second-color);
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+
+  img {
+    display: none;
+  }
+  .text {
+    text-align: center;
+    margin-top: 10px;
+    padding: 0 60px;
+    h1 {
+      color: var(--primary-color);
+      font-size: var(--component-title-mobile);
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    p {
+      color: var(--primary-color);
+      line-height: 150%;
+      font-size: 15px;
+    }
+    h2 {
+      margin-top: 30px;
+      color: var(--primary-color);
+      padding-bottom: 10px;
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .banner {
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    img {
+      display: block;
+      width: 30%;
+    }
+    .text {
+      align-self: center;
+      margin-right: 100px;
+      padding: 0;
+      h1 {
+        font-size: 40px;
+      }
+      p {
+        font-size: 20px;
+      }
+      h2 {
+        font-size: 25px;
+      }
+    }
+  }
+}

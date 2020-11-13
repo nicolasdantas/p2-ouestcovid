@@ -1,0 +1,19 @@
+@import './Global.css';
+
+.graph-container {
+  margin-bottom: 40px;
+  background-color: var(--second-color);
+  display:flex;
+  justify-content:center;
+  .graph{
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .graph-container {
+    .graph{
+      width: 65%;
+    }
+  }
+}

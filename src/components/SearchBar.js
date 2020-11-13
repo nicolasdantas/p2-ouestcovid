@@ -6,6 +6,7 @@ const SearchBar = (props) => {
   const [selectedCounty, setSelectedCounty] = useState('');
 
   const onSelectCounty = useCallback(props.onSelectCounty);
+  const mapCode = props.source === 'map' ? props.countyCode : '';
 
   useEffect(() => {
     if (selectedCounty) {
@@ -42,7 +43,11 @@ const SearchBar = (props) => {
       styles={customStyles}
       placeholder="Recherchez un département"
       noOptionsMessage={() => 'Aucun département trouvé'}
-      value={props.source === 'map' ? '' : selectedCounty.split()}
+      value={
+        props.source === 'map'
+          ? countyList.find((county) => county.code === mapCode).nom.split()
+          : selectedCounty.split()
+      }
     />
   );
 };

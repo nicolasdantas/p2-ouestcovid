@@ -13,8 +13,7 @@
   flex-direction: column;
   align-items: center;
   width: 90%;
-
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-right: auto;
   margin-left: auto;
 
@@ -22,56 +21,8 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: var(--component-title-mobile);
-    font-family: var(--roboto);
     color: var(--primary-color);
-  }
-
-  .searchBar {
-    display: flex;
-    align-items: center;
-    line-height: 2em;
-
-    .description {
-      font-size: 12px;
-      line-height: 1.2em;
-      margin-top: 8px;
-    }
-
-    select {
-      // A reset of styles, including removing the default dropdown arrow
-      appearance: none;
-      // Additional resets for further consistency
-      background-color: transparent;
-      border: none;
-      padding: 0 1em 0 0;
-      margin: 0;
-      width: 100%;
-      font-family: inherit;
-      font-size: inherit;
-      cursor: inherit;
-      line-height: inherit;
-      outline: none;
-    }
-
-    .custom-select {
-      width: 100%;
-      min-width: 15ch;
-      max-width: 30ch;
-      border: 1px solid black;
-      border-radius: 0.25em;
-      padding: 0.25em 0.5em;
-      cursor: pointer;
-      line-height: 1.1;
-      background-color: #fff;
-      background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-      display: grid;
-      grid-template-areas: 'select';
-      align-items: center;
-    }
-  }
-
-  .select-wrapper {
-    width: 250px;
+    font-weight: 700;
   }
 
   .dataRow {
@@ -85,17 +36,20 @@
     background-color: var(--primary-color);
     color: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     margin: 20px;
-    width: 100%;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    h2{
-      text-align:center;
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 20px;
+      margin:0;
     }
-    
+
     .dataNumbers {
       p {
         text-align: center;
@@ -120,13 +74,26 @@
     text-align: center;
   }
 
+  .map {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    .react-transform-element {
+      display:flex;
+      justify-content:center;
+    }
+    p {
+      font-size: 14px;
+      color: gray;
+      margin-top: 5px;
+    }
+  }
+
   @media only screen and (min-width: 600px) {
     .title {
       font-size: var(--component-title-desktop);
     }
-
     .map {
-      display: block;
       width: 50vw;
       min-width: 400px;
     }
@@ -137,8 +104,10 @@
       align-items: center;
     }
     .dataCard {
-      width: 400px;
-      height: 300px;
+      width: 30%;
+      h2 {
+        font-size: 30px;
+      }
     }
   }
 }
