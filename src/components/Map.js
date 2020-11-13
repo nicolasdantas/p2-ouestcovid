@@ -72,7 +72,8 @@ const Map = (props) => {
   // updating the value of customFrance, the data used to draw the map, depending on the choice made by the user in the select list
   useEffect(() => {
     if (allData.length > 0 && colorSelection.value !== '') {
-      let selection = '';
+      let selection = ''; // here we could add a "threshold" array, with limits depending on the case, and it would be called later on instead of fixed values, arr[0] etc etc
+      // still have to take care of the hole "inhabitants per region" and ratio thing
       switch (colorSelection.value) {
         case 'rea':
           selection = 'reanimation';
