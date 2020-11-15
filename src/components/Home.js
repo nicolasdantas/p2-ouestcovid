@@ -5,7 +5,7 @@ import DataByCounty from './DataByCounty';
 import AboutUs from './AboutUs';
 import Graphic from './Graphic';
 import Banner from './Banner';
-import APICovidByCountyRequestProvider from '../contexts/APICovidByCountyRequest'
+import APICovidByCountyRequestProvider from '../contexts/APICovidByCountyRequest';
 
 const Home = () => {
   return (
