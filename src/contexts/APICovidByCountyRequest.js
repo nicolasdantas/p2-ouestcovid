@@ -8,6 +8,7 @@ export default function APICovidByCountyRequestProvider({ children }) {
   const [allData, setAllData] = useState([]);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
     const dayMinus2 = moment().subtract(2, 'days').format('YYYY-MM-DD');
     axios
@@ -23,7 +24,10 @@ export default function APICovidByCountyRequestProvider({ children }) {
         } else {
           axios
             .get(
-              `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus2}`
+              `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus2}`,
+              {
+                cancelToken: source.token,
+              }
             )
             .then((response) => response.data)
             .then((penultimateDataDatas) => {
@@ -35,9 +39,12 @@ export default function APICovidByCountyRequestProvider({ children }) {
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
-          console.log('Error: ', err.message); // => prints: Api is being canceled
+          console.log('Error: ', err.message);
         }
       });
+    return () => {
+      source.cancel('API request canceled by user');
+    };
   }, []);
 
   return (
