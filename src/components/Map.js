@@ -109,9 +109,9 @@ const Map = (props) => {
           const nb = allData.find((item) => item.code === location.id)[
             selection
           ];
-          const pop = countyListPop.find(
+          const { pop } = countyListPop.find(
             (item) => item.code.toString() === location.id
-          ).pop;
+          );
           const ratio = Math.round((nb / pop) * multiplier);
 
           if (ratio > 100) {
@@ -170,19 +170,19 @@ const Map = (props) => {
         <p>Légende</p>
         <p>En cas pour 10E5 hab (décès, hosp) ou 10E6 (réa)</p>
         <div className="line">
-          <div className="legend-color red"></div>
+          <div className="legend-color red" />
           <p>{'>'} 100</p>
         </div>
         <div className="line">
-          <div className="legend-color orange"></div>
+          <div className="legend-color orange" />
           <p>{'>'} 50</p>
         </div>
         <div className="line">
-          <div className="legend-color yellow"></div>
+          <div className="legend-color yellow" />
           <p>{'>'} 25</p>
         </div>
         <div className="line">
-          <div className="legend-color white"></div>
+          <div className="legend-color white" />
           <p>{'<'} 25</p>
         </div>
       </div>
