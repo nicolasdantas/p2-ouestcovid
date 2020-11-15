@@ -22,7 +22,7 @@ function TopFive() {
 
   useEffect(() => {
     setDataTopFive(() =>
-      /* getting the data from API, comparing it to countyList.json based on county code and adding for each county the number of beds in reanimation */
+      /* getting the data from the context and adding for each county the number of beds in reanimation */
       allData
         .filter((item) => item.code.includes('DEP'))
         .map((item) => ({ ...item, code: item.code.split('-')[1] }))

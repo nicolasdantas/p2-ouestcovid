@@ -13,7 +13,10 @@ export default function APICovidByCountyRequestProvider({ children }) {
     const dayMinus2 = moment().subtract(2, 'days').format('YYYY-MM-DD');
     axios
       .get(
-        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`
+        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
+        {
+          cancelToken: source.token,
+        }
       )
       .then((response) => response.data)
       .then((lastDayDatas) => {
@@ -43,7 +46,7 @@ export default function APICovidByCountyRequestProvider({ children }) {
         }
       });
     return () => {
-      source.cancel('API request canceled by user');
+      source.cancel('API Covid by county request canceled by user');
     };
   }, []);
 
