@@ -1,10 +1,10 @@
 import React from 'react';
 import moment from 'moment';
 
-const DataCard = ({ selectedDataToday }) => {
+const DataCard = ({ selectedDataToday, isCountySelected }) => {
   return (
     <div className="dataCard">
-      {selectedDataToday !== '' ? (
+      {isCountySelected !== '' ? (
         <div className="dataNumbers">
           <h2 className="data-card-title">{selectedDataToday.nom}</h2>
           <p>
