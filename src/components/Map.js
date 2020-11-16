@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
-import axios from 'axios';
-import moment from 'moment';
 import Select from 'react-select';
 import './style/Map.scss';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import countyListPop from './datas/countyListPop.json';
+import { CountySelected } from '../contexts/CountySelected';
+import { APICovidByCountyRequest } from '../contexts/APICovidByCountyRequest';
 
 const customStyles = {
   control: (provided) => ({
@@ -26,10 +26,21 @@ const customStyles = {
   }),
 };
 
-const Map = (props) => {
+const Map = () => {
+  const { setSelectedCountyName } = useContext(CountySelected);
+  const { allData } = useContext(APICovidByCountyRequest);
+  const allDataDep = allData
+    .filter((item) => item.code.includes('DEP'))
+    .map((item) => {
+      return {
+        ...item,
+        code: item.code.split('-')[1], // string format because of corsica
+      };
+    });
+
   // API data are passed in props but not used
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [allData, setData] = useState([]);
+  // const [allData, setData] = useState([]);
   const [colorSelection, setColorSelection] = useState({
     value: '',
     label: '- Aucun code couleur -',
@@ -42,47 +53,10 @@ const Map = (props) => {
     { value: 'hosp', label: 'Personnes hospitalisées' },
   ];
 
-  // this API request is redundant and should be moved in another component, probably in a context
-  useEffect(() => {
-    const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
-    const { CancelToken } = axios;
-    const source = CancelToken.source();
-    axios
-      .get(
-        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
-        {
-          cancelToken: source.token,
-        }
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        setData(() =>
-          // keeping only counties, not regions and not the whole country
-          data.allFranceDataByDate
-            .filter((item) => item.code.includes('DEP'))
-            .map((item) => {
-              return {
-                ...item,
-                code: item.code.split('-')[1], // string format because of corsica
-              };
-            })
-        );
-      })
-      .catch((err) => {
-        if (axios.isCancel(err)) {
-          console.log('Request canceled', err.message);
-        }
-      });
-    return function cleanup() {
-      source.cancel('Operation canceled by the user.');
-    };
-  }, []);
-
   // updating the value of customFrance, the data used to draw the map, depending on the choice made by the user in the select list
   useEffect(() => {
-    if (allData.length > 0 && colorSelection.value !== '') {
-      let selection = ''; // here we could add a "threshold" array, with limits depending on the case, and it would be called later on instead of fixed values, arr[0] etc etc
-      // still have to take care of the hole "inhabitants per region" and ratio thing
+    if (allDataDep.length > 0 && colorSelection.value !== '') {
+      let selection = '';
       let multiplier;
       switch (colorSelection.value) {
         case 'rea':
@@ -106,7 +80,7 @@ const Map = (props) => {
         ...France,
         label: 'Custom map label',
         locations: France.locations.map((location) => {
-          const nb = allData.find((item) => item.code === location.id)[
+          const nb = allDataDep.find((item) => item.code === location.id)[
             selection
           ];
           const { pop } = countyListPop.find(
@@ -138,10 +112,10 @@ const Map = (props) => {
           };
         }),
       });
-    } else if (allData.length > 0 && colorSelection.value === '') {
+    } else if (allDataDep.length > 0 && colorSelection.value === '') {
       setCustomFrance(France);
     }
-  }, [allData, colorSelection]);
+  }, [allDataDep, colorSelection]);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -152,7 +126,9 @@ const Map = (props) => {
   }, []);
 
   const handleClick = (event) => {
-    props.onSelectCounty(event.target.id);
+    const { id } = event.target; // this extra step is necessary because the name in location is used, and modified, for color mapping | it cannot be passed straight away as an argument
+    const name = allDataDep.find((item) => item.code === id).nom;
+    setSelectedCountyName(name);
   };
 
   return (
