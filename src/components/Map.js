@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
 import Select from 'react-select';
@@ -29,18 +29,30 @@ const customStyles = {
 const Map = () => {
   const { setSelectedCountyName } = useContext(CountySelected);
   const { allData } = useContext(APICovidByCountyRequest);
-  const allDataDep = allData
-    .filter((item) => item.code.includes('DEP'))
-    .map((item) => {
-      return {
-        ...item,
-        code: item.code.split('-')[1], // string format because of corsica
-      };
-    });
+  const allDataDep = useMemo(
+    () =>
+      allData
+        .filter((item) => item.code.includes('DEP'))
+        .map((item) => {
+          return {
+            ...item,
+            code: item.code.split('-')[1], // string format because of corsica
+          };
+        }),
+    [allData]
+  );
 
-  // API data are passed in props but not used
+  // handling window resizing and zooming in on the map on mobile ////////////////
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  // const [allData, setData] = useState([]);
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
+
+  // handling colors on the map depending on values //////////////////////
   const [colorSelection, setColorSelection] = useState({
     value: '',
     label: '- Aucun code couleur -',
@@ -117,14 +129,6 @@ const Map = () => {
     }
   }, [allDataDep, colorSelection]);
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-  }, []);
-
   const handleClick = (event) => {
     const { id } = event.target; // this extra step is necessary because the name in location is used, and modified, for color mapping | it cannot be passed straight away as an argument
     const name = allDataDep.find((item) => item.code === id).nom;
@@ -143,23 +147,29 @@ const Map = () => {
         <SVGMap map={customFrance} onLocationClick={handleClick} />
       )}
       <div className="legend">
-        <p>Légende</p>
-        <p>En cas pour 10E5 hab (décès, hosp) ou 10E6 (réa)</p>
-        <div className="line">
-          <div className="legend-color red" />
-          <p>{'>'} 100</p>
-        </div>
-        <div className="line">
-          <div className="legend-color orange" />
-          <p>{'>'} 50</p>
-        </div>
-        <div className="line">
-          <div className="legend-color yellow" />
-          <p>{'>'} 25</p>
-        </div>
-        <div className="line">
-          <div className="legend-color white" />
-          <p>{'<'} 25</p>
+        <p className="legend-title">Légende</p>
+        <div className="legend-row">
+          <p className="legend-legend">
+            En cas pour 10E5 hab (décès, hosp) ou 10E6 (réa)
+          </p>
+          <div className="legend-colors">
+            <div className="line">
+              <div className="legend-color red" />
+              <p className="legend-number">{'>'} 100</p>
+            </div>
+            <div className="line">
+              <div className="legend-color orange" />
+              <p className="legend-number">{'>'} 50</p>
+            </div>
+            <div className="line">
+              <div className="legend-color yellow" />
+              <p className="legend-number">{'>'} 25</p>
+            </div>
+            <div className="line">
+              <div className="legend-color white" />
+              <p className="legend-number">{'<'} 25</p>
+            </div>
+          </div>
         </div>
       </div>
       <div>
@@ -172,7 +182,9 @@ const Map = () => {
           value={colorSelection}
         />
       </div>
-      <p>Sélectionner les données à afficher par code couleur</p>
+      <p className="precision">
+        Sélectionner les données à afficher par code couleur
+      </p>
     </div>
   );
 };
