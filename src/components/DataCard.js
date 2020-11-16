@@ -1,41 +1,43 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
+import { CountySelected } from '../contexts/CountySelected';
 
-const DataCard = ({ selectedDataToday }) => {
+const DataCard = () => {
+  const { selectedCountyDatas } = useContext(CountySelected);
   return (
     <div className="dataCard">
-      {selectedDataToday !== '' ? (
+      {selectedCountyDatas ? (
         <div className="dataNumbers">
-          <h2 className="data-card-title">{selectedDataToday.nom}</h2>
+          <h2 className="data-card-title">{selectedCountyDatas.nom}</h2>
           <p>
-            Situation le {moment(selectedDataToday.date).format('DD/MM/YYYY')}
+            Situation le {moment(selectedCountyDatas.date).format('DD/MM/YYYY')}
           </p>
           <ul>
             <li>
               <em>Hospitalisés :</em>{' '}
-              {selectedDataToday.hospitalises || 'données non disponibles'}
+              {selectedCountyDatas.hospitalises || 'données non disponibles'}
             </li>
             <li>
               <em>En réanimation :</em>{' '}
-              {selectedDataToday.reanimation || 'données non disponibles'}
+              {selectedCountyDatas.reanimation || 'données non disponibles'}
             </li>
             <li>
               <em>Nouvelles hospitalisations :</em>{' '}
-              {selectedDataToday.nouvellesHospitalisations ||
+              {selectedCountyDatas.nouvellesHospitalisations ||
                 'données non disponibles'}
             </li>
             <li>
               <em>Nouvelles réanimations :</em>{' '}
-              {selectedDataToday.nouvellesReanimations ||
+              {selectedCountyDatas.nouvellesReanimations ||
                 'données non disponibles'}
             </li>
             <li>
               <em>Décès (cumulés) :</em>{' '}
-              {selectedDataToday.deces || 'données non disponibles'}
+              {selectedCountyDatas.deces || 'données non disponibles'}
             </li>
             <li>
               <em>Guéris (cumulés) :</em>{' '}
-              {selectedDataToday.gueris || 'données non disponibles'}
+              {selectedCountyDatas.gueris || 'données non disponibles'}
             </li>
           </ul>
         </div>
