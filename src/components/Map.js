@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
 import Select from 'react-select';
@@ -29,14 +29,19 @@ const customStyles = {
 const Map = () => {
   const { setSelectedCountyName } = useContext(CountySelected);
   const { allData } = useContext(APICovidByCountyRequest);
-  const allDataDep = allData
-    .filter((item) => item.code.includes('DEP'))
-    .map((item) => {
-      return {
-        ...item,
-        code: item.code.split('-')[1], // string format because of corsica
-      };
-    });
+
+  const allDataDep = useMemo(
+    () =>
+      allData
+        .filter((item) => item.code.includes('DEP'))
+        .map((item) => {
+          return {
+            ...item,
+            code: item.code.split('-')[1], // string format because of corsica
+          };
+        }),
+    [allData]
+  );
 
   // API data are passed in props but not used
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
