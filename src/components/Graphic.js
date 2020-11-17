@@ -1,9 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import moment from 'moment';
 import './style/Graphic.scss';
 import Radio from '@material-ui/core/Radio';
+import { withStyles } from '@material-ui/core/styles';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -13,7 +15,7 @@ const Graphic = () => {
   const [confirmedCase, setConfirmedCase] = useState([]);
   const [date, setDate] = useState([]);
   const [valueRadio, setValueRadio] = useState('confirmed');
-  const [stepSize, setStepSize] = useState(100000);
+  const [stepSize, setStepSize] = useState();
 
   const state = {
     labels: date,
@@ -69,98 +71,110 @@ const Graphic = () => {
     setValueRadio(event.target.value);
   };
 
+  const CustomizedRadio = withStyles({
+    root: {
+      color: '#2d414d',
+      '&$checked': {
+        color: '#2d414d',
+      },
+    },
+    checked: {},
+  })((props) => <Radio color="default" {...props} />);
+
   return (
     <div className="graph-container">
-      <div className="graph">
-        <Line
-          data={state}
-          options={{
-            responsive: true,
-            layout: {
-              padding: {
-                top: 0,
-                left: 50,
-                right: 60,
-                bottom: 0,
+      <h1>
+        {valueRadio === 'confirmed'
+          ? 'Cas confirmés'
+          : valueRadio === 'deaths'
+          ? 'Décès'
+          : 'Patients guéris'}{' '}
+        depuis le début de l'épidémie
+      </h1>
+      <div className="graph-criteria">
+        <div className="graph">
+          <Line
+            data={state}
+            options={{
+              responsive: true,
+              layout: {
+                padding: {
+                  top: 0,
+                  left: 50,
+                  right: 60,
+                  bottom: 0,
+                },
               },
-            },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    stepSize,
-                    callback: function changeM(value) {
-                      const ranges = [
-                        { divider: 1e6, suffix: 'M' },
-                        { divider: 1e3, suffix: 'k' },
-                      ];
-                      function formatNumber(n) {
-                        for (let i = 0; i < ranges.length; i += 1) {
-                          if (n >= ranges[i].divider) {
-                            return (
-                              (n / ranges[i].divider).toString() +
-                              ranges[i].suffix
-                            );
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      stepSize,
+                      callback: function changeM(value) {
+                        const ranges = [
+                          { divider: 1e6, suffix: 'M' },
+                          { divider: 1e3, suffix: 'k' },
+                        ];
+                        function formatNumber(n) {
+                          for (let i = 0; i < ranges.length; i += 1) {
+                            if (n >= ranges[i].divider) {
+                              return (
+                                (n / ranges[i].divider).toString() +
+                                ranges[i].suffix
+                              );
+                            }
                           }
+                          return n;
                         }
-                        return n;
-                      }
-                      return formatNumber(value);
+                        return formatNumber(value);
+                      },
                     },
                   },
-                },
-              ],
-            },
-            title: {
-              display: true,
-              fontColor: '#2d414d',
-              fontSize: 30,
-              text: 'Cas confirmés durant les 7 derniers jours',
-              padding: 30,
-              fontFamily: "'Roboto', 'sans-serif'",
-            },
-            legend: {
-              display: false,
-              position: 'top',
-              onClick: false,
-              labels: {
-                boxWidth: 1,
-                fontSize: 20,
-                fontColor: 'black',
+                ],
               },
-            },
-          }}
-        />
-      </div>
-      <div className="criteria">
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Choisissez un critère</FormLabel>
-          <RadioGroup
-            aria-label="gender"
-            name="gender1"
-            value={valueRadio}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="confirmed"
-              control={<Radio />}
-              label="Cas confirmés"
-              onChange={() => setStepSize(100000)}
-            />
-            <FormControlLabel
-              value="deaths"
-              control={<Radio />}
-              label="Nombre de décès"
-              onChange={() => setStepSize(1000)}
-            />
-            <FormControlLabel
-              value="recovered"
-              control={<Radio />}
-              label="Patients guéris"
-              onChange={() => setStepSize(10000)}
-            />
-          </RadioGroup>
-        </FormControl>
+              legend: {
+                display: false,
+                position: 'top',
+                onClick: false,
+                labels: {
+                  boxWidth: 1,
+                  fontSize: 20,
+                  fontColor: 'black',
+                },
+              },
+            }}
+          />
+        </div>
+        <div className="criteria">
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Choisissez un critère</FormLabel>
+            <RadioGroup
+              aria-label="gender"
+              name="gender1"
+              value={valueRadio}
+              onChange={handleChange}
+            >
+              <FormControlLabel
+                value="confirmed"
+                control={<CustomizedRadio />}
+                label="Cas confirmés"
+                onChange={() => setStepSize(100000)}
+              />
+              <FormControlLabel
+                value="deaths"
+                control={<CustomizedRadio />}
+                label="Nombre de décès"
+                onChange={() => setStepSize(1000)}
+              />
+              <FormControlLabel
+                value="recovered"
+                control={<CustomizedRadio />}
+                label="Patients guéris"
+                onChange={() => setStepSize(10000)}
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
       </div>
     </div>
   );
