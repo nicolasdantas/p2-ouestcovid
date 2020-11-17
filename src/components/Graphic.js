@@ -3,10 +3,17 @@ import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import moment from 'moment';
 import './style/Graphic.scss';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const Graphic = () => {
   const [confirmedCase, setConfirmedCase] = useState([]);
   const [date, setDate] = useState([]);
+  const [valueRadio, setValueRadio] = useState('confirmed');
+  const [stepSize, setStepSize] = useState(100000);
 
   const state = {
     labels: date,
@@ -27,10 +34,10 @@ const Graphic = () => {
     const { CancelToken } = axios;
     const source = CancelToken.source();
     const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD');
-    const dayMinus7 = moment().subtract(7, 'days').format('YYYY-MM-DD');
+    const dayMinus7 = moment().subtract(20, 'days').format('YYYY-MM-DD');
     axios
       .get(
-        `https://api.covid19api.com/country/france?from=${dayMinus7}T00:00:00Z&to=${dayMinus1}T00:00:00Z`,
+        `https://api.covid19api.com/country/france/status/${valueRadio}?from=${dayMinus7}T00:00:00Z&to=${dayMinus1}T00:00:00Z`,
         {
           cancelToken: source.token,
         }
@@ -38,9 +45,7 @@ const Graphic = () => {
       .then((response) => response.data)
       .then((data) => {
         setConfirmedCase(
-          data
-            .filter((item) => item.Province === '')
-            .map((item) => item.Confirmed)
+          data.filter((item) => item.Province === '').map((item) => item.Cases)
         );
         setDate(
           data
@@ -56,7 +61,13 @@ const Graphic = () => {
     return function cleanup() {
       source.cancel('Graphic datas request canceled');
     };
-  }, []);
+  }, [valueRadio]);
+
+  console.log(confirmedCase);
+
+  const handleChange = (event) => {
+    setValueRadio(event.target.value);
+  };
 
   return (
     <div className="graph-container">
@@ -77,7 +88,7 @@ const Graphic = () => {
               yAxes: [
                 {
                   ticks: {
-                    stepSize: 100000,
+                    stepSize,
                     callback: function changeM(value) {
                       const ranges = [
                         { divider: 1e6, suffix: 'M' },
@@ -120,6 +131,36 @@ const Graphic = () => {
             },
           }}
         />
+      </div>
+      <div className="criteria">
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Choisissez un critère</FormLabel>
+          <RadioGroup
+            aria-label="gender"
+            name="gender1"
+            value={valueRadio}
+            onChange={handleChange}
+          >
+            <FormControlLabel
+              value="confirmed"
+              control={<Radio />}
+              label="Cas confirmés"
+              onChange={() => setStepSize(100000)}
+            />
+            <FormControlLabel
+              value="deaths"
+              control={<Radio />}
+              label="Nombre de décès"
+              onChange={() => setStepSize(1000)}
+            />
+            <FormControlLabel
+              value="recovered"
+              control={<Radio />}
+              label="Patients guéris"
+              onChange={() => setStepSize(10000)}
+            />
+          </RadioGroup>
+        </FormControl>
       </div>
     </div>
   );
