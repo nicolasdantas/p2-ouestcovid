@@ -147,7 +147,9 @@ const Graphic = () => {
         </div>
         <div className="criteria">
           <FormControl component="fieldset">
-            <FormLabel component="legend">Choisissez un critère</FormLabel>
+            <FormLabel color="red" component="legend">
+              Choisissez un critère
+            </FormLabel>
             <RadioGroup
               aria-label="gender"
               name="gender1"
