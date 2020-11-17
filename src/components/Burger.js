@@ -8,7 +8,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Link, useLocation } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import './style/Burger.scss';
-import './style/Global.css';
 
 const useStyles = makeStyles((theme) => ({
   burger: {

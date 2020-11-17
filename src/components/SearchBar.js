@@ -1,21 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useContext } from 'react';
 import Select from 'react-select';
 import countyList from './datas/countyList.json'; // data from https://geo.api.gouv.fr/departements
+import { CountySelected } from '../contexts/CountySelected';
 
-const SearchBar = (props) => {
-  const [selectedCounty, setSelectedCounty] = useState('');
-
-  const onSelectCounty = useCallback(props.onSelectCounty);
-  const mapCode = props.source === 'map' ? props.countyCode : '';
-
-  useEffect(() => {
-    if (selectedCounty) {
-      const countyCode = countyList.find(
-        (county) => county.nom === selectedCounty
-      );
-      onSelectCounty(countyCode.code);
-    }
-  }, [selectedCounty, onSelectCounty]);
+const SearchBar = () => {
+  const { selectedCountyName, setSelectedCountyName } = useContext(
+    CountySelected
+  );
 
   const customStyles = {
     control: (provided) => ({
@@ -38,16 +29,12 @@ const SearchBar = (props) => {
       options={countyList.map((county) => county.nom)}
       getOptionLabel={(option) => `${option}`}
       onChange={(newValue) => {
-        setSelectedCounty(newValue);
+        setSelectedCountyName(newValue);
       }}
       styles={customStyles}
       placeholder="Recherchez un département"
       noOptionsMessage={() => 'Aucun département trouvé'}
-      value={
-        props.source === 'map'
-          ? countyList.find((county) => county.code === mapCode).nom.split()
-          : selectedCounty.split()
-      }
+      value={selectedCountyName.split()}
     />
   );
 };

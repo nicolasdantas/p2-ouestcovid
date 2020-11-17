@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import moment from 'moment';
-import axios from 'axios';
 import TopFiveCard from './TopFiveCard';
 import countyList from './datas/countyList.json';
 import TopFiveCountyModal from './TopFiveCountyModal';
 import './style/TopFive.scss';
+import { APICovidByCountyRequest } from '../contexts/APICovidByCountyRequest';
 
 function TopFive() {
-  const [dataAPI, setDataAPI] = React.useState([]);
-  const [dataTopFive, setDataTopFive] = React.useState([]);
-  const [modalShow, setModalShow] = React.useState(false);
-  const [countyClicked, setCountyClicked] = React.useState('');
+  const [dataTopFive, setDataTopFive] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [countyClicked, setCountyClicked] = useState('');
 
   const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
 
@@ -19,50 +18,26 @@ function TopFive() {
     setCountyClicked(event.currentTarget.id);
   };
 
-  React.useEffect(() => {
-    const { CancelToken } = axios;
-    const source = CancelToken.source();
-    axios
-      .get(
-        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
-        {
-          cancelToken: source.token,
-        }
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        setDataAPI(() =>
-          /* getting the data from API, comparing it to countyList.json based on county code and adding for each county the number of beds in reanimation */
-          data.allFranceDataByDate
-            .filter((item) => item.code.includes('DEP'))
-            .map((item) => ({ ...item, code: item.code.split('-')[1] }))
-            .map((item) => ({
-              ...item,
-              lits: countyList.find((county) => county.code === item.code).lits,
-            }))
-            .map((item) => ({
-              ...item,
-              ratio: Math.round((item.reanimation / +item.lits) * 100),
-            }))
-        );
-      })
-      .catch((err) => {
-        if (axios.isCancel(err)) {
-          console.log('Request canceled', err.message);
-        }
-      }); // eslint-disable-next-line
-    return function cleanup() {
-      // cancels the previous request on unmount or query update :
-      source.cancel('Operation canceled by the user.');
-    };
-    // eslint-disable-next-line
-  }, []);
+  const { allData } = useContext(APICovidByCountyRequest);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setDataTopFive(() =>
-      dataAPI.sort((a, b) => (a.ratio >= b.ratio ? 1 : -1)).slice(0, 5)
+      /* getting the data from the context and adding for each county the number of beds in reanimation */
+      allData
+        .filter((item) => item.code.includes('DEP'))
+        .map((item) => ({ ...item, code: item.code.split('-')[1] }))
+        .map((item) => ({
+          ...item,
+          lits: countyList.find((county) => county.code === item.code).lits,
+        }))
+        .map((item) => ({
+          ...item,
+          ratio: Math.round((item.reanimation / +item.lits) * 100),
+        }))
+        .sort((a, b) => (a.ratio >= b.ratio ? 1 : -1))
+        .slice(0, 5)
     );
-  }, [dataAPI]);
+  }, [allData]);
 
   return (
     <>
