@@ -42,17 +42,6 @@ const Map = () => {
     [allData]
   );
 
-  // handling window resizing and zooming in on the map on mobile ////////////////
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-  }, []);
-
-  // handling colors on the map depending on values //////////////////////
   const [colorSelection, setColorSelection] = useState({
     value: '',
     label: '- Aucun code couleur -',
@@ -129,6 +118,18 @@ const Map = () => {
     }
   }, [allDataDep, colorSelection]);
 
+  // handling resizing
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
+
+  // handling county selection
   const handleClick = (event) => {
     const { id } = event.target; // this extra step is necessary because the name in location is used, and modified, for color mapping | it cannot be passed straight away as an argument
     const name = allDataDep.find((item) => item.code === id).nom;
