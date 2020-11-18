@@ -6,7 +6,7 @@ import { CountySelected } from '../contexts/CountySelected';
 
 Geocode.setLanguage('fr');
 Geocode.setRegion('fr');
-Geocode.setApiKey('AIzaSyD9QyjcXrlW8JUHmsDjH2n2ttF-bPLyYjc')
+Geocode.setApiKey('AIzaSyD9QyjcXrlW8JUHmsDjH2n2ttF-bPLyYjc');
 
 const SearchBar = () => {
   useEffect(() => {
