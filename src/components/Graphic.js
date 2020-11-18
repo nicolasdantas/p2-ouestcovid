@@ -159,8 +159,8 @@ const Graphic = () => {
               Choisissez un critère
             </FormLabel>
             <RadioGroup
-              aria-label="gender"
-              name="gender1"
+              aria-label="criteria"
+              name="criteria"
               value={valueRadio}
               onChange={handleChange}
             >
