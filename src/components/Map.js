@@ -151,7 +151,8 @@ const Map = () => {
         <p className="legend-title">Légende</p>
         <div className="legend-row">
           <p className="legend-legend">
-            En cas pour 10E5 hab (décès, hosp) ou 10E6 (réa)
+            Par million d'hab. (réanimation) ou pour 100 000 hab. (décès,
+            hospitalisation)
           </p>
           <div className="legend-colors">
             <div className="line">
