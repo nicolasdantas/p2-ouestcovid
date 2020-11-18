@@ -104,12 +104,11 @@
     .searchbar-geoloc{
       display:flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       width: 100%;
-      padding-left: 30%;
-      padding-right: 30%;
       .searchbar{
         margin-bottom: 0;
+        margin-right: 20px;
       }
     }
     .map {

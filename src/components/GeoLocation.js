@@ -13,14 +13,14 @@ const SearchBar = () => {
       const source = axios.CancelToken.source();
       axios
         .get(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude.toString()},${position.coords.longitude.toString()}&key=AIzaSyD9QyjcXrlW8JUHmsDjH2n2ttF-bPLyYjc`,
+          `https://api-adresse.data.gouv.fr/reverse/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`,
           {
             cancelToken: source.token,
           }
         )
         .then((response) =>
           setSelectedCountyName(
-            response.data.results[9].address_components[0].long_name
+            response.data.features[0].properties.context.split(',')[1].slice(1)
           )
         )
         .catch((err) => {
