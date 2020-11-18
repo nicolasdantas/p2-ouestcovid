@@ -40,7 +40,7 @@ const SearchBar = () => {
         backgroundColor: '#2d414d',
       },
       '&$button:focus': {
-        outline:'none',
+        outline: 'none',
       },
     },
   }));
