@@ -5,7 +5,7 @@ import axios from 'axios';
 import moment from 'moment';
 import './style/Graphic.scss';
 import Radio from '@material-ui/core/Radio';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -65,13 +65,17 @@ const Graphic = () => {
     };
   }, [valueRadio]);
 
-  console.log(confirmedCase);
-
   const handleChange = (event) => {
     setValueRadio(event.target.value);
   };
 
-  const CustomizedRadio = withStyles({
+  const useLabelStyles = makeStyles({
+    root: {
+      color: '#2d414d',
+    },
+  });
+
+  const useRadioStyles = makeStyles({
     root: {
       color: '#2d414d',
       '&$checked': {
@@ -79,7 +83,7 @@ const Graphic = () => {
       },
     },
     checked: {},
-  })((props) => <Radio color="default" {...props} />);
+  });
 
   return (
     <div className="graph-container">
@@ -147,7 +151,11 @@ const Graphic = () => {
         </div>
         <div className="criteria">
           <FormControl component="fieldset">
-            <FormLabel color="red" component="legend">
+            <FormLabel
+              className={useLabelStyles().root}
+              component="legend"
+              focused={false}
+            >
               Choisissez un critère
             </FormLabel>
             <RadioGroup
@@ -157,20 +165,23 @@ const Graphic = () => {
               onChange={handleChange}
             >
               <FormControlLabel
+                className={useLabelStyles().root}
                 value="confirmed"
-                control={<CustomizedRadio />}
+                control={<Radio classes={useRadioStyles()} />}
                 label="Cas confirmés"
                 onChange={() => setStepSize(100000)}
               />
               <FormControlLabel
+                className={useLabelStyles().root}
                 value="deaths"
-                control={<CustomizedRadio />}
+                control={<Radio classes={useRadioStyles()} />}
                 label="Nombre de décès"
                 onChange={() => setStepSize(1000)}
               />
               <FormControlLabel
+                className={useLabelStyles().root}
                 value="recovered"
-                control={<CustomizedRadio />}
+                control={<Radio classes={useRadioStyles()} />}
                 label="Patients guéris"
                 onChange={() => setStepSize(10000)}
               />
