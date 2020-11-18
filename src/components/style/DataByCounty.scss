@@ -24,6 +24,14 @@
     color: var(--primary-color);
     font-weight: 700;
   }
+  .searchbar-geoloc{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    .searchbar{
+      margin-bottom: 15px;
+    }
+  }
 
   .dataRow {
     display: flex;
@@ -92,6 +100,17 @@
   @media only screen and (min-width: 600px) {
     .title {
       font-size: var(--component-title-desktop);
+    }
+    .searchbar-geoloc{
+      display:flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 30%;
+      padding-right: 30%;
+      .searchbar{
+        margin-bottom: 0;
+      }
     }
     .map {
       width: 50vw;
