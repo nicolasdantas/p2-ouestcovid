@@ -7,8 +7,11 @@ function TopFiveCard({ county, index, openModal }) {
 
   const countyCodeAPI = county.code;
   const countyPrefecture = prefectures.filter((item) => {
+    // could probably be a find and not a filter
     const countyCodePrefecture =
-      item.code.toString().length === 1 ? '0' : `${item.code.toString()}`;
+      item.code.toString().length === 1
+        ? `0+${item.code.toString()}` // avant il manquait vraisemblablement une partie du code... changement en sprint 4
+        : `${item.code.toString()}`;
     return countyCodeAPI === countyCodePrefecture;
   })[0].prefecture;
 

@@ -55,7 +55,7 @@
       text-align: center;
       font-weight: 600;
       font-size: 20px;
-      margin:0;
+      margin: 0;
     }
 
     .dataNumbers {
@@ -83,17 +83,69 @@
   }
 
   .map {
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
+
     .react-transform-element {
-      display:flex;
-      justify-content:center;
+      display: flex;
+      justify-content: center;
     }
+
     p {
       font-size: 14px;
-      color: gray;
+      margin-bottom: 0;
+    }
+
+    .precision {
       margin-top: 5px;
+    }
+
+    .legend {
+      border: 1px solid rgb(170, 170, 170);
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      color: rgb(56, 56, 56);
+      margin-bottom: 10px;
+    }
+
+    .legend-row {
+      display: flex;
+    }
+
+    .legend-legend {
+      width: 150px;
+    }
+
+    .legend-number {
+      margin: 0;
+    }
+    .legend-color {
+      height: 10px;
+      width: 10px;
+      margin-right: 10px;
+      border: 1px solid gray;
+    }
+
+    .legend-color.red {
+      background-color: red;
+    }
+    .legend-color.orange {
+      background-color: orangered;
+    }
+    .legend-color.yellow {
+      background-color: yellow;
+    }
+    .legend-color.white {
+      background-color: lightyellow;
+    }
+
+    .line {
+      display: flex;
+      align-items: center;
     }
   }
 
