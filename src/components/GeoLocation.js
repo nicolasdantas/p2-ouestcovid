@@ -12,7 +12,6 @@ const SearchBar = () => {
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      // console.log(position);
       axios
         .get(
           `https://api-adresse.data.gouv.fr/reverse/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`,
@@ -23,7 +22,6 @@ const SearchBar = () => {
           }
         )
         .then((response) => {
-          console.log(response);
           if (response.data.features.length !== 0) {
             setSelectedCountyName(
               response.data.features[0].properties.context
