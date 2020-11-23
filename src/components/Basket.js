@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { BasketContext } from '../context/BasketContext';
-import Footer from '../components/Footer';
-import NavBarConsumer from './NavBarConsumer';
 import '../styles/Basket.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -12,6 +10,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import NavBarConsumer from './NavBarConsumer';
+import Footer from './Footer';
 
 const useStyles = makeStyles({
   table: {},
@@ -22,7 +22,9 @@ export default function Basket(props) {
   const [messages, setMessages] = useState();
 
   const handleClick = () => {
-    setMessages(basket.map((product) => `${product.message} to pick-up your order`));
+    setMessages(
+      basket.map((product) => `${product.message} to pick-up your order`)
+    );
   };
 
   console.log(messages);
@@ -30,36 +32,36 @@ export default function Basket(props) {
   return (
     <>
       <NavBarConsumer />
-      <div className='basket'>
+      <div className="basket">
         <h1>Your basket</h1>
         <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label='simple table'>
+          <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Producteur</TableCell>
-                <TableCell align='center'>Product</TableCell>
-                <TableCell align='center'>Unit price</TableCell>
-                <TableCell align='center'>Total price</TableCell>
-                <TableCell align='center'>Delete product</TableCell>
+                <TableCell align="center">Product</TableCell>
+                <TableCell align="center">Unit price</TableCell>
+                <TableCell align="center">Total price</TableCell>
+                <TableCell align="center">Delete product</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {basket.map((product) => (
                 <TableRow key={product.producer}>
-                  <TableCell component='th' scope='row'>
+                  <TableCell component="th" scope="row">
                     {product.producer}
                   </TableCell>
-                  <TableCell align='center'>{product.product}</TableCell>
+                  <TableCell align="center">{product.product}</TableCell>
 
-                  <TableCell align='center'>{product.price}</TableCell>
-                  <TableCell align='center'>
+                  <TableCell align="center">{product.price}</TableCell>
+                  <TableCell align="center">
                     {parseInt(product.quantity * product.price)}
                   </TableCell>
-                  <TableCell align='center'>
+                  <TableCell align="center">
                     <Button
                       onClick={() => deleteProduct(product.id)}
-                      variant='contained'
-                      type='button'
+                      variant="contained"
+                      type="button"
                       style={{ fontFamily: 'IBM Plex Serif, serif' }}
                     >
                       Delete
@@ -71,22 +73,22 @@ export default function Basket(props) {
           </Table>
         </TableContainer>
         {messages ? (
-          messages.map((message) => <h3 className='return-title'>{message}</h3>)
+          messages.map((message) => <h3 className="return-title">{message}</h3>)
         ) : (
-          <p></p>
+          <p />
         )}
-        <div className='basket-button'>
+        <div className="basket-button">
           <Button
             onClick={handleClick}
-            variant='contained'
-            type='button'
+            variant="contained"
+            type="button"
             style={{ fontFamily: 'IBM Plex Serif, serif' }}
           >
             Send my order
           </Button>
         </div>
       </div>
-      <footer className='basket-footer'>
+      <footer className="basket-footer">
         <Footer />
       </footer>
     </>

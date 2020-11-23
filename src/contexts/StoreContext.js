@@ -11,8 +11,8 @@ export default function StoreProvider({ children }) {
       .get('http://localhost:3000/api/allproducts')
       .then((response) => setAllProducts(response.data));
   }, []);
-  
-  console.log(allProducts)
+
+  console.log(allProducts);
   return (
     <StoreContext.Provider value={{ allProducts }}>
       {children}
