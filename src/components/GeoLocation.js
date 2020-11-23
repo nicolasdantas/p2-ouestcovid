@@ -10,13 +10,9 @@ const SearchBar = () => {
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      const source = axios.CancelToken.source();
       axios
         .get(
-          `https://api-adresse.data.gouv.fr/reverse/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`,
-          {
-            cancelToken: source.token,
-          }
+          `https://api-adresse.data.gouv.fr/reverse/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`
         )
         .then((response) =>
           setSelectedCountyName(
