@@ -132,7 +132,7 @@ export default function Basket(props) {
             onClick={() => sendOrder()}
             variant="contained"
             type="button"
-            disabled={basket.length === 0 ? true : false}
+            disabled={basket.length === 0}
           >
             Envoyer ma commande
           </Button>
