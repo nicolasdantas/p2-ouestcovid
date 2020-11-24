@@ -29,7 +29,6 @@ const customStyles = {
 const Map = () => {
   const { setSelectedCountyName } = useContext(CountySelected);
   const { allData } = useContext(APICovidByCountyRequest);
-
   const allDataDep = useMemo(
     () =>
       allData
@@ -43,9 +42,6 @@ const Map = () => {
     [allData]
   );
 
-  // API data are passed in props but not used
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  // const [allData, setData] = useState([]);
   const [colorSelection, setColorSelection] = useState({
     value: '',
     label: '- Aucun code couleur -',
@@ -122,6 +118,9 @@ const Map = () => {
     }
   }, [allDataDep, colorSelection]);
 
+  // handling resizing
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
@@ -130,6 +129,7 @@ const Map = () => {
     window.addEventListener('resize', handleResize);
   }, []);
 
+  // handling county selection
   const handleClick = (event) => {
     const { id } = event.target; // this extra step is necessary because the name in location is used, and modified, for color mapping | it cannot be passed straight away as an argument
     const name = allDataDep.find((item) => item.code === id).nom;
@@ -137,30 +137,57 @@ const Map = () => {
   };
 
   return (
-    <>
-      <div className="map none">
-        {windowWidth < 600 ? (
-          <TransformWrapper>
-            <TransformComponent>
-              <SVGMap map={customFrance} onLocationClick={handleClick} />
-            </TransformComponent>
-          </TransformWrapper>
-        ) : (
-          <SVGMap map={customFrance} onLocationClick={handleClick} />
-        )}
-        <div>
-          <Select
-            options={options}
-            getOptionLabel={(option) => option.label}
-            onChange={(newValue) => setColorSelection(newValue)}
-            styles={customStyles}
-            noOptionsMessage={() => 'Aucun département trouvé'}
-            value={colorSelection}
-          />
+    <div className="map none">
+      {windowWidth < 600 ? (
+        <TransformWrapper>
+          <TransformComponent>
+            <SVGMap map={customFrance} onLocationClick={handleClick} />
+          </TransformComponent>
+        </TransformWrapper>
+      ) : (
+        <SVGMap map={customFrance} onLocationClick={handleClick} />
+      )}
+      <div className="legend">
+        <p className="legend-title">Légende</p>
+        <div className="legend-row">
+          <p className="legend-legend">
+            Par million d'hab. (réanimation) ou pour 100 000 hab. (décès,
+            hospitalisation)
+          </p>
+          <div className="legend-colors">
+            <div className="line">
+              <div className="legend-color red" />
+              <p className="legend-number">{'>'} 100</p>
+            </div>
+            <div className="line">
+              <div className="legend-color orange" />
+              <p className="legend-number">{'>'} 50</p>
+            </div>
+            <div className="line">
+              <div className="legend-color yellow" />
+              <p className="legend-number">{'>'} 25</p>
+            </div>
+            <div className="line">
+              <div className="legend-color white" />
+              <p className="legend-number">{'<'} 25</p>
+            </div>
+          </div>
         </div>
-        <p>Sélectionner les données à afficher par code couleur</p>
       </div>
-    </>
+      <div>
+        <Select
+          options={options}
+          getOptionLabel={(option) => option.label}
+          onChange={(newValue) => setColorSelection(newValue)}
+          styles={customStyles}
+          noOptionsMessage={() => 'Aucun département trouvé'}
+          value={colorSelection}
+        />
+      </div>
+      <p className="precision">
+        Sélectionner les données à afficher par code couleur
+      </p>
+    </div>
   );
 };
 

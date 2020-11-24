@@ -142,17 +142,24 @@ body {
       }
     }
   }
-  .modal-footer{
-    display:flex;
+  .modal-footer {
+    display: flex;
     justify-content: center;
-    .btn-light{
-      background-color:var(--button-color);
-      border:none;
-      color:white;
+    .btn-light {
+      background-color: var(--button-color);
+      border: none;
+      color: white;
+      box-shadow: 0px 5px 3px black;
+    }
+    .btn-light:hover {
+      font-style: italic;
+    }
+    .btn-light:active {
+      position: relative;
+      top: 5px;
     }
   }
 }
-
 
 @media only screen and (max-width: 600px) {
   .column {
