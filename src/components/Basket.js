@@ -37,7 +37,7 @@ export default function Basket(props) {
 
   const sendOrder = () => {
     axios.put(`http://localhost:3000/api/products/`, basket);
-    console.log(basket)
+    console.log(basket);
     axios.delete(`http://localhost:3000/api/basket`);
     setModalShow(true);
     setTimeout(() => {
