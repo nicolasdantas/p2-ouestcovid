@@ -1,7 +1,18 @@
 /* eslint-disable global-require */
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import React, { useState } from 'react';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Circle,
+  useMap,
+} from 'react-leaflet';
 import Leaflet from 'leaflet';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+// import GeoLocationModal from './GeoLocationModal';
 import './style/Radius.scss';
 import 'leaflet/dist/leaflet.css';
 
@@ -17,33 +28,106 @@ Leaflet.Icon.Default.mergeOptions({
 
 const fillBlueOptions = { fillColor: 'blue' };
 
+function ChangeView({ center, zoom }) {
+  const map = useMap();
+  map.setView(center, zoom);
+  return null;
+}
+
 const Radius = () => {
+  const [currentLocation, setCurrentLocation] = useState();
+  const [zoomState, setZoomState] = useState(5);
+
+  const setLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCurrentLocation(position);
+      setZoomState(() => 14);
+    });
+  };
+
+  const useStyles = makeStyles(() => ({
+    button: {
+      backgroundColor: '#2d414d',
+      color: 'white',
+      textTransform: 'none',
+      '&$button:hover': {
+        backgroundColor: '#2d414d',
+      },
+      '&$button:focus': {
+        outline: 'none',
+      },
+    },
+  }));
+
   return (
     <div id="mapid">
-      Map
-      <MapContainer
-        center={[51.505, -0.09]}
-        zoom={16}
-        scrollWheelZoom={false}
-        style={{ width: '100%', height: '400px' }}
+      <Button
+        onClick={setLocation}
+        variant="contained"
+        className={useStyles().button}
+        startIcon={<LocationOnIcon />}
       >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        <Circle
-          center={[51.505, -0.09]}
-          pathOptions={fillBlueOptions}
-          radius={200}
+        Géolocalisez-moi
+      </Button>
+      {currentLocation ? (
+        <MapContainer
+          center={[
+            currentLocation.coords.latitude,
+            currentLocation.coords.longitude,
+          ]}
+          zoom={zoomState}
+          scrollWheelZoom={false}
+          style={{ width: '100%', height: '400px' }}
         >
-          <Marker position={[51.505, -0.09]}>
+          <ChangeView
+            zoom={zoomState}
+            center={[
+              currentLocation.coords.latitude,
+              currentLocation.coords.longitude,
+            ]}
+          />
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+
+          <Circle
+            center={[
+              currentLocation.coords.latitude,
+              currentLocation.coords.longitude,
+            ]}
+            pathOptions={fillBlueOptions}
+            radius={1000}
+          >
+            <Marker
+              position={[
+                currentLocation.coords.latitude,
+                currentLocation.coords.longitude,
+              ]}
+            >
+              <Popup>Votre position actuelle</Popup>
+            </Marker>
+          </Circle>
+        </MapContainer>
+      ) : (
+        <MapContainer
+          center={[46.45, 2.25]}
+          zoom={zoomState}
+          scrollWheelZoom={false}
+          style={{ width: '100%', height: '400px' }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+
+          <Marker position={[46.45, 2.25]}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              Cliquez sur "Géolocalisez-moi" <br /> ou entrez une adresse
             </Popup>
           </Marker>
-        </Circle>
-      </MapContainer>
+        </MapContainer>
+      )}
     </div>
   );
 };
