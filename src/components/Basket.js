@@ -45,7 +45,7 @@ export default function Basket(props) {
 
   const setQuantity = (quantity, id) => {
     axios.put(`http://localhost:3000/api/basket/${id}`, {
-      quantity: quantity,
+      quantity,
     });
   };
 
