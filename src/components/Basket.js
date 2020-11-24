@@ -8,14 +8,17 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import './style/Basket.scss';
+import ConfirmationModal from './ConfirmationModal';
 
 const useStyles = makeStyles({
   table: {},
 });
 export default function Basket(props) {
   const classes = useStyles();
+  const [modalShow, setModalShow] = useState(false);
   const [basket, setBasket] = useState([]);
 
   useEffect(() => {
@@ -32,8 +35,23 @@ export default function Basket(props) {
     axios.delete(`http://localhost:3000/api/basket`);
   };
 
+  const sendOrder = () => {
+    axios.delete(`http://localhost:3000/api/basket`);
+    setModalShow(true);
+    setTimeout(() => {
+      props.history.push('/store');
+    }, 5000);
+  };
+
+  const setQuantity = (quantity, id) => {
+    axios.put(`http://localhost:3000/api/basket/${id}`, {
+      quantity: quantity,
+    });
+  };
+
   return (
     <>
+      <ConfirmationModal show={modalShow} onHide={() => setModalShow(false)} />
       <div className="basket">
         <h1>Votre panier</h1>{' '}
         <Button
@@ -72,7 +90,25 @@ export default function Basket(props) {
                   </TableCell>
                   <TableCell align="center">{product.product}</TableCell>
 
-                  <TableCell align="center">{product.quantity}</TableCell>
+                  <TableCell align="center">
+                    <TextField
+                      id="standard-number"
+                      type="number"
+                      value={product.quantity}
+                      InputProps={{
+                        inputProps: { min: 1, max: product.stock },
+                      }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      onChange={(event) =>
+                        setQuantity(
+                          parseInt(event.target.value, 10),
+                          product.id
+                        )
+                      }
+                    />
+                  </TableCell>
                   <TableCell align="center">{product.price}</TableCell>
                   <TableCell align="center">
                     {parseInt(product.quantity * product.price, 10)}
@@ -93,9 +129,10 @@ export default function Basket(props) {
         </TableContainer>
         <div className="basket-button">
           <Button
-            // onClick={handleClick}
+            onClick={() => sendOrder()}
             variant="contained"
             type="button"
+            disabled={basket.length === 0 ? true : false}
           >
             Envoyer ma commande
           </Button>
