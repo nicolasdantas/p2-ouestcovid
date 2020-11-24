@@ -14,7 +14,7 @@ import './style/Basket.scss';
 const useStyles = makeStyles({
   table: {},
 });
-export default function Basket() {
+export default function Basket(props) {
   const classes = useStyles();
   const [basket, setBasket] = useState([]);
 
@@ -35,7 +35,15 @@ export default function Basket() {
   return (
     <>
       <div className="basket">
-        <h1>Votre panier</h1>
+        <h1>Votre panier</h1>{' '}
+        <Button
+          className="button-empty-basket"
+          onClick={() => props.history.push('/store')}
+          variant="contained"
+          type="button"
+        >
+          Retour à la boutique
+        </Button>
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
