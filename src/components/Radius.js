@@ -5,6 +5,8 @@ import Leaflet from 'leaflet';
 import './style/Radius.scss';
 import 'leaflet/dist/leaflet.css';
 
+// eslint-disable-next-line no-underscore-dangle
+delete Leaflet.Icon.Default.prototype._getIconUrl;
 Leaflet.Icon.Default.imagePath = '../node_modules/leaflet';
 
 Leaflet.Icon.Default.mergeOptions({
