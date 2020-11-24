@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import Axios from 'axios';
-import React, { useState } from 'react';
-// import Autocomplete from 'react-google-autocomplete';
+import React, { useState, useRef } from 'react';
 
 const SearchAddress = ({ setCurrentLocation, setZoomState }) => {
   const [address, setAddress] = useState({
@@ -11,6 +10,8 @@ const SearchAddress = ({ setCurrentLocation, setZoomState }) => {
     coordinates: [],
   });
   const [autocompleteList, setAutocomplete] = useState();
+  const [showList, setShowList] = useState(false);
+  const submitButton = useRef(null);
 
   const handlePostalCode = (value) => {
     setAddress((prevValue) => ({ ...prevValue, code: value }));
@@ -29,32 +30,37 @@ const SearchAddress = ({ setCurrentLocation, setZoomState }) => {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (address && address.coordinates.length === 2) {
+      setCurrentLocation(() => ({
+        coords: {
+          latitude: address.coordinates[1],
+          longitude: address.coordinates[0],
+        },
+      }));
+      setAddress({
+        code: '',
+        street: '',
+        coordinates: [],
+      });
+      setZoomState(() => 14);
+    } else {
+      setCurrentLocation(() => false);
+    }
+  };
+
   return (
     <div className="search-section">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setCurrentLocation(() => ({
-            coords: {
-              latitude: address.coordinates[1],
-              longitude: address.coordinates[0],
-            },
-          }));
-          setZoomState(() => 14);
-          console.log({
-            coords: {
-              latitude: address.coordinates[0],
-              longitude: address.coordinates[1],
-            },
-          });
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="code"
           id="code"
+          value={address.code}
           required
           onChange={(e) => handlePostalCode(e.target.value)}
+          onFocus={() => setShowList(false)}
         />
         <div className="autocomplete" style={{ width: '300px' }}>
           <input
@@ -64,20 +70,25 @@ const SearchAddress = ({ setCurrentLocation, setZoomState }) => {
             required
             value={address.street}
             onChange={(e) => handleStreetChange(e.target.value)}
+            onFocus={() => setShowList(true)}
           />
           <div id="autocomplete-list" className="autocomplete-items">
             {autocompleteList &&
+              showList &&
               autocompleteList.features.map((item) => {
                 return (
                   <div
                     key={item.geometry.coordinates.join('-')}
-                    onClick={(e) =>
+                    onClick={(e) => {
+                      submitButton.current.focus();
+                      setShowList(false);
                       setAddress((prevValue) => ({
                         ...prevValue,
                         street: e.target.innerHTML,
                         coordinates: item.geometry.coordinates,
-                      }))
-                    }
+                      }));
+                      setAutocomplete(null);
+                    }}
                   >
                     {item.properties.name}
                   </div>
@@ -86,24 +97,15 @@ const SearchAddress = ({ setCurrentLocation, setZoomState }) => {
           </div>
         </div>
 
-        <input type="submit" value="Search" />
+        <input
+          ref={submitButton}
+          type="submit"
+          value="Search"
+          onFocus={() => setShowList(false)}
+        />
       </form>
     </div>
   );
-
-  //   return (
-  //     <Autocomplete
-  //       style={{
-  //         width: '100%',
-  //         height: '40px',
-  //         paddingLeft: '16px',
-  //         marginTop: '2px',
-  //         marginBottom: '100px',
-  //       }}
-  //       onPlaceSelected={onPlaceSelected}
-  //       types={['(regions)']}
-  //     />
-  //   );
 };
 
 export default SearchAddress;

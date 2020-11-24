@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 // import GeoLocationModal from './GeoLocationModal';
-import SearchAddress from './Autocomplete';
+import SearchAddress from './Searchaddress';
 import './style/Radius.scss';
 import 'leaflet/dist/leaflet.css';
 
@@ -62,11 +62,11 @@ const Radius = () => {
 
   return (
     <div id="mapid">
-      <SearchAddress
-        setCurrentLocation={setCurrentLocation}
-        setZoomState={setZoomState}
-      />
       <div className="button-container">
+        <SearchAddress
+          setCurrentLocation={setCurrentLocation}
+          setZoomState={setZoomState}
+        />
         <Button
           onClick={setLocation}
           variant="contained"
@@ -76,7 +76,10 @@ const Radius = () => {
           Géolocalisez-moi
         </Button>
       </div>
-      {currentLocation ? (
+      {currentLocation &&
+      currentLocation.coords &&
+      currentLocation.coords.latitude !== '' &&
+      currentLocation.coords.longitude !== '' ? (
         <MapContainer
           center={[
             currentLocation.coords.latitude,
@@ -84,7 +87,7 @@ const Radius = () => {
           ]}
           zoom={zoomState}
           scrollWheelZoom={false}
-          style={{ width: '100%', height: '400px' }}
+          style={{ width: '100%', height: '400px', zIndex: '0' }}
         >
           <ChangeView
             zoom={zoomState}
@@ -121,7 +124,7 @@ const Radius = () => {
           center={[46.45, 2.25]}
           zoom={zoomState}
           scrollWheelZoom={false}
-          style={{ width: '100%', height: '400px' }}
+          style={{ width: '100%', height: '400px', zIndex: '0' }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
