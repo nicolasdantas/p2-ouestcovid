@@ -10,7 +10,7 @@ export default function StoreProvider({ children }) {
     axios
       .get('http://localhost:3000/api/products')
       .then((response) => setAllProducts(response.data));
-  }, []);
+  });
 
   return (
     <StoreContext.Provider value={{ allProducts }}>
