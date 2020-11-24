@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 // import GeoLocationModal from './GeoLocationModal';
+import SearchAddress from './Autocomplete';
 import './style/Radius.scss';
 import 'leaflet/dist/leaflet.css';
 
@@ -61,14 +62,20 @@ const Radius = () => {
 
   return (
     <div id="mapid">
-      <Button
-        onClick={setLocation}
-        variant="contained"
-        className={useStyles().button}
-        startIcon={<LocationOnIcon />}
-      >
-        Géolocalisez-moi
-      </Button>
+      <SearchAddress
+        setCurrentLocation={setCurrentLocation}
+        setZoomState={setZoomState}
+      />
+      <div className="button-container">
+        <Button
+          onClick={setLocation}
+          variant="contained"
+          className={useStyles().button}
+          startIcon={<LocationOnIcon />}
+        >
+          Géolocalisez-moi
+        </Button>
+      </div>
       {currentLocation ? (
         <MapContainer
           center={[
