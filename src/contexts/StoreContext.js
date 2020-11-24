@@ -8,11 +8,10 @@ export default function StoreProvider({ children }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/allproducts')
+      .get('http://localhost:3000/api/products')
       .then((response) => setAllProducts(response.data));
   }, []);
 
-  console.log(allProducts);
   return (
     <StoreContext.Provider value={{ allProducts }}>
       {children}

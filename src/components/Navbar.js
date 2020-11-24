@@ -53,6 +53,11 @@ const Navbar = () => {
               )}
             </li>
             <li>
+              <Link className="liste" to="/store">
+                Boutique
+              </Link>
+            </li>
+            <li>
               {useLocation().pathname === '/ou-partir' ? (
                 <HashLink className="liste" to="/#about-us">
                   A Propos

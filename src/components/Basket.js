@@ -1,6 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { BasketContext } from '../context/BasketContext';
-import '../styles/Basket.scss';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import Button from '@material-ui/core/Button';
@@ -10,61 +8,75 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import NavBarConsumer from './NavBarConsumer';
-import Footer from './Footer';
+import axios from 'axios';
+import './style/Basket.scss';
+
 
 const useStyles = makeStyles({
   table: {},
 });
-export default function Basket(props) {
+export default function Basket() {
   const classes = useStyles();
-  const { basket, deleteProduct } = useContext(BasketContext);
-  const [messages, setMessages] = useState();
+  const [basket, setBasket] = useState([]);
 
-  const handleClick = () => {
-    setMessages(
-      basket.map((product) => `${product.message} to pick-up your order`)
-    );
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/api/basket')
+      .then((response) => setBasket(response.data));
+  });
+
+  const deleteProduct = (id) => {
+    axios.delete(`http://localhost:3000/api/basket/${id}`);
   };
 
-  console.log(messages);
+  const deleteBasket = () => {
+    axios.delete(`http://localhost:3000/api/basket`);
+  };
 
   return (
     <>
-      <NavBarConsumer />
       <div className="basket">
-        <h1>Your basket</h1>
+        <h1>Votre panier</h1>
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Producteur</TableCell>
-                <TableCell align="center">Product</TableCell>
-                <TableCell align="center">Unit price</TableCell>
-                <TableCell align="center">Total price</TableCell>
-                <TableCell align="center">Delete product</TableCell>
+                <TableCell align="center" />
+                <TableCell align="center">Marque</TableCell>
+                <TableCell align="center">Produit</TableCell>
+                <TableCell align="center">Quantité</TableCell>
+                <TableCell align="center">Prix unitaire</TableCell>
+                <TableCell align="center">Prix total</TableCell>
+                <TableCell align="center">Supprimer le produit</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {basket.map((product) => (
-                <TableRow key={product.producer}>
-                  <TableCell component="th" scope="row">
-                    {product.producer}
+                <TableRow key={product.id}>
+                  <TableCell component="th" scope="row" align="center">
+                    <img
+                      src={product.main_img}
+                      width="40px"
+                      alt={product.product}
+                    />
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {product.marque}
                   </TableCell>
                   <TableCell align="center">{product.product}</TableCell>
 
+                  <TableCell align="center">{product.quantity}</TableCell>
                   <TableCell align="center">{product.price}</TableCell>
                   <TableCell align="center">
-                    {parseInt(product.quantity * product.price)}
+                    {parseInt(product.quantity * product.price, 10)}
                   </TableCell>
                   <TableCell align="center">
                     <Button
                       onClick={() => deleteProduct(product.id)}
                       variant="contained"
                       type="button"
-                      style={{ fontFamily: 'IBM Plex Serif, serif' }}
                     >
-                      Delete
+                      Supprimer
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -72,25 +84,19 @@ export default function Basket(props) {
             </TableBody>
           </Table>
         </TableContainer>
-        {messages ? (
-          messages.map((message) => <h3 className="return-title">{message}</h3>)
-        ) : (
-          <p />
-        )}
         <div className="basket-button">
           <Button
-            onClick={handleClick}
+            // onClick={handleClick}
             variant="contained"
             type="button"
-            style={{ fontFamily: 'IBM Plex Serif, serif' }}
           >
-            Send my order
+            Envoyer ma commande
+          </Button>
+          <Button className='button-empty-basket' onClick={deleteBasket} variant="contained" type="button">
+            Vider mon panier
           </Button>
         </div>
       </div>
-      <footer className="basket-footer">
-        <Footer />
-      </footer>
     </>
   );
 }
