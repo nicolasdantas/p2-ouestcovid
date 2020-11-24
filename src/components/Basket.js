@@ -11,7 +11,6 @@ import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import './style/Basket.scss';
 
-
 const useStyles = makeStyles({
   table: {},
 });
@@ -92,7 +91,12 @@ export default function Basket() {
           >
             Envoyer ma commande
           </Button>
-          <Button className='button-empty-basket' onClick={deleteBasket} variant="contained" type="button">
+          <Button
+            className="button-empty-basket"
+            onClick={deleteBasket}
+            variant="contained"
+            type="button"
+          >
             Vider mon panier
           </Button>
         </div>
