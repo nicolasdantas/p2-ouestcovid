@@ -3,6 +3,8 @@ import './components/style/Global.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import WhereToGo from './components/WhereToGo';
 import Home from './components/Home';
+import ContactForm from './components/ContactForm';
+import AboutUs from './components/AboutUs';
 import APICovidByCountyRequestProvider from './contexts/APICovidByCountyRequest';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -25,11 +27,7 @@ function App() {
         console.log(isLoading);
       }
     });
-  }, []);
-
-  // if (isLoading) {
-  //   return null;
-  // }
+  }, [isLoading]);
 
   return (
     <APICovidByCountyRequestProvider>
@@ -40,6 +38,10 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/ou-partir" component={WhereToGo} />
+              <Route exact path="/contact">
+                <AboutUs />
+                <ContactForm />
+              </Route>
             </Switch>
           </div>
           <Footer />
