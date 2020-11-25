@@ -1,0 +1,14 @@
+.basket{
+  margin-top: 20px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  .basket-button{
+    display:flex;
+    flex-direction: column;
+    margin-top: 20px;
+    .button-empty-basket{
+      margin-top: 30px;
+    }
+  }
+}

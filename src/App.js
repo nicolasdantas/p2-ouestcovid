@@ -7,9 +7,12 @@ import ContactForm from './components/ContactForm';
 import AboutUs from './components/AboutUs';
 import APICovidByCountyRequestProvider from './contexts/APICovidByCountyRequest';
 import Navbar from './components/Navbar';
+import Store from './components/Store';
+import Basket from './components/Basket';
 import Footer from './components/Footer';
 import './App.scss';
 import CountySelectedProvider from './contexts/CountySelected';
+import StoreContextProvider from './contexts/StoreContext';
 
 function App() {
   useEffect(() => {
@@ -28,6 +31,10 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/ou-partir" component={WhereToGo} />
+              <StoreContextProvider>
+                <Route exact path="/store" component={Store} />
+                <Route exact path="/basket" component={Basket} />
+              </StoreContextProvider>
               <Route exact path="/contact">
                 <AboutUs />
                 <ContactForm />
