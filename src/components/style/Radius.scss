@@ -7,6 +7,8 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
   padding: 10px 0;
 }
 
@@ -14,7 +16,20 @@
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
+  width: 250px;
 }
+
+.label-code {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
 input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
@@ -25,12 +40,35 @@ input {
   }
 }
 input[type='text'] {
-  background-color: #a3a3a3;
-  border: 2px solid white;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+  width: 250px;
+  margin-right: 10px;
+  &:disabled {
+    background-color: lightgray;
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 }
-input[type='submit'] {
-  background-color: DodgerBlue;
+input[type='submit'],
+.button-geoloc {
+  background-color: #2d414d;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  width: min-content;
+  white-space: nowrap;
   color: #fff;
+  height: min-content;
+  padding: 10px 8px;
+  border-radius: 10px;
+  margin-left: 10px;
+  border: 1px solid transparent;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .autocomplete-items {

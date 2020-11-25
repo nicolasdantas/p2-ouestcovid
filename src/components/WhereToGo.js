@@ -6,8 +6,9 @@ import './style/WhereToGo.scss';
 const WhereToGo = () => {
   return (
     <div className="where-to-go">
+      <h2>Où sortir ?</h2>
       <Radius />
-      <h1>Où partir ?</h1>
+      <h2>Où partir ?</h2>
       <TopFive />
     </div>
   );

@@ -52,7 +52,7 @@ function TopFive() {
         />
       )}
       <div className="top-five">
-        <h2>Top 5 des départements les plus sûrs</h2>
+        <h3>Top 5 des départements les plus sûrs</h3>
         <p className="situation">
           Situation le {moment(dayMinus1).format('DD/MM/YYYY')} <br />
           <span className="small">

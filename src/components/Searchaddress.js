@@ -3,15 +3,17 @@
 import Axios from 'axios';
 import React, { useState, useRef } from 'react';
 
-const SearchAddress = ({ setCurrentLocation, setZoomState }) => {
-  const [address, setAddress] = useState({
-    code: '',
-    street: '',
-    coordinates: [],
-  });
+const SearchAddress = ({
+  setCurrentLocation,
+  setZoomState,
+  address,
+  setAddress,
+}) => {
   const [autocompleteList, setAutocomplete] = useState();
   const [showList, setShowList] = useState(false);
   const submitButton = useRef(null);
+  const codeInput = useRef(null);
+  const reg = new RegExp(/[0-9]{5}/, 'g');
 
   const handlePostalCode = (value) => {
     setAddress((prevValue) => ({ ...prevValue, code: value }));
@@ -44,34 +46,57 @@ const SearchAddress = ({ setCurrentLocation, setZoomState }) => {
         street: '',
         coordinates: [],
       });
-      setZoomState(() => 14);
+      setZoomState(() => 10);
     } else {
       setCurrentLocation(() => false);
+    }
+  };
+
+  const checkPostalCode = () => {
+    if (!reg.test(codeInput.current.value)) {
+      setAddress((prevValue) => ({
+        ...prevValue,
+        code: '',
+      }));
+      codeInput.current.setAttribute('placeholder', 'Mauvais format');
     }
   };
 
   return (
     <div className="search-section">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="code"
-          id="code"
-          value={address.code}
-          required
-          onChange={(e) => handlePostalCode(e.target.value)}
-          onFocus={() => setShowList(false)}
-        />
-        <div className="autocomplete" style={{ width: '300px' }}>
+        <label className="label-code" htmlFor="code">
+          {' '}
+          Code postal
           <input
             type="text"
-            name="street"
-            id="street"
+            name="code"
+            id="code"
+            ref={codeInput}
+            value={address.code}
             required
-            value={address.street}
-            onChange={(e) => handleStreetChange(e.target.value)}
-            onFocus={() => setShowList(true)}
+            onChange={(e) => handlePostalCode(e.target.value)}
+            onFocus={() => setShowList(false)}
           />
+        </label>
+        <div className="autocomplete">
+          <label htmlFor="street">
+            {' '}
+            Addresse (rue, avenue...)
+            <input
+              type="text"
+              name="street"
+              id="street"
+              disabled={address.code === ''}
+              required
+              value={address.street}
+              onChange={(e) => handleStreetChange(e.target.value)}
+              onFocus={() => {
+                setShowList(true);
+                checkPostalCode();
+              }}
+            />
+          </label>
           <div id="autocomplete-list" className="autocomplete-items">
             {autocompleteList &&
               showList &&

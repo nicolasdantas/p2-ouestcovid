@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable global-require */
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   MapContainer,
   TileLayer,
@@ -9,10 +12,6 @@ import {
   useMap,
 } from 'react-leaflet';
 import Leaflet from 'leaflet';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-// import GeoLocationModal from './GeoLocationModal';
 import SearchAddress from './Searchaddress';
 import './style/Radius.scss';
 import 'leaflet/dist/leaflet.css';
@@ -37,28 +36,37 @@ function ChangeView({ center, zoom }) {
 
 const Radius = () => {
   const [currentLocation, setCurrentLocation] = useState();
+  const [address, setAddress] = useState({
+    code: '',
+    street: '',
+    coordinates: [],
+  });
   const [zoomState, setZoomState] = useState(5);
 
   const setLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setCurrentLocation(position);
-      setZoomState(() => 14);
+      axios
+        .get(
+          `https://api-adresse.data.gouv.fr/reverse/?lon=${position.coords.longitude}&lat=${position.coords.latitude}`,
+          {
+            headers: {
+              'Accept-Language': 'fr-FR',
+            },
+          }
+        )
+        .then((response) => response.data)
+        .then((data) => {
+          console.log(data);
+          setAddress(() => ({
+            code: data.features[0].properties.postcode,
+            street: data.features[0].properties.name,
+            coordinates: data.features[0].geometry.coordinates,
+          }));
+        });
+      setZoomState(() => 10);
     });
   };
-
-  const useStyles = makeStyles(() => ({
-    button: {
-      backgroundColor: '#2d414d',
-      color: 'white',
-      textTransform: 'none',
-      '&$button:hover': {
-        backgroundColor: '#2d414d',
-      },
-      '&$button:focus': {
-        outline: 'none',
-      },
-    },
-  }));
 
   return (
     <div id="mapid">
@@ -66,15 +74,12 @@ const Radius = () => {
         <SearchAddress
           setCurrentLocation={setCurrentLocation}
           setZoomState={setZoomState}
+          address={address}
+          setAddress={setAddress}
         />
-        <Button
-          onClick={setLocation}
-          variant="contained"
-          className={useStyles().button}
-          startIcon={<LocationOnIcon />}
-        >
+        <div onClick={setLocation} className="button-geoloc">
           Géolocalisez-moi
-        </Button>
+        </div>
       </div>
       {currentLocation &&
       currentLocation.coords &&
@@ -107,7 +112,7 @@ const Radius = () => {
               currentLocation.coords.longitude,
             ]}
             pathOptions={fillBlueOptions}
-            radius={1000}
+            radius={20000}
           >
             <Marker
               position={[
