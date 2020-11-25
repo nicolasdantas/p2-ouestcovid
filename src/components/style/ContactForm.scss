@@ -8,12 +8,12 @@ body {
 
 .form-wrapper {
   padding: 20px 40px;
-  background-color: var(--primary-color);
+  background: var(--second-color);
   margin: 0;
   font-family: var(--roboto);
 
   h2 {
-    color: white;
+    color:var(--primary-color);
     font-size: var(--component-title-mobile);
     text-align: center;
     margin-bottom: 20px;
@@ -25,6 +25,7 @@ body {
   }
 
   input {
+    color: var(--primary-color);
     padding: 10px 10px;
     border-radius: 5px;
     outline: none;
@@ -33,6 +34,7 @@ body {
   }
 
   textarea {
+    color: var(--primary-color);
     padding: 10px 10px;
     border-radius: 5px;
     outline: none;
@@ -42,7 +44,7 @@ body {
   }
 
   label {
-    color: white;
+    color:var(--primary-color);
     padding: 10px;
     margin-bottom: 10px;
     display: flex;
