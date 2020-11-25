@@ -91,7 +91,7 @@ const SearchAddress = ({
               type="text"
               name="street"
               id="street"
-              title="Entrez un code postal valide pour pouvoir entrer une addresse"
+              title="Entrez un code postal valide pour pouvoir entrer une adresse"
               disabled={address.code === ''}
               required
               value={address.street}
