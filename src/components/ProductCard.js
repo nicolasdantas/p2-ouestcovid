@@ -67,12 +67,12 @@ export default function ProductCard(props) {
         </Typography>
         <img width="100px" src={product.main_img} alt={product.product} />
       </CardContent>
-      <CardActions className="test">
+      <CardActions className="add-to-basket">
         <IconButton
           disabled={product.stock <= 0 && true}
           size="small"
           onClick={() => addToBasket()}
-          style={{ color: product.stock > 0 && '#2d414d' }}
+          style={{ color: product.stock > 0 && '#2d414d', outline: 'none' }}
         >
           <AddShoppingCartIcon />
         </IconButton>

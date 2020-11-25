@@ -13,11 +13,7 @@ import axios from 'axios';
 import './style/Basket.scss';
 import ConfirmationModal from './ConfirmationModal';
 
-const useStyles = makeStyles({
-  table: {},
-});
 export default function Basket(props) {
-  const classes = useStyles();
   const [modalShow, setModalShow] = useState(false);
   const [basket, setBasket] = useState([]);
 
@@ -37,6 +33,20 @@ export default function Basket(props) {
       source.cancel('Basket request canceled by user');
     };
   });
+
+  const useStyles = makeStyles(() => ({
+    button: {
+      backgroundColor: '#2d414d',
+      color: 'white',
+      textTransform: 'none',
+      '&$button:hover': {
+        backgroundColor: '#2d414d',
+      },
+      '&$button:focus': {
+        outline: 'none',
+      },
+    },
+  }));
 
   const deleteProduct = (id) => {
     axios.delete(`http://localhost:3000/api/basket/${id}`);
@@ -67,7 +77,7 @@ export default function Basket(props) {
       <div className="basket">
         <h1>Votre panier</h1>{' '}
         <Button
-          className="button-empty-basket"
+          className={`button-empty-basket ${useStyles().button}`}
           onClick={() => props.history.push('/store')}
           variant="contained"
           type="button"
@@ -75,7 +85,7 @@ export default function Basket(props) {
           Retour à la boutique
         </Button>
         <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell align="center" />
@@ -141,6 +151,8 @@ export default function Basket(props) {
         </TableContainer>
         <div className="basket-button">
           <Button
+            className={useStyles().button}
+            style={{ outline: 'none' }}
             onClick={() => sendOrder()}
             variant="contained"
             type="button"
@@ -149,7 +161,7 @@ export default function Basket(props) {
             Envoyer ma commande
           </Button>
           <Button
-            className="button-empty-basket"
+            className={`button-empty-basket ${useStyles().button}`}
             onClick={deleteBasket}
             variant="contained"
             type="button"
