@@ -22,9 +22,20 @@ export default function Basket(props) {
   const [basket, setBasket] = useState([]);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
     axios
-      .get('http://localhost:3000/api/basket')
-      .then((response) => setBasket(response.data));
+      .get('http://localhost:3000/api/basket', {
+        cancelToken: source.token,
+      })
+      .then((response) => setBasket(response.data))
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Error: ', err.message);
+        }
+      });
+    return () => {
+      source.cancel('Basket request canceled by user');
+    };
   });
 
   const deleteProduct = (id) => {
