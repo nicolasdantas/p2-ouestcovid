@@ -70,6 +70,8 @@ const Radius = () => {
 
   return (
     <div id="mapid">
+      <h2>Où sortir ?</h2>
+      <p>Affichez un rayon de 20km autour de chez vous</p>
       <div className="button-container">
         <SearchAddress
           setCurrentLocation={setCurrentLocation}

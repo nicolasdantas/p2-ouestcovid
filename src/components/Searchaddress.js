@@ -127,7 +127,7 @@ const SearchAddress = ({
               })}
           </div>
         </div>
-
+        <div style={{ width: '10px' }} />
         <input
           ref={submitButton}
           type="submit"

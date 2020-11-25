@@ -1,18 +1,17 @@
 @import './Global.scss';
 
 .header {
-
   .menu {
     background-color: var(--primary-color);
     width: 100%;
     margin: auto;
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
   }
 
-  .logo{
-    width: 60%;
+  .logo {
+    width: 145px;
     margin-left: 20px;
   }
   .navbar-right {
@@ -41,8 +40,20 @@
   }
 
   @media screen and (min-width: 600px) {
+    .lien-navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin: 0;
+      padding: 0;
+    }
+
     .liste {
       display: flex;
+      height: min-content;
+      margin: 10px 20px;
+      padding: 0;
+      font-size: 16px;
     }
     #hamburger_button {
       display: none;
@@ -50,8 +61,14 @@
     .menu {
       height: 80px;
     }
-    .logo{
-      width: 75%;
+    .logo {
+      width: 170px;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .liste {
+      font-size: 20px;
     }
   }
 }

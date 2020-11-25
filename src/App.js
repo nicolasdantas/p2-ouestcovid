@@ -6,6 +6,7 @@ import Home from './components/Home';
 import APICovidByCountyRequestProvider from './contexts/APICovidByCountyRequest';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Radius from './components/Radius';
 import './App.scss';
 import CountySelectedProvider from './contexts/CountySelected';
 
@@ -19,6 +20,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/ou-partir" component={WhereToGo} />
+              <Route exact path="/ou-sortir" component={Radius} />
             </Switch>
           </div>
           <Footer />
