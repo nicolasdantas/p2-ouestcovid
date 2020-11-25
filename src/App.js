@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './components/style/Global.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import WhereToGo from './components/WhereToGo';
@@ -12,22 +12,15 @@ import './App.scss';
 import CountySelectedProvider from './contexts/CountySelected';
 
 function App() {
-  const [isLoading, setLoading] = useState(true);
-
-  function fakeRequest() {
-    return new Promise((resolve) => setTimeout(() => resolve(), 1500));
-  }
+  // const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fakeRequest().then(() => {
-      const el = document.querySelector('.loader-container');
-      if (el) {
-        el.remove();
-        setLoading(!isLoading);
-        console.log(isLoading);
-      }
-    });
-  }, [isLoading]);
+    const el = document.querySelector('.loader-container');
+    if (el) {
+      el.remove();
+      // setLoading(!isLoading);
+    }
+  }, []);
 
   return (
     <APICovidByCountyRequestProvider>
