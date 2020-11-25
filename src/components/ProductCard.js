@@ -38,7 +38,10 @@ export default function ProductCard(props) {
       quantity,
       stock: product.stock,
     };
-    axios.post('http://localhost:3000/api/basket', productSelected);
+    axios.post(
+      'https://ouestcovid-back.herokuapp.com/api/basket',
+      productSelected
+    );
   };
 
   return (
