@@ -57,7 +57,6 @@ const Radius = () => {
         )
         .then((response) => response.data)
         .then((data) => {
-          console.log(data);
           setAddress(() => ({
             code: data.features[0].properties.postcode,
             street: data.features[0].properties.name,

@@ -46,6 +46,7 @@
     border: 1px solid transparent;
     background-color: #f1f1f1;
     padding: 10px;
+    outline: none;
     font-size: 16px;
     &:invalid {
       box-shadow: none;
@@ -111,11 +112,6 @@
     /*when hovering an item:*/
     background-color: #e9e9e9;
   }
-  // .autocomplete-items div:active {
-  //   /*when navigating through the items using the arrow keys:*/
-  //   background-color: DodgerBlue !important;
-  //   color: #ffffff;
-  // }
 
   .search-section {
     margin-right: 20px;
