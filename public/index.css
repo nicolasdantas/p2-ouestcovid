@@ -1,12 +1,11 @@
-
 .loader-container {
-  height:750px;
+  height: 750px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .loader {
-  border: 16px solid#c3ebe2 ;
+  border: 16px solid#c3ebe2;
   border-top: 16px solid #2d414d;
   border-radius: 50%;
   width: 130px;

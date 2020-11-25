@@ -12,13 +12,10 @@ import './App.scss';
 import CountySelectedProvider from './contexts/CountySelected';
 
 function App() {
-  // const [isLoading, setLoading] = useState(true);
-
   useEffect(() => {
     const el = document.querySelector('.loader-container');
     if (el) {
       el.remove();
-      // setLoading(!isLoading);
     }
   }, []);
 
