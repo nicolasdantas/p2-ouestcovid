@@ -1,11 +1,9 @@
 @import './Global.scss';
 
 .store-container {
+  text-align:center;
   color: var(--primary-color);
   margin-top: 20px;
-  h1 {
-    text-align: center;
-  }
   a, a:hover, a:link {
     text-decoration:none;
     color: var(--primary-color);
@@ -21,4 +19,9 @@
     flex-wrap: wrap;
     justify-content: space-around;
   }
+}
+
+.test{
+  display:flex;
+  justify-content:center;
 }
