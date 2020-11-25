@@ -11,15 +11,18 @@ const SearchAddress = ({
 }) => {
   const [autocompleteList, setAutocomplete] = useState();
   const [showList, setShowList] = useState(false);
+  const [enableSubmit, setEnableSubmit] = useState(false);
   const submitButton = useRef(null);
   const codeInput = useRef(null);
   const reg = new RegExp(/[0-9]{5}/, 'g');
 
   const handlePostalCode = (value) => {
+    setEnableSubmit(false);
     setAddress((prevValue) => ({ ...prevValue, code: value }));
   };
 
   const handleStreetChange = (input) => {
+    setEnableSubmit(false);
     setAddress((prevValue) => ({ ...prevValue, street: input }));
     if (input.length > 5) {
       Axios.get(
@@ -41,14 +44,15 @@ const SearchAddress = ({
           longitude: address.coordinates[0],
         },
       }));
-      setAddress({
-        code: '',
-        street: '',
-        coordinates: [],
-      });
+      // setAddress({
+      //   code: '',
+      //   street: '',
+      //   coordinates: [],
+      // });
       setZoomState(() => 10);
     } else {
       setCurrentLocation(() => false);
+      setZoomState(() => 5);
     }
   };
 
@@ -82,11 +86,12 @@ const SearchAddress = ({
         <div className="autocomplete">
           <label htmlFor="street">
             {' '}
-            Addresse (rue, avenue...)
+            Adresse (rue, avenue...)
             <input
               type="text"
               name="street"
               id="street"
+              title="Entrez un code postal valide pour pouvoir entrer une addresse"
               disabled={address.code === ''}
               required
               value={address.street}
@@ -113,6 +118,7 @@ const SearchAddress = ({
                         coordinates: item.geometry.coordinates,
                       }));
                       setAutocomplete(null);
+                      setEnableSubmit(true);
                     }}
                   >
                     {item.properties.name}
@@ -125,7 +131,9 @@ const SearchAddress = ({
         <input
           ref={submitButton}
           type="submit"
-          value="Search"
+          value="Valider"
+          disabled={!enableSubmit}
+          title="Sélectionnez une adresse dans la liste pour pouvoir valider"
           onFocus={() => setShowList(false)}
         />
       </form>

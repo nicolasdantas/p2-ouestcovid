@@ -69,6 +69,13 @@ input[type='submit'],
     text-decoration: underline;
     cursor: pointer;
   }
+  &:disabled {
+    background-color: gray;
+    &:hover {
+      cursor: not-allowed;
+      text-decoration: none;
+    }
+  }
 }
 
 .autocomplete-items {
