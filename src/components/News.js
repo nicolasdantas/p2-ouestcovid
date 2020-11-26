@@ -9,16 +9,18 @@ const News = () => {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const url = `https://newsapi.org/v2/everything?sources=le-monde&pageSize=7&qInTitle=covid&sortBy=publishedAt&apiKey=f545ace02057431081cf6684cc135a79`;
+    const url = `http://api.mediastack.com/v1/news?access_key=a68740b739e0ad207741172c4574dc94&keywords=covid&sources=lepoint&countries=fr&limit=7&sort=popularity`;
     axios
       .get(url, { cancelToken: source.token })
       .then((response) => response.data)
-      .then((data) => setArrayOfNews(data.articles))
+      .then((response) => setArrayOfNews(response.data))
       .catch((err) => console.log(err.message));
     return () => {
       source.cancel('API News request canceled by user');
     };
   }, []);
+
+  console.log(arrayOfNews)
 
   return (
     <div className="carousel-container" id="news">
@@ -31,7 +33,7 @@ const News = () => {
         infiniteLoop
       >
         {arrayOfNews
-          .filter((article) => article.urlToImage !== null)
+          .filter((article) => article.image !== null)
           .map((article) => (
             <a
               href={article.url}
@@ -40,7 +42,7 @@ const News = () => {
               rel="noreferrer noopener "
             >
               <div className="container">
-                <img className="picture" alt="" src={article.urlToImage} />
+                <img className="picture" alt="" src={article.image} />
                 <p className="legend">{article.title}</p>
               </div>
             </a>
