@@ -1,7 +1,9 @@
 import React from 'react';
 import './style/Footer.scss';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import logo from './img/logo.png';
 import LogoGouv from './img/gouvernement-logo.png';
+
 
 const Footer = () => {
   return (
@@ -18,8 +20,7 @@ const Footer = () => {
       </a>
 
       <p className="footerP">
-        Made with madness by Matt Damon, Candide Guiness , Moufette Anonyme, Lou
-        Lou, Someone
+        Made with <FavoriteIcon /> by Alex, Nicolas, Karen, Louise, Thomas.
       </p>
     </footer>
   );
