@@ -1,6 +1,35 @@
-@import './Global.css';
+@import './Global.scss';
 
 .graph-container {
-  margin-bottom: 40px;
   background-color: var(--second-color);
+  margin-bottom: 40px;
+  padding: 20px;
+  h1{
+    text-align: center;
+    font-size: var(--component-title-mobile);
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-weight: 700;
+  }
+  .graph-criteria {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .graph {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .graph-container {
+    h1{
+      font-size: var(--component-title-desktop);
+    }
+    .graph-criteria {
+      .graph {
+        width: 65%;
+      }
+    }
+  }
 }

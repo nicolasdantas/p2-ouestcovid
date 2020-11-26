@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import France from '@svg-maps/france.departments';
 import { SVGMap } from 'react-svg-map';
-import axios from 'axios';
-import moment from 'moment';
 import Select from 'react-select';
 import './style/Map.scss';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import countyListPop from './datas/countyListPop.json';
+import { CountySelected } from '../contexts/CountySelected';
+import { APICovidByCountyRequest } from '../contexts/APICovidByCountyRequest';
 
 const customStyles = {
   control: (provided) => ({
@@ -25,9 +26,22 @@ const customStyles = {
   }),
 };
 
-const Map = (props) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [allData, setData] = useState([]);
+const Map = () => {
+  const { setSelectedCountyName } = useContext(CountySelected);
+  const { allData } = useContext(APICovidByCountyRequest);
+  const allDataDep = useMemo(
+    () =>
+      allData
+        .filter((item) => item.code.includes('DEP'))
+        .map((item) => {
+          return {
+            ...item,
+            code: item.code.split('-')[1], // string format because of corsica
+          };
+        }),
+    [allData]
+  );
+
   const [colorSelection, setColorSelection] = useState({
     value: '',
     label: '- Aucun code couleur -',
@@ -40,49 +54,23 @@ const Map = (props) => {
     { value: 'hosp', label: 'Personnes hospitalisées' },
   ];
 
-  // this API request is redundant and should be moved in another component, probably in a context
-  useEffect(() => {
-    const dayMinus1 = moment().subtract(1, 'days').format('YYYY-MM-DD'); // last available data
-    const { CancelToken } = axios;
-    const source = CancelToken.source();
-    axios
-      .get(
-        `https://coronavirusapi-france.now.sh/AllDataByDate?date=${dayMinus1}`,
-        {
-          cancelToken: source.token,
-        }
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        setData(() =>
-          // keeping only counties, not regions and not the whole country
-          data.allFranceDataByDate.filter((item) => item.code.includes('DEP'))
-        );
-      })
-      .catch((err) => {
-        if (axios.isCancel(err)) {
-          console.log('Request canceled', err.message);
-        }
-      });
-    return function cleanup() {
-      // cancels the previous request on unmount or query update
-      source.cancel('Operation canceled by the user.');
-    };
-  }, []);
-
   // updating the value of customFrance, the data used to draw the map, depending on the choice made by the user in the select list
   useEffect(() => {
-    if (allData.length > 0 && colorSelection.value !== '') {
+    if (allDataDep.length > 0 && colorSelection.value !== '') {
       let selection = '';
+      let multiplier;
       switch (colorSelection.value) {
         case 'rea':
           selection = 'reanimation';
-          break;
-        case 'hosp':
-          selection = 'hospitalises';
+          multiplier = 1000000;
           break;
         case 'dead':
           selection = 'deces';
+          multiplier = 100000;
+          break;
+        case 'hosp':
+          selection = 'hospitalises';
+          multiplier = 100000;
           break;
         default:
           console.log(
@@ -93,23 +81,27 @@ const Map = (props) => {
         ...France,
         label: 'Custom map label',
         locations: France.locations.map((location) => {
-          const nb = allData.find(
-            (item) => item.code.split('-')[1] === location.id
-          )[selection];
+          const nb = allDataDep.find((item) => item.code === location.id)[
+            selection
+          ];
+          const { pop } = countyListPop.find(
+            (item) => item.code.toString() === location.id
+          );
+          const ratio = Math.round((nb / pop) * multiplier);
 
-          if (nb > 250) {
+          if (ratio > 100) {
             return {
               ...location,
               name: `${location.name}-red`,
             };
           }
-          if (nb > 80) {
+          if (ratio > 50) {
             return {
               ...location,
               name: `${location.name}-orange`,
             };
           }
-          if (nb > 30) {
+          if (ratio > 25) {
             return {
               ...location,
               name: `${location.name}-yellow`,
@@ -121,10 +113,13 @@ const Map = (props) => {
           };
         }),
       });
-    } else if (allData.length > 0 && colorSelection.value === '') {
+    } else if (allDataDep.length > 0 && colorSelection.value === '') {
       setCustomFrance(France);
     }
-  }, [allData, colorSelection]);
+  }, [allDataDep, colorSelection]);
+
+  // handling resizing
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -134,8 +129,11 @@ const Map = (props) => {
     window.addEventListener('resize', handleResize);
   }, []);
 
+  // handling county selection
   const handleClick = (event) => {
-    props.onSelectCounty(event.target.id);
+    const { id } = event.target; // this extra step is necessary because the name in location is used, and modified, for color mapping | it cannot be passed straight away as an argument
+    const name = allDataDep.find((item) => item.code === id).nom;
+    setSelectedCountyName(name);
   };
 
   return (
@@ -149,6 +147,33 @@ const Map = (props) => {
       ) : (
         <SVGMap map={customFrance} onLocationClick={handleClick} />
       )}
+      <div className="legend">
+        <p className="legend-title">Légende</p>
+        <div className="legend-row">
+          <p className="legend-legend">
+            Par million d'hab. (réanimation) ou pour 100 000 hab. (décès,
+            hospitalisation)
+          </p>
+          <div className="legend-colors">
+            <div className="line">
+              <div className="legend-color red" />
+              <p className="legend-number">{'>'} 100</p>
+            </div>
+            <div className="line">
+              <div className="legend-color orange" />
+              <p className="legend-number">{'>'} 50</p>
+            </div>
+            <div className="line">
+              <div className="legend-color yellow" />
+              <p className="legend-number">{'>'} 25</p>
+            </div>
+            <div className="line">
+              <div className="legend-color white" />
+              <p className="legend-number">{'<'} 25</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>
         <Select
           options={options}
@@ -159,7 +184,9 @@ const Map = (props) => {
           value={colorSelection}
         />
       </div>
-      <p>Sélectionner les données à afficher par code couleur</p>
+      <p className="precision">
+        Sélectionner les données à afficher par code couleur
+      </p>
     </div>
   );
 };

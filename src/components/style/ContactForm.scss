@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-@import './Global.css';
+@import './Global.scss';
 
 body {
   padding: 0;
@@ -10,13 +10,14 @@ body {
   padding: 20px 40px;
   background-color: var(--primary-color);
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--roboto);
 
   h2 {
     color: white;
     font-size: var(--component-title-mobile);
     text-align: center;
     margin-bottom: 20px;
+    font-weight: 700;
   }
 
   .red {
@@ -59,17 +60,26 @@ body {
     letter-spacing: 1px;
     border: none;
     cursor: pointer;
+    box-shadow: 0px 5px 2px black;
   }
 
   button:hover {
-    opacity: 0.8;
+    font-style: italic;
   }
 
   .button-div {
     display: flex;
     justify-content: center;
   }
-
+  button:active {
+    position: relative;
+    top: 5px;
+    box-shadow: none;
+    background: linear-gradient(black, 1%, var(--button-color));
+  }
+  button:focus {
+    outline: none;
+  }
   .error {
     font-size: 15;
     color: red;

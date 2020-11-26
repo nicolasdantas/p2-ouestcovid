@@ -1,18 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-@import './Global.css';
+@import './Global.scss';
 
 .carousel-container {
   margin-bottom: 40px;
-
-  * {
-    font-family: 'Roboto', sans-serif;
-  }
 
   .title {
     text-align: center;
     font-size: var(--component-title-mobile);
     margin-bottom: 20px;
     color: var(--primary-color);
+    font-weight: 700;
   }
 
   .carousel {

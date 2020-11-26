@@ -1,120 +1,120 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './style/ContactForm.scss';
+import axios from 'axios';
 
-const startState = {
-  name: '',
-  message: '',
-  email: '',
-  nameError: '',
-  emailError: '',
-  messageError: '',
-};
+const ContactForm = () => {
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [messageError, setMessageError] = useState('');
 
-class ContactForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = startState;
-  }
-
-  handleNameChange = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
-  handleMessageChange = (event) => {
-    this.setState({
-      message: event.target.value,
-    });
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
   };
 
-  handleEmailChange = (event) => {
-    this.setState({
-      email: event.target.value,
-    });
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
-  validation = () => {
-    let nameError = '';
-    let emailError = '';
-    let messageError = '';
-
-    if (!this.state.name) {
-      nameError = 'Veuillez entrer un nom';
+  const validation = () => {
+    if (!name) {
+      setNameError('Veuillez entrer un nom');
     }
-    if (!this.state.email) {
-      emailError = 'Veuillez entrer un email';
+    if (!email) {
+      setEmailError('Veuillez entrer un email');
     }
-    if (!this.state.message) {
-      messageError = 'Veuillez rentrer un message';
+    if (!message) {
+      setMessageError('Veuillez rentrer un message');
     }
-    if (emailError || nameError || messageError) {
-      this.setState({ emailError, nameError, messageError });
-      return false;
+    if (name && email && message) {
+      return true;
     }
-    return true;
+    return false;
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const isValid = this.validation();
+    const datas = {
+      name,
+      message,
+      email,
+    };
+    console.log(datas);
+    axios
+      .post(
+        `https://new-app-form.herokuapp.com/contact?apiKey=${window.apiKey}`,
+        datas
+      )
+      .then(() => {
+        alert('okay great');
+      });
+    const isValid = validation();
     if (isValid) {
       // clear form
-      this.setState(startState);
+      setName('');
+      setEmail('');
+      setMessage('');
+      setNameError('');
+      setEmailError('');
+      setMessageError('');
     }
   };
 
-  render() {
-    return (
-      <div className="form-wrapper">
-        <form id="contact" onSubmit={this.handleSubmit}>
-          <h2> Faites-nous part de vos remarques</h2>
-          <div>
-            <label htmlFor="inputName">
-              Nom
-              <input
-                className={`${this.state.nameError !== '' ? 'red' : ''}`}
-                type="text"
-                value={this.state.name}
-                onChange={this.handleNameChange}
-                id="inputName"
-                placeholder={this.state.nameError}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="inputEmail">
-              E-mail
-              <input
-                className={`${this.state.emailError !== '' ? 'red' : ''}`}
-                type="email"
-                value={this.state.email}
-                onChange={this.handleEmailChange}
-                id="inputEmail"
-                placeholder={this.state.emailError}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="inputMessage">
-              Message
-              <textarea
-                className={`${this.state.messageError !== '' ? 'red' : ''}`}
-                value={this.state.message}
-                onChange={this.handleMessageChange}
-                id="inputMessage"
-                placeholder={this.state.messageError}
-              />
-            </label>
-          </div>
+  return (
+    <div className="form-wrapper">
+      <form id="contact" onSubmit={(event) => handleSubmit(event)}>
+        <h2> Faites-nous part de vos remarques</h2>
+        <div>
+          <label htmlFor="inputName">
+            Nom
+            <input
+              className={`${nameError !== '' ? 'red' : ''}`}
+              type="text"
+              value={name}
+              onChange={handleNameChange}
+              id="inputName"
+              placeholder={nameError}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="inputEmail">
+            E-mail
+            <input
+              className={`${emailError !== '' ? 'red' : ''}`}
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              id="inputEmail"
+              placeholder={emailError}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="inputMessage">
+            Message
+            <textarea
+              className={`${messageError !== '' ? 'red' : ''}`}
+              value={message}
+              onChange={handleMessageChange}
+              id="inputMessage"
+              placeholder={messageError}
+            />
+          </label>
+        </div>
 
-          <div className="button-div">
-            <button type="submit">Envoyer</button>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+        <div className="button-div">
+          <button type="submit">Envoyer</button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default ContactForm;

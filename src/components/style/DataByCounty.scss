@@ -1,4 +1,4 @@
-@import './Global.css';
+@import './Global.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 * {
@@ -13,7 +13,6 @@
   flex-direction: column;
   align-items: center;
   width: 90%;
-
   margin-bottom: 20px;
   margin-right: auto;
   margin-left: auto;
@@ -22,56 +21,16 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: var(--component-title-mobile);
-    font-family: var(--roboto);
     color: var(--primary-color);
+    font-weight: 700;
   }
-
-  .searchBar {
-    display: flex;
+  .searchbar-geoloc{
+    display:flex;
+    flex-direction: column;
     align-items: center;
-    line-height: 2em;
-
-    .description {
-      font-size: 12px;
-      line-height: 1.2em;
-      margin-top: 8px;
+    .searchbar{
+      margin-bottom: 15px;
     }
-
-    select {
-      // A reset of styles, including removing the default dropdown arrow
-      appearance: none;
-      // Additional resets for further consistency
-      background-color: transparent;
-      border: none;
-      padding: 0 1em 0 0;
-      margin: 0;
-      width: 100%;
-      font-family: inherit;
-      font-size: inherit;
-      cursor: inherit;
-      line-height: inherit;
-      outline: none;
-    }
-
-    .custom-select {
-      width: 100%;
-      min-width: 15ch;
-      max-width: 30ch;
-      border: 1px solid black;
-      border-radius: 0.25em;
-      padding: 0.25em 0.5em;
-      cursor: pointer;
-      line-height: 1.1;
-      background-color: #fff;
-      background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-      display: grid;
-      grid-template-areas: 'select';
-      align-items: center;
-    }
-  }
-
-  .select-wrapper {
-    width: 250px;
   }
 
   .dataRow {
@@ -84,7 +43,7 @@
   .dataCard {
     background-color: var(--primary-color);
     color: white;
-    border: thick double white;
+    border-radius: 20px;
     padding: 10px;
     margin: 20px;
     width: 80%;
@@ -95,6 +54,8 @@
     h2 {
       text-align: center;
       font-weight: 600;
+      font-size: 20px;
+      margin: 0;
     }
 
     .dataNumbers {
@@ -122,10 +83,69 @@
   }
 
   .map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .react-transform-element {
+      display: flex;
+      justify-content: center;
+    }
+
     p {
       font-size: 14px;
-      color: gray;
+      margin-bottom: 0;
+    }
+
+    .precision {
       margin-top: 5px;
+    }
+
+    .legend {
+      border: 1px solid rgb(170, 170, 170);
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      color: rgb(56, 56, 56);
+      margin-bottom: 10px;
+    }
+
+    .legend-row {
+      display: flex;
+    }
+
+    .legend-legend {
+      width: 150px;
+    }
+
+    .legend-number {
+      margin: 0;
+    }
+    .legend-color {
+      height: 10px;
+      width: 10px;
+      margin-right: 10px;
+      border: 1px solid gray;
+    }
+
+    .legend-color.red {
+      background-color: red;
+    }
+    .legend-color.orange {
+      background-color: orangered;
+    }
+    .legend-color.yellow {
+      background-color: yellow;
+    }
+    .legend-color.white {
+      background-color: lightyellow;
+    }
+
+    .line {
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -133,9 +153,17 @@
     .title {
       font-size: var(--component-title-desktop);
     }
-
+    .searchbar-geoloc{
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      .searchbar{
+        margin-bottom: 0;
+        margin-right: 20px;
+      }
+    }
     .map {
-      display: block;
       width: 50vw;
       min-width: 400px;
     }
@@ -146,8 +174,10 @@
       align-items: center;
     }
     .dataCard {
-      width: 400px;
-      height: 300px;
+      width: 30%;
+      h2 {
+        font-size: 30px;
+      }
     }
   }
 }
