@@ -46,14 +46,10 @@ const ContactForm = () => {
       email,
     };
     console.log(datas);
-    axios
-      .post(
-        `https://new-app-form.herokuapp.com/contact?apiKey=${window.apiKey}`,
-        datas
-      )
-      .then(() => {
-        alert('okay great');
-      });
+    axios.post(
+      `https://new-app-form.herokuapp.com/contact?apiKey=${window.apiKey}`,
+      datas
+    );
     const isValid = validation();
     if (isValid) {
       // clear form
