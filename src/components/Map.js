@@ -127,6 +127,10 @@ const Map = () => {
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resive', handleResize);
+    };
   }, []);
 
   // handling county selection

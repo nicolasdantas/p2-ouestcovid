@@ -2,32 +2,32 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './style/AboutUs.scss';
-import avatar1 from './img/avatar1.jpeg';
-import avatar2 from './img/avatar2.jpeg';
-import avatar3 from './img/avatar3.jpeg';
-import avatar4 from './img/avatar4.jpeg';
-import avatar5 from './img/avatar5.jpeg';
+import Alex from './img/Alex.jpeg';
+import Nicolas from './img/Nicolas.png';
+import Karen from './img/Karen.jpg';
+import Louise from './img/Louise.jpeg';
+import Thomas from './img/Thomas.jpg';
 
 const avatarArray = [
   {
-    src: avatar1,
-    legend: 'Matt Damon',
+    src: Alex,
+    legend: 'Alex',
   },
   {
-    src: avatar2,
-    legend: 'Candide Guiness',
+    src: Nicolas,
+    legend: 'Nicolas',
   },
   {
-    src: avatar3,
-    legend: 'Moufette Anonyme',
+    src: Karen,
+    legend: 'Karen',
   },
   {
-    src: avatar4,
-    legend: 'Lou Lou',
+    src: Louise,
+    legend: 'Louise',
   },
   {
-    src: avatar5,
-    legend: 'Someone',
+    src: Thomas,
+    legend: 'Thomas',
   },
 ];
 const AboutUs = () => {

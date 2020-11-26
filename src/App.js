@@ -26,26 +26,24 @@ function App() {
   return (
     <APICovidByCountyRequestProvider>
       <CountySelectedProvider>
-        <StoreContextProvider>
-          <Router>
-            <div className="content">
-              <Navbar />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/ou-partir" component={WhereToGo} />
-                <Route exact path="/ou-sortir" component={Radius} />
-                <Route exact path="/contact">
-                  <AboutUs />
-                  <ContactForm />
-                </Route>
+        <Router>
+          <div className="content">
+            <Navbar />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/ou-partir" component={WhereToGo} />
+              <Route exact path="/ou-sortir" component={Radius} />
+              <Route exact path="/contact">
+                <AboutUs />
+                <ContactForm />
+              </Route>
 
-                <Route exact path="/store" component={Store} />
-                <Route exact path="/basket" component={Basket} />
-              </Switch>
-            </div>
-            <Footer />
-          </Router>
-        </StoreContextProvider>
+              <Route exact path="/store" component={Store} />
+              <Route exact path="/basket" component={Basket} />
+            </Switch>
+          </div>
+          <Footer />
+        </Router>
       </CountySelectedProvider>
     </APICovidByCountyRequestProvider>
   );
