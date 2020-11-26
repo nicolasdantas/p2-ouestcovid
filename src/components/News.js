@@ -9,11 +9,11 @@ const News = () => {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const url = `https://newsapi.org/v2/everything?sources=le-monde&pageSize=7&qInTitle=covid&sortBy=publishedAt&apiKey=f545ace02057431081cf6684cc135a79`;
+    const url = `http://api.mediastack.com/v1/news?access_key=a68740b739e0ad207741172c4574dc94&keywords=covid&countries=fr&limit=7`;
     axios
       .get(url, { cancelToken: source.token })
       .then((response) => response.data)
-      .then((data) => setArrayOfNews(data.articles))
+      .then((data) => setArrayOfNews(response.data))
       .catch((err) => console.log(err.message));
     return () => {
       source.cancel('API News request canceled by user');
