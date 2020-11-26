@@ -40,8 +40,7 @@ const ContactForm = () => {
     return false;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     setModalShow(true);
     const datas = {
       name,
@@ -70,7 +69,13 @@ const ContactForm = () => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <form id="contact" onSubmit={(event) => handleSubmit(event)}>
+      <form
+        id="contact"
+        onSubmit={(event) => {
+          event.preventDefault();
+          return validation() && handleSubmit(event);
+        }}
+      >
         <h2> Faites-nous part de vos remarques</h2>
         <div>
           <label htmlFor="inputName">

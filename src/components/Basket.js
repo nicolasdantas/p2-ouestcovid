@@ -16,6 +16,7 @@ import ConfirmationModal from './ConfirmationModal';
 export default function Basket(props) {
   const [modalShow, setModalShow] = useState(false);
   const [basket, setBasket] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -28,11 +29,12 @@ export default function Basket(props) {
         if (axios.isCancel(err)) {
           console.log('Error: ', err.message);
         }
-      });
+      })
+      .then(setIsLoading(false));
     return () => {
       source.cancel('Basket request canceled by user');
     };
-  });
+  }, [isLoading]);
 
   const useStyles = makeStyles(() => ({
     button: {
@@ -64,6 +66,7 @@ export default function Basket(props) {
     axios.put(`https://ouestcovid-back.herokuapp.com/api/products/`, basket);
     axios.delete(`https://ouestcovid-back.herokuapp.com/api/basket`);
     setModalShow(true);
+    setIsLoading(true);
     setTimeout(() => {
       props.history.push('/store');
     }, 5000);
@@ -127,12 +130,13 @@ export default function Basket(props) {
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      onChange={(event) =>
+                      onChange={(event) => {
                         setQuantity(
                           parseInt(event.target.value, 10),
                           product.id
-                        )
-                      }
+                        );
+                        setIsLoading(true);
+                      }}
                     />
                   </TableCell>
                   <TableCell align="center">{product.price}</TableCell>
@@ -141,8 +145,17 @@ export default function Basket(props) {
                   </TableCell>
                   <TableCell align="center">
                     <Button
-                      onClick={() => deleteProduct(product.id)}
+                      onClick={() => {
+                        deleteProduct(product.id);
+                        setIsLoading(true);
+                      }}
                       variant="contained"
+                      style={{
+                        backgroundColor: '#2d414d',
+                        color: 'white',
+                        textTransform: 'none',
+                        outline: 'none',
+                      }}
                       type="button"
                     >
                       Supprimer
@@ -157,7 +170,9 @@ export default function Basket(props) {
           <Button
             className={useStyles().button}
             style={{ outline: 'none' }}
-            onClick={() => sendOrder()}
+            onClick={() => {
+              sendOrder();
+            }}
             variant="contained"
             type="button"
             disabled={basket.length === 0}
@@ -166,7 +181,10 @@ export default function Basket(props) {
           </Button>
           <Button
             className={`button-empty-basket ${useStyles().button}`}
-            onClick={deleteBasket}
+            onClick={() => {
+              deleteBasket();
+              setIsLoading(true);
+            }}
             variant="contained"
             type="button"
           >
