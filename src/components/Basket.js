@@ -57,6 +57,10 @@ export default function Basket(props) {
   };
 
   const sendOrder = () => {
+    axios.post(
+      `https://new-app-form.herokuapp.com/order?apiKey=${window.apiKey}`,
+      basket
+    );
     axios.put(`https://ouestcovid-back.herokuapp.com/api/products/`, basket);
     axios.delete(`https://ouestcovid-back.herokuapp.com/api/basket`);
     setModalShow(true);
