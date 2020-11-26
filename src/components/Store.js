@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import axios from 'axios';
 import ProductCard from './ProductCard';
-
 import './style/ProductCard.scss';
 
 export default function Store() {

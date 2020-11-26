@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import Radius from './components/Radius';
 import './App.scss';
 import CountySelectedProvider from './contexts/CountySelected';
+import StoreContextProvider from './contexts/StoreContext';
 
 function App() {
   useEffect(() => {

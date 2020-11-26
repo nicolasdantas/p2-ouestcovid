@@ -4,7 +4,8 @@
   background-color: var(--second-color);
   margin-bottom: 40px;
   padding: 20px;
-  h1{
+  h1 {
+    display: block;
     text-align: center;
     font-size: var(--component-title-mobile);
     margin-bottom: 20px;
@@ -12,21 +13,27 @@
     font-weight: 700;
   }
   .graph-criteria {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    .graph {
-      width: 100%;
+    .criteria {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      .graph {
+        width: 100%;
+      }
     }
   }
 }
-
 @media screen and (min-width: 600px) {
   .graph-container {
-    h1{
+    h1 {
       font-size: var(--component-title-desktop);
     }
     .graph-criteria {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
       .graph {
         width: 65%;
       }

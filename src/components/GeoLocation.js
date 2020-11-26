@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GeoLocationModal from './GeoLocationModal';
 import { CountySelected } from '../contexts/CountySelected';
 
@@ -62,7 +61,6 @@ const SearchBar = () => {
         onClick={getLocation}
         variant="contained"
         className={useStyles().button}
-        startIcon={<LocationOnIcon />}
       >
         Géolocalisez-moi
       </Button>
