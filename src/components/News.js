@@ -9,18 +9,16 @@ const News = () => {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const url = `http://api.mediastack.com/v1/news?access_key=a68740b739e0ad207741172c4574dc94&keywords=covid&sources=lepoint&countries=fr&limit=7&sort=popularity`;
+    const url = `https://gnews.io/api/v4/search?q=covid&country=fr&max=7&token=6856e388a6280dcc28421facd91f5e5a`;
     axios
       .get(url, { cancelToken: source.token })
       .then((response) => response.data)
-      .then((response) => setArrayOfNews(response.data))
+      .then((data) => setArrayOfNews(data.articles))
       .catch((err) => console.log(err.message));
     return () => {
       source.cancel('API News request canceled by user');
     };
   }, []);
-
-  console.log(arrayOfNews);
 
   return (
     <div className="carousel-container" id="news">
