@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Store from './components/Store';
 import Basket from './components/Basket';
 import Footer from './components/Footer';
+import Radius from './components/Radius';
 import './App.scss';
 import CountySelectedProvider from './contexts/CountySelected';
 import StoreContextProvider from './contexts/StoreContext';
@@ -32,6 +33,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/ou-partir" component={WhereToGo} />
+                <Route exact path="/ou-sortir" component={Radius} />
                 <Route exact path="/contact">
                   <AboutUs />
                   <ContactForm />

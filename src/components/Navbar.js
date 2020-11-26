@@ -22,7 +22,7 @@ const Navbar = () => {
           <ul className="lien-navbar">
             <li>
               <Link className="liste" to="/">
-                Statistiques
+                Accueil
               </Link>
             </li>
             <li>
@@ -31,13 +31,18 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
+              <Link className="liste" to="/ou-sortir">
+                Où sortir ?
+              </Link>
+            </li>
+            <li>
               {useLocation().pathname === '/ou-partir' ? (
                 <HashLink className="liste" to="/#news">
-                  News
+                  Actualités
                 </HashLink>
               ) : (
                 <HashLink className="liste" smooth to="/#news">
-                  News
+                  Actualités
                 </HashLink>
               )}
             </li>
@@ -54,11 +59,11 @@ const Navbar = () => {
             <li>
               {useLocation().pathname === '/ou-partir' ? (
                 <HashLink className="liste" to="/#about-us">
-                  A Propos
+                  À Propos
                 </HashLink>
               ) : (
                 <HashLink className="liste" smooth to="/#about-us">
-                  A Propos
+                  À Propos
                 </HashLink>
               )}
             </li>
