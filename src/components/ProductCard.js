@@ -22,6 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
+
 export default function ProductCard(props) {
   const [quantity, setQuantity] = useState(1);
   const classes = useStyles();

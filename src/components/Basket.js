@@ -150,6 +150,12 @@ export default function Basket(props) {
                         setIsLoading(true);
                       }}
                       variant="contained"
+                      style={{
+                        backgroundColor: '#2d414d',
+                        color: 'white',
+                        textTransform: 'none',
+                        outline: 'none',
+                      }}
                       type="button"
                     >
                       Supprimer
