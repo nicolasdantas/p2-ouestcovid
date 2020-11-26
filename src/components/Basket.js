@@ -20,7 +20,7 @@ export default function Basket(props) {
   useEffect(() => {
     const source = axios.CancelToken.source();
     axios
-      .get('http://localhost:3000/api/basket', {
+      .get('https://ouestcovid-back.herokuapp.com/api/basket', {
         cancelToken: source.token,
       })
       .then((response) => setBasket(response.data))
@@ -49,16 +49,16 @@ export default function Basket(props) {
   }));
 
   const deleteProduct = (id) => {
-    axios.delete(`http://localhost:3000/api/basket/${id}`);
+    axios.delete(`https://ouestcovid-back.herokuapp.com/api/basket/${id}`);
   };
 
   const deleteBasket = () => {
-    axios.delete(`http://localhost:3000/api/basket`);
+    axios.delete(`https://ouestcovid-back.herokuapp.com/api/basket`);
   };
 
   const sendOrder = () => {
-    axios.put(`http://localhost:3000/api/products/`, basket);
-    axios.delete(`http://localhost:3000/api/basket`);
+    axios.put(`https://ouestcovid-back.herokuapp.com/api/products/`, basket);
+    axios.delete(`https://ouestcovid-back.herokuapp.com/api/basket`);
     setModalShow(true);
     setTimeout(() => {
       props.history.push('/store');
@@ -66,7 +66,7 @@ export default function Basket(props) {
   };
 
   const setQuantity = (quantity, id) => {
-    axios.put(`http://localhost:3000/api/basket/${id}`, {
+    axios.put(`https://ouestcovid-back.herokuapp.com/api/basket/${id}`, {
       quantity,
     });
   };

@@ -8,7 +8,7 @@ export default function StoreProvider({ children }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/products')
+      .get('https://ouestcovid-back.herokuapp.com/api/products')
       .then((response) => setAllProducts(response.data));
   });
 
