@@ -93,9 +93,9 @@ function CustomizedMenus() {
             <ListItemText
               onClick={handleClose}
               className="boxBurger"
-              primary="Statistiques"
+              primary="Accueil"
             >
-              Statistiques
+              Accueil
             </ListItemText>
           </Link>
         </StyledMenuItem>
@@ -105,9 +105,21 @@ function CustomizedMenus() {
             <ListItemText
               onClick={handleClose}
               className="boxBurger"
-              primary="Où partir?"
+              primary="Où partir ?"
             >
-              Où partir?
+              Où partir ?
+            </ListItemText>
+          </Link>
+        </StyledMenuItem>
+
+        <StyledMenuItem>
+          <Link className="burger-lien" to="/ou-sortir">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="Où sortir ?"
+            >
+              Où sortir ?
             </ListItemText>
           </Link>
         </StyledMenuItem>
@@ -117,14 +129,15 @@ function CustomizedMenus() {
             <ListItemText
               onClick={handleClose}
               className="boxBurger"
-              primary="News"
+              primary="Actualités"
             >
-              News
+              Actualités
             </ListItemText>
           </HashLink>
         </StyledMenuItem>
+
         <StyledMenuItem>
-          <HashLink className="burger-lien" to="/#contact">
+          <Link className="burger-lien" to="/contact">
             <ListItemText
               onClick={handleClose}
               className="boxBurger"
@@ -132,8 +145,9 @@ function CustomizedMenus() {
             >
               Contact
             </ListItemText>
-          </HashLink>
+          </Link>
         </StyledMenuItem>
+
         <StyledMenuItem>
           <HashLink className="burger-lien" to="/store">
             <ListItemText
@@ -142,17 +156,6 @@ function CustomizedMenus() {
               primary="Boutique"
             >
               Boutique
-            </ListItemText>
-          </HashLink>
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <HashLink className="burger-lien" to="/#about-us">
-            <ListItemText
-              onClick={handleClose}
-              className="boxBurger"
-              primary="A Propos"
-            >
-              A Propos
             </ListItemText>
           </HashLink>
         </StyledMenuItem>
