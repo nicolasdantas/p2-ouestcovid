@@ -36,7 +36,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              {useLocation().pathname === '/ou-partir' ? (
+              {useLocation().pathname !== '/' ? (
                 <HashLink className="liste" to="/#news">
                   Actualités
                 </HashLink>
@@ -55,17 +55,6 @@ const Navbar = () => {
               <Link className="liste" to="/store">
                 Boutique
               </Link>
-            </li>
-            <li>
-              {useLocation().pathname === '/ou-partir' ? (
-                <HashLink className="liste" to="/#about-us">
-                  À Propos
-                </HashLink>
-              ) : (
-                <HashLink className="liste" smooth to="/#about-us">
-                  À Propos
-                </HashLink>
-              )}
             </li>
           </ul>
         </div>
