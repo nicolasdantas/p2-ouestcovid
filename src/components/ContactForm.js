@@ -48,7 +48,6 @@ const ContactForm = () => {
       message,
       email,
     };
-    console.log(datas);
     axios.post(
       `https://new-app-form.herokuapp.com/contact?apiKey=${window.apiKey}`,
       datas
