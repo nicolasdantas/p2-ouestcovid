@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style/ContactForm.scss';
+import axios from 'axios';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -39,6 +40,20 @@ const ContactForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const datas = {
+      name,
+      message,
+      email,
+    };
+    console.log(datas);
+    axios
+      .post(
+        `https://new-app-form.herokuapp.com/contact?apiKey=${window.apiKey}`,
+        datas
+      )
+      .then(() => {
+        alert('okay great');
+      });
     const isValid = validation();
     if (isValid) {
       // clear form
@@ -53,7 +68,7 @@ const ContactForm = () => {
 
   return (
     <div className="form-wrapper">
-      <form id="contact" onSubmit={handleSubmit}>
+      <form id="contact" onSubmit={(event) => handleSubmit(event)}>
         <h2> Faites-nous part de vos remarques</h2>
         <div>
           <label htmlFor="inputName">
