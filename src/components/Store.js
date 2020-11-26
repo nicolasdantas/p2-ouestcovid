@@ -1,13 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import axios from 'axios';
 import ProductCard from './ProductCard';
-import { StoreContext } from '../contexts/StoreContext';
 
 import './style/ProductCard.scss';
 
 export default function Store() {
-  const { allProducts } = useContext(StoreContext);
+  const [allProducts, setAllProducts] = useState([]);
+
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    axios
+      .get('https://ouestcovid-back.herokuapp.com/api/products', {
+        cancelToken: source.token,
+      })
+      .then((response) => setAllProducts(response.data))
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Error: ', err.message);
+        }
+      });
+    return () => {
+      source.cancel('Store request canceled by user');
+    };
+  }, []);
 
   return (
     <div className="store-container">
