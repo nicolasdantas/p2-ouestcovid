@@ -20,7 +20,7 @@ const News = () => {
     };
   }, []);
 
-  console.log(arrayOfNews)
+  console.log(arrayOfNews);
 
   return (
     <div className="carousel-container" id="news">
