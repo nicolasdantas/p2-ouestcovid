@@ -135,6 +135,17 @@ function CustomizedMenus() {
           </HashLink>
         </StyledMenuItem>
         <StyledMenuItem>
+          <HashLink className="burger-lien" to="/store">
+            <ListItemText
+              onClick={handleClose}
+              className="boxBurger"
+              primary="Boutique"
+            >
+              Boutique
+            </ListItemText>
+          </HashLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
           <HashLink className="burger-lien" to="/#about-us">
             <ListItemText
               onClick={handleClose}

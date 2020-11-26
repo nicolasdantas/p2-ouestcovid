@@ -1,0 +1,27 @@
+@import './Global.scss';
+
+.store-container {
+  text-align:center;
+  color: var(--primary-color);
+  margin-top: 20px;
+  a, a:hover, a:link {
+    text-decoration:none;
+    color: var(--primary-color);
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .container-map {
+    color: var(--primary-color);
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.add-to-basket{
+  display:flex;
+  justify-content:center;
+}

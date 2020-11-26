@@ -104,8 +104,8 @@ const Graphic = () => {
               layout: {
                 padding: {
                   top: 0,
-                  left: 50,
-                  right: 60,
+                  left: 0,
+                  right: 0,
                   bottom: 0,
                 },
               },

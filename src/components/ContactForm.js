@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style/ContactForm.scss';
 import axios from 'axios';
+import ContactConfirmation from './ContactConfirmation';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -9,6 +10,7 @@ const ContactForm = () => {
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [messageError, setMessageError] = useState('');
+  const [modalShow, setModalShow] = useState(false);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -40,12 +42,12 @@ const ContactForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setModalShow(true);
     const datas = {
       name,
       message,
       email,
     };
-    console.log(datas);
     axios.post(
       `https://new-app-form.herokuapp.com/contact?apiKey=${window.apiKey}`,
       datas
@@ -64,6 +66,10 @@ const ContactForm = () => {
 
   return (
     <div className="form-wrapper">
+      <ContactConfirmation
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <form id="contact" onSubmit={(event) => handleSubmit(event)}>
         <h2> Faites-nous part de vos remarques</h2>
         <div>
