@@ -9,7 +9,7 @@ const News = () => {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    const url = `https://gnews.io/api/v4/search?q=covid&country=fr&max=7&token='6856e388a6280dcc28421facd91f5e5a'`;
+    const url = `https://gnews.io/api/v4/search?q=covid&country=fr&max=7&token=6856e388a6280dcc28421facd91f5e5a`;
     axios
       .get(url, { cancelToken: source.token })
       .then((response) => response.data)
