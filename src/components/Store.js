@@ -36,8 +36,8 @@ export default function Store() {
           Accéder au <ShoppingCartIcon />
         </h3>
         {isLoading && (
-          <div class="loader-container">
-            <div class="loader"></div>
+          <div className="loader-container">
+            <div className="loader" />
           </div>
         )}
       </Link>
