@@ -7,14 +7,17 @@ import './style/ProductCard.scss';
 
 export default function Store() {
   const [allProducts, setAllProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const source = axios.CancelToken.source();
     axios
       .get('https://ouestcovid-back.herokuapp.com/api/products', {
         cancelToken: source.token,
       })
       .then((response) => setAllProducts(response.data))
+      .then(() => setIsLoading(false))
       .catch((err) => {
         if (axios.isCancel(err)) {
           console.log('Error: ', err.message);
@@ -32,6 +35,11 @@ export default function Store() {
         <h3>
           Accéder au <ShoppingCartIcon />
         </h3>
+        {isLoading && (
+          <div className="loader-container">
+            <div className="loader" />
+          </div>
+        )}
       </Link>
       <div className="container-map">
         {allProducts.length > 0 &&
